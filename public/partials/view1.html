@@ -1,0 +1,36 @@
+<div class="container">
+    <h4>View 1</h4>
+    Filter
+    <!--Note: In other examples the "filtering" input was bound to $scope.name, but we
+    want to use name for customer, so this just create sa new binding here called filter.name-->
+    <input type="text" placeholder="Type to Filter" ng-model="filter.name"/>
+    <ul>
+        <li ng-repeat="person in customers | filter : filter.name | orderBy : 'city'">
+            {{person.name}} - {{person.city}}
+        </li>
+    </ul>
+    <br/>
+    <!--Using ng-model below automatically adds newCustomer to SimpleController's $scope (i.e. the "scope").
+        This is because of the route. Do not confuse this with person.name above. The "person" above refers to a
+        temporary object that is within the scope of the ng-repeat element. ng-repeate creates it's own new scope -->
+    <span>Name</span>:
+    <!--Bind the input element to the newCustomer.name property defined in the controller-->
+    <input type="text" ng-model="newCustomer.name"/>
+
+    <span>City</span>:
+    <input type="text" ng-model="newCustomer.city"/>
+
+    <button ng-click="addCustomer()" ng-class="important">Add a new customer</button>
+    <p style="margin-bottom: 0">SimpleController's $scope object currently has these values:</p>
+    <span>$scope.name is: {{newCustomer.name}}, $scope.city is {{newCustomer.city}}</span>
+
+    <!--Uses the value of $scope.userInput as a class name. Properties should
+        normally be defined in a controller, so this is sort of a bad example. More just for fun-->
+    <p ng-class="userInput">Type a color</p>
+    <input ng-model="userInput"/>
+
+    <!--Navigation in Angular!-->
+    <br/>
+    <br/>
+    <a href="#/view2">Goto View 2</a>
+</div>
