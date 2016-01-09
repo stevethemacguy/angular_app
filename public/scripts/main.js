@@ -3,10 +3,6 @@
 //NOTE: Some versions of phpStorm won't recognize .module or .controller...It is a bug!
 var appModule = angular.module("appModule", ['ngRoute']);
 
-//Store all controllers in one object and then pass the object to the module
-var controllers = {};
-
-
 //Note that angular will go look up simpleFactory and inject it here
 
 //In the demo, he created his controllers this way with an anonymous function.
@@ -22,17 +18,21 @@ appModule.controller("SimpleController", function ($scope, simpleFactory)
     //See my notes on scopes
     $scope.addCustomer = function() {
         $scope.customers.push(
-            {
-                name: $scope.newCustomer.name,
-                city: $scope.newCustomer.city
-            });
+        {
+            name: $scope.newCustomer.name,
+            city: $scope.newCustomer.city
+        });
     }
 });
 
-
 //NOTE: This is the other way to create controllers, but I'm not sure if the simplyFactory actually works properly this way?
+
+//Store all controllers in one object and then pass the object to the module
+/*
+var controllers = {};
+
 //Create the Controller dynamically (which adds it to the controllers object)
-/*controllers.SimpleController = function($scope, simpleFactory) {
+controllers.SimpleController = function($scope, simpleFactory) {
 
     //Works here but moved out into a factory
     /!*$scope.customers = [
