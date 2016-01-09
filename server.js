@@ -1,4 +1,4 @@
-//A basic Webserver to serve up HTML goodness!
+//A basic Express Webserver created with Node.
 
 var express = require('express');
 var app = express();

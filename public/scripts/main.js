@@ -3,16 +3,18 @@
 //NOTE: Some versions of phpStorm won't recognize .module or .controller...It is a bug!
 var appModule = angular.module("appModule", ['ngRoute']);
 
-//Note that angular will go look up simpleFactory and inject it here
-
 //In the demo, he created his controllers this way with an anonymous function.
 //I prefer the other way (see my comments below), but I really don't know if the factory
-//is working properly (it works, but maybe just because it's in the same file),
-//so you may want to try his way:
+//is working properly with my way (it works, but maybe just because it's in the same file),
+//so you may want to use his way.
+
+//Create a basic controller. Note: Angular will go look for simpleFactory and inject it here
+//to be used by the controller
 appModule.controller("SimpleController", function ($scope, simpleFactory)
 {
     //Use the factory to generate/retrieve the customer data
     $scope.customers = simpleFactory.getCustomers();
+
     //You don't need to pass anything in. The name and city properties are actually defined/created
     //HERE in the controller. They're just bound to the input element in the view.
     //See my notes on scopes
@@ -58,11 +60,9 @@ controllers.SimpleController = function($scope, simpleFactory) {
 
 //Pass in all of the controllers. In this case, just one
 appModule.controller(controllers);
-
 */
 
-
-
+//Configure routes for the app (i.e. "glue" the views to their respective controllers.
 appModule.config(['$routeProvider', function($routeProvider)
 {
     var viewBase = 'partials/';
@@ -81,7 +81,7 @@ appModule.config(['$routeProvider', function($routeProvider)
         .otherwise({ redirectTo: '/view1' });  //This could also be '/' instead
 }]);
 
-//Creates an object and returns it
+//Creates an object and returns it (I'm using hard coded data here, but the factory could connect to a DB, etc.
 appModule.factory('simpleFactory', function()
 {
     var customers = [
@@ -99,21 +99,4 @@ appModule.factory('simpleFactory', function()
 
     //return it
     return factory;
-
 });
-/* app.run(['$rootScope', '$location', 'authService',
-     function ($rootScope, $location, authService) {
-
-         //Client-side security. Server-side framework MUST add it's
-         //own security as well since client-based security is easily hacked
-         $rootScope.$on("$routeChangeStart", function (event, next, current) {
-             if (next && next.$$route && next.$$route.secure) {
-                 if (!authService.user.isAuthenticated) {
-                     $rootScope.$evalAsync(function () {
-                         authService.redirectToLogin();
-                     });
-                 }
-             }
-         });
-
-     }]);*/
