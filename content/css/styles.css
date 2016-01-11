@@ -1,0 +1,32 @@
+/*testing colors*/
+html {
+  background: black;
+}
+body {
+  width: 1000px;
+  height: 1000px;
+  margin: 0 auto;
+  padding: 0;
+  background: white;
+}
+ul {
+  margin: 0;
+}
+.important {
+  font-weight: bold;
+}
+.red {
+  color: red;
+}
+.green {
+  color: green;
+}
+.blue {
+  color: blue;
+}
+.black {
+  color: black;
+}
+.bold {
+  font-weight: bold;
+}
