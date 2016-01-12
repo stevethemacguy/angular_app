@@ -3,8 +3,12 @@
 <head>
     <meta charset="utf-8">
     <title>Page Title</title>
+    <link href="content/css/bootstrap/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="content/css/bootstrap/bootstrap-theme.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="content/css/styles.css" type="text/css" media="screen">
-</head>
+    <!--Use Full Bootstrap CDN instead-->
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"></head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">-->
 <body>
     <!--Placeholder for other views-->
     <div ng-view></div>
@@ -12,6 +16,7 @@
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script src="app/lib/angular.js"></script>
     <script src="app/lib/angular-route.js"></script>
+    <script type="text/javascript" src="app/lib/ui-bootstrap-tpls-1.0.0.js"></script>
     <!--<script src="//ajax.googleapis.com/ajax/lib/angularjs/1.4.8/angular-route.controllers"></script>-->
     <script src="app/app.js"></script>
     <script src="app/factories/simpleFactory.js"></script>
