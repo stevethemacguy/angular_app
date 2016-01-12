@@ -19,11 +19,6 @@ appModule.config(['$routeProvider', function($routeProvider)
             templateUrl: viewBase + 'view2.html'
             /*controllerAs: 'vm'*/
         })
-        .when('/progress', {
-            controller: 'ProgressBarController',
-            templateUrl: viewBase + 'google_examples/progress.html'
-            /*controllerAs: 'vm'*/
-        })
         .otherwise({ redirectTo: '/view1' });  //This could also be '/' instead
 }]);
 
