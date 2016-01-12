@@ -11,12 +11,17 @@ appModule.config(['$routeProvider', function($routeProvider)
         .when('/view1',          //This could also be '/' to default to view1
             {
                 controller: 'SimpleController',
-                templateUrl: viewBase + 'view1.html',
+                templateUrl: viewBase + 'view1.html'
                 /*controllerAs: 'vm'*/
             })
         .when('/view2', {
             controller: 'SimpleController',
-            templateUrl: viewBase + 'view2.html',
+            templateUrl: viewBase + 'view2.html'
+            /*controllerAs: 'vm'*/
+        })
+        .when('/progress', {
+            controller: 'ProgressBarController',
+            templateUrl: viewBase + 'google_examples/progress.html'
             /*controllerAs: 'vm'*/
         })
         .otherwise({ redirectTo: '/view1' });  //This could also be '/' instead

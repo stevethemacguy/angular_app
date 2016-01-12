@@ -21,6 +21,11 @@ appModule.controller("SimpleController", function ($scope, simpleFactory)
             });
     };
 
+});
+
+//Example Progress bar from Google. It comes with UI Bootstrap
+appModule.controller("ProgressBarController", function ($scope)
+{
     $scope.max = 200;
 
     $scope.random = function() {
@@ -57,8 +62,8 @@ appModule.controller("SimpleController", function ($scope, simpleFactory)
         }
     };
     $scope.randomStacked();
-
 });
+
 
 //NOTE: This is the other way to create controllers, but I'm not sure if the simplyFactory actually works properly this way?
 
