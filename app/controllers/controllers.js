@@ -23,6 +23,36 @@ appModule.controller("SimpleController", function ($scope, simpleFactory)
 
 });
 
+appModule.controller("ShippingController", function($scope, simpleFactory) {
+   //$scope.
+
+
+});
+
+appModule.controller("BillingController", function($scope, simpleFactory) {
+    //$scope.
+
+
+});
+
+appModule.controller("PaymentController", function($scope, simpleFactory) {
+    //$scope.
+
+
+});
+
+appModule.controller("ProductController", function($scope, simpleFactory) {
+    //$scope.
+
+
+});
+
+appModule.controller("ConfirmationController", function($scope, simpleFactory) {
+    //$scope.
+
+
+});
+
 
 //NOTE: This is the other way to create controllers, but I'm not sure if the simplyFactory actually works properly this way?
 

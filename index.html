@@ -9,11 +9,26 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">-->
     <link href="content/css/bootstrap/bootstrap.css" rel="stylesheet" type="text/css">
     <link href="content/css/bootstrap/bootstrap-theme.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="content/css/styles.css" type="text/css" media="screen">
-
+    <link rel="stylesheet" href="content/css/styles.css" type="text/css">
+    <link rel="stylesheet" href="content/css/products.css" type="text/css">
+    <link rel="stylesheet" href="content/css/payment.css" type="text/css">
+    <link rel="stylesheet" href="content/css/billing.css" type="text/css">
+    <link rel="stylesheet" href="content/css/shipping.css" type="text/css">
+    <link rel="stylesheet" href="content/css/confirmation.css" type="text/css">
 <body>
-    <!--Placeholder for other views-->
-    <div ng-view></div>
+    <header>
+        <nav>
+            <ul>
+                <li>
+                    <a href="#/products">Home</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <div class="main">
+        <!--Placeholder for other views-->
+        <div ng-view></div>
+    </div>
 
     <!--<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>-->
     <script src="app/lib/angular.js"></script>

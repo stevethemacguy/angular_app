@@ -19,6 +19,31 @@ appModule.config(['$routeProvider', function($routeProvider)
             templateUrl: viewBase + 'view2.html'
             /*controllerAs: 'vm'*/
         })
+        .when('/shipping', {
+            controller: 'ShippingController',
+            templateUrl: viewBase + 'shipping.html'
+            /*controllerAs: 'vm'*/
+        })
+        .when('/billing', {
+            controller: 'BillingController',
+            templateUrl: viewBase + 'billing.html'
+            /*controllerAs: 'vm'*/
+        })
+        .when('/payment', {
+            controller: 'PaymentController',
+            templateUrl: viewBase + 'payment.html'
+            /*controllerAs: 'vm'*/
+        })
+        .when('/products', {
+            controller: 'ProductController',
+            templateUrl: viewBase + 'products.html'
+            /*controllerAs: 'vm'*/
+        })
+        .when('/confirmation', {
+            controller: 'ConfirmationController',
+            templateUrl: viewBase + 'confirmation.html'
+            /*controllerAs: 'vm'*/
+        })
         .otherwise({ redirectTo: '/view1' });  //This could also be '/' instead
 }]);
 
