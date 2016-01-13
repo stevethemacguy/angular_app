@@ -24,7 +24,6 @@ appModule.controller("PaymentController", function($scope, dataService) {
 
 appModule.controller("ProductController", function($scope, dataService) {
     $scope.productList = dataService.getProducts();
-
 });
 
 appModule.controller("ConfirmationController", function($scope, dataService) {

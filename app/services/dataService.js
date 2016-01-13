@@ -10,21 +10,26 @@ appModule.factory('dataService', function() {
     //    var somethingPrivate = function() {};
     //If you want to expose them, then add them to theService
 
+    var imgPath = "content/images/";
     var products = [
-        { name: 'apple', price: 1.50 },
-        { name: 'pencil', price: .50 },
-        { name: 'Xbox', price: 199.99 },
-        { name: 'Sony Camera', price: 60.00 },
-        { name: 'LOTR Trilogy on Blue Ray', price: 49.99 },
-        { name: 'band aids', price: 2.50 },
-        { name: 'apple pie', price: 5.00 },
-        { name: 'tennis ball (x10)', price: 5.49 },
-        { name: 'diamond necklace', price: 20000 },
-        { name: 'Hand grenade', price: 15.00 },
-        { name: 'printer', price: 150.00 },
-        { name: 'monitor', price: 335.00 },
-        { name: 'book', price: 5.00 },
-        { name: 'Silverware', price: 189.00 }
+        { name: 'Apple', price: 1.50, img: imgPath + 'apple.png' },
+        { name: 'Pencil', price: .50, img: imgPath + 'pencil.png' },
+        { name: 'Xbox', price: 199.99, img: imgPath + 'xbox.png'},
+        { name: 'Sony Camera', price: 60.00, img: imgPath + 'camera.png'},
+        { name: 'LOTR Trilogy; Blue Ray', price: 49.99, img: imgPath + 'dvd.png' },
+        { name: 'Band aids', price: 2.50, img: imgPath + 'band.png' },
+        { name: 'Apple pie', price: 5.00, img: imgPath + 'pie.png' },
+        { name: 'Tennis ball (x10)', price: 5.49, img: imgPath + 'ball.png' },
+        { name: 'Diamond necklace', price: 20000, img: imgPath + 'diamond.png' },
+        { name: 'Hand grenade', price: 15.00, img: imgPath + 'grenade.png' },
+        { name: 'Printer', price: 150.00, img: imgPath + 'printer.png' },
+        { name: 'Monitor', price: 335.00, img: imgPath + 'monitor.png' },
+        { name: 'Book', price: 5.00, img: imgPath + 'book.png' },
+        { name: 'Couch', price: 189.00, img: imgPath + 'couch.gif' },
+        { name: 'Silverware', price: 189.00, img: imgPath + 'silver.png' },
+        { name: 'Watch', price: 189.00, img: imgPath + 'watch.png' },
+        { name: 'Flowers', price: 189.00, img: imgPath + 'flowers.png' },
+        { name: 'Cup', price: 189.00, img: imgPath + 'cup.png' }
         
     ];
 

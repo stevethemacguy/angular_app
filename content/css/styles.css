@@ -19,6 +19,7 @@ header {
   position: fixed;
   width: 100%;
   text-align: center;
+  z-index: 3;
 }
 .navbar {
   border-top: 0;

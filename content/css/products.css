@@ -1,21 +1,43 @@
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 .productText {
   font-size: 18px;
 }
 .product-container {
-  display: inline-block;
-  width: 160px;
-  height: 230px;
+  width: 100%;
+  padding: 0;
 }
 .products {
   list-style: none;
   padding: 0;
   margin: 0;
 }
-.item {
-  float: left;
+.caption {
+  text-align: center;
+}
+.image-holder {
+  border: 1px solid teal;
+  width: 99%;
+  height: 150px;
+  text-align: center;
+}
+.add-button {
+  margin-top: 8px;
 }
 .product-image {
-  border: 1px solid teal;
-  width: 150px;
-  height: 150px;
+  max-width: 100%;
+  height: 100%;
+}
+.prod-price {
+  font-size: 15px;
+}
+.prod-name {
+  margin-top: 3px;
+  margin-bottom: 3px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

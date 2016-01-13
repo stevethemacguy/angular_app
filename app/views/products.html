@@ -1,18 +1,18 @@
-<p class="productText">Select some products to add them to your cart</p>
-<ul class="products">
-    <li class="item" ng-repeat="product in productList ">
-        <div class="product-container">
-            <div class="product-image">
-                    <span>No Image available</span>
+<p class="productText">Available products</p>
+<div class="container product-container">
+    <div class="row">
+        <div class="col-lg-2 col-md-3 col-sm-4" ng-repeat="product in productList">
+            <div class="thumbnail">
+                <div class="image-holder">
+                    <img class="product-image" ng-src="{{product.img}}" alt="No Image available"/>
+                </div>
+                <div class="caption">
+                    <h4 class="prod-name">{{product.name}}</h4>
+                    <span class="prod-price">Price:</span>
+                    <span>{{product.price}}</span>
+                    <div><a href="#" class="add-button btn btn-primary" role="button">Add to Cart</a></div>
+                </div>
             </div>
-            <span>Description:</span>
-            <span>'{{product.name}}'</span>
-            <div>
-                <span>Price:</span>
-                <span>{{product.price}}</span>
-            </div>
-
         </div>
-
-    </li>
-</ul>
+    </div>
+</div>
