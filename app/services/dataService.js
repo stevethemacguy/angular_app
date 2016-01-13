@@ -11,6 +11,8 @@ appModule.factory('dataService', function() {
     //If you want to expose them, then add them to theService
 
     var imgPath = "content/images/";
+
+    //A list of all available products
     var products = [
         { name: 'Apple', price: 1.50, img: imgPath + 'apple.png' },
         { name: 'Pencil', price: .50, img: imgPath + 'pencil.png' },
@@ -32,6 +34,29 @@ appModule.factory('dataService', function() {
         { name: 'Cup', price: 189.00, img: imgPath + 'cup.png' }
         
     ];
+
+    //The customer's shopping cart, which is initially empty
+    var shoppingCart = [];
+
+    theService.getCart = function()
+    {
+        return shoppingCart;
+    };
+
+    //Adds a selected product to the customer's cart
+    theService.addToCart = function(product)
+    {
+        shoppingCart.push(product);
+    };
+
+    //For debugging
+    theService.printCart = function()
+    {
+        for (var index = 0; index < shoppingCart.length ; index++)
+        {
+            console.log("name: " + shoppingCart[index].name + " price: " + shoppingCart[index].price);
+        }
+    };
 
     var customers = [
         {name: 'John Smith', city: 'Phoenix'},

@@ -17,13 +17,17 @@ appModule.controller("BillingController", function($scope, dataService) {
 });
 
 appModule.controller("PaymentController", function($scope, dataService) {
-    $scope.test = dataService.getCustomers();
-    $scope.numbers = dataService.getNumbers();
 
 });
 
 appModule.controller("ProductController", function($scope, dataService) {
     $scope.productList = dataService.getProducts();
+
+    //Add the product to the locally stored shopping cart. This is passed in the function
+    $scope.addToCart = function(product)
+    {
+        dataService.addToCart(product);
+    }
 });
 
 appModule.controller("ConfirmationController", function($scope, dataService) {
@@ -32,9 +36,14 @@ appModule.controller("ConfirmationController", function($scope, dataService) {
 });
 
 appModule.controller("CartController", function($scope, dataService) {
-    //Access the service Singleton through the factory
-    $scope.test = dataService.getCustomers();
-    $scope.numbers = dataService.getNumbers();
+
+    //Get the current cart from the dataService, which might be an empty array
+    var shoppingCart = dataService.getCart();
+
+    for (var i = 0; i < shoppingCart.length; i++)
+    {
+        console.log(shoppingCart[i]);
+    }
 });
 
 appModule.controller("ThankYouController", function($scope, dataService) {
