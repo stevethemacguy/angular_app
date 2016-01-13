@@ -23,7 +23,7 @@ appModule.controller("PaymentController", function($scope, dataService) {
 });
 
 appModule.controller("ProductController", function($scope, dataService) {
-    //$scope.
+    $scope.productList = dataService.getProducts();
 
 });
 

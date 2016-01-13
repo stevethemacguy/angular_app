@@ -1,0 +1,18 @@
+<p class="productText">Select some products to add them to your cart</p>
+<ul class="products">
+    <li class="item" ng-repeat="product in productList ">
+        <div class="product-container">
+            <div class="product-image">
+                    <span>No Image available</span>
+            </div>
+            <span>Description:</span>
+            <span>'{{product.name}}'</span>
+            <div>
+                <span>Price:</span>
+                <span>{{product.price}}</span>
+            </div>
+
+        </div>
+
+    </li>
+</ul>

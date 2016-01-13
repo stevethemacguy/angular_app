@@ -96,11 +96,11 @@ header {
 }
 .main {
   background: #F7F7F9;
-  width: 98%;
+  width: 94%;
   margin: 0 auto;
   min-height: 100vh;
   padding: 15px;
-  padding-top: 43px;
+  padding-top: calc(58px);
 }
 .nav,
 .pagination,
