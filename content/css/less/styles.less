@@ -17,7 +17,7 @@ body {
 }
 
 header {
-   height: 44px;
+   height: 48px;
    color: white;
    position: fixed;
    width: 100%;
@@ -29,12 +29,12 @@ header {
    border-left: 0;
    border-right: 0;
    height: 100%;
-   padding: 2px;
-   padding-left: 15px;
+   padding: 4px 2px 2px 15px;
    ul {
       list-style: none;
       font-size: 25px;
       padding: 0;
+      display: inline-block;
    }
    a {
       font-weight: 500;
@@ -72,6 +72,28 @@ header {
    border-radius: 0;
    border-top: 0;
    border-left: 0;
+}
+
+.cart-holder
+{
+   display: inline-block;
+   float: right;
+   left: -20px;
+   position: relative;
+   cursor: pointer;
+}
+
+.cart-text
+{
+   font-size: 19px;
+   margin-right: 5px;
+}
+
+.cart-icon
+{
+   position: relative;
+   top: 5px;
+   font-size: 25px;
 }
 
 .main {
