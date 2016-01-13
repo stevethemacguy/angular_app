@@ -24,6 +24,42 @@ header {
   border-left: 0;
   border-right: 0;
   height: 100%;
+  padding: 2px;
+  padding-left: 15px;
+}
+.navbar ul {
+  list-style: none;
+  font-size: 25px;
+  padding: 0;
+}
+.navbar a {
+  font-weight: 500;
+  color: white;
+}
+.navbar a:link {
+  color: white;
+  text-decoration: none;
+  outline: none;
+}
+.navbar a:visited {
+  color: white;
+  text-decoration: none;
+  outline: none;
+}
+.navbar a:focus {
+  color: white;
+  text-decoration: none;
+  outline: none;
+}
+.navbar a:hover {
+  color: lavender;
+  text-decoration: none;
+  outline: none;
+}
+.navbar a:active {
+  color: white;
+  text-decoration: none;
+  outline: none;
 }
 .navbar-default {
   border-radius: 0;
