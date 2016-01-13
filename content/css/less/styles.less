@@ -1,48 +1,82 @@
+//Base CSS for the index page
+
 /*testing colors*/
-html
-{
-    background: black;
+html {
+   background: #fff;
+   box-sizing: border-box;
 }
 
-body{
-    width: 1000px;
-    height: 1000px;
-    margin: 0 auto;
-    padding: 0;
-    background: white;
+*, *:before, *:after {
+   box-sizing: inherit;
+}
+
+body {
+   margin: 0 auto;
+   padding: 0;
+   position: relative;
+}
+
+header {
+   height: 44px;
+   color: white;
+   position: fixed;
+   width: 100%;
+}
+
+//override bootstrap
+.navbar {
+   border-top: 0;
+   border-left: 0;
+   border-right: 0;
+   height: 100%;
+}
+
+//override bootstrap theme
+.navbar-default {
+   border-radius: 0;
+   border-top: 0;
+   border-left: 0;
+}
+
+.main {
+   background: #F7F7F9;
+   width: 98%;
+   margin: 0 auto;
+   min-height: 100vh;
+   padding-top: 43px;
 }
 
 //Required Angular fix, see https://angular-ui.github.io/bootstrap/#/pagination
 .nav, .pagination, .carousel, .panel-title a {
-    cursor: pointer;
+   cursor: pointer;
 }
 
-ul{
-    margin: 0;
+ul {
+   margin: 0;
 }
 
 .important {
-    font-weight: bold;
+   font-weight: bold;
 }
 
 .red {
-    color: red;
+   color: red;
 }
 
 .green {
-    color: green;
+   color: green;
 }
 
 .blue {
-    color: blue;
+   color: blue;
 }
 
 .black {
-    color: black
+   color: black
 }
 
 .bold {
-    font-weight: bold;
+   font-weight: bold;
 }
 
 

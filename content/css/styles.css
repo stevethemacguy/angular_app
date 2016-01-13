@@ -1,13 +1,41 @@
 /*testing colors*/
 html {
-  background: black;
+  background: #fff;
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
 }
 body {
-  width: 1000px;
-  height: 1000px;
   margin: 0 auto;
   padding: 0;
-  background: white;
+  position: relative;
+}
+header {
+  height: 44px;
+  color: white;
+  position: fixed;
+  width: 100%;
+}
+.navbar {
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  height: 100%;
+}
+.navbar-default {
+  border-radius: 0;
+  border-top: 0;
+  border-left: 0;
+}
+.main {
+  background: #F7F7F9;
+  width: 98%;
+  margin: 0 auto;
+  min-height: 100vh;
+  padding-top: 43px;
 }
 .nav,
 .pagination,
