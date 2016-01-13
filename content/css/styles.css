@@ -14,17 +14,18 @@ body {
   position: relative;
 }
 header {
-  height: 48px;
+  height: 47px;
   color: white;
   position: fixed;
   width: 100%;
+  text-align: center;
 }
 .navbar {
   border-top: 0;
   border-left: 0;
   border-right: 0;
   height: 100%;
-  padding: 4px 2px 2px 15px;
+  padding: 5px 2px 2px 15px;
 }
 .navbar ul {
   list-style: none;
@@ -55,16 +56,27 @@ header {
   color: lavender;
   text-decoration: none;
   outline: none;
+  cursor: pointer;
 }
 .navbar a:active {
   color: white;
   text-decoration: none;
   outline: none;
 }
+.page-title {
+  color: white;
+  display: inline-block;
+  font-size: 25px;
+}
 .navbar-default {
   border-radius: 0;
   border-top: 0;
   border-left: 0;
+}
+.navlist {
+  position: absolute;
+  left: 11px;
+  top: 6px;
 }
 .cart-holder {
   display: inline-block;
@@ -87,6 +99,7 @@ header {
   width: 98%;
   margin: 0 auto;
   min-height: 100vh;
+  padding: 15px;
   padding-top: 43px;
 }
 .nav,
@@ -97,6 +110,7 @@ header {
 }
 ul {
   margin: 0;
+  display: inline-block;
 }
 .important {
   font-weight: bold;

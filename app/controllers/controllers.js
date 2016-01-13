@@ -24,8 +24,8 @@ appModule.controller("SimpleController", function ($scope, simpleFactory)
 });
 
 appModule.controller("ShippingController", function($scope, simpleFactory) {
-   //$scope.
-
+    $rootScope.main = {};
+    $rootScope.main.pageTitle = "test";
 });
 
 appModule.controller("BillingController", function($scope, simpleFactory) {
