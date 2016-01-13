@@ -2,7 +2,7 @@
 <html ng-app="appModule">
 <head>
     <meta charset="utf-8">
-    <title>Page Title</title>
+    <title>Angular Shopping Cart</title>
     <!--<link href="content/css/bootstrap/full-bootstrap.css" rel="stylesheet" type="text/css">-->
     <!--Use Full Bootstrap CDN instead-->
     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"></head>
@@ -18,10 +18,11 @@
 <body>
     <header>
         <nav class="navbar navbar-default">
-            <span class="page-title">{{pageTitle}}</span>
+            <!--ng-bind here is a special case to change the page title on each using the $rootScope -->
+            <span class="page-title" ng-bind="title"></span>
             <ul class="navlist">
                 <li>
-                    <a href="#/products"><span class="glyphicon glyphicon-home"></span></a>
+                    <a href="#/home"><span class="glyphicon glyphicon-home"></span></a>
                 </li>
             </ul>
             <a href="#/cart" class="cart-holder">

@@ -20,41 +20,55 @@ appModule.config(['$routeProvider', function($routeProvider)
             /*controllerAs: 'vm'*/
         })
         .when('/shipping', {
+            title: 'Shipping',
             controller: 'ShippingController',
             templateUrl: viewBase + 'shipping.html'
             /*controllerAs: 'vm'*/
         })
         .when('/billing', {
+            title: 'Billing',
             controller: 'BillingController',
             templateUrl: viewBase + 'billing.html'
             /*controllerAs: 'vm'*/
         })
         .when('/payment', {
+            title: 'Payment',
             controller: 'PaymentController',
             templateUrl: viewBase + 'payment.html'
             /*controllerAs: 'vm'*/
         })
-        .when('/products', {
+        .when('/home', {
+            title: 'Home',
             controller: 'ProductController',
             templateUrl: viewBase + 'products.html'
             /*controllerAs: 'vm'*/
         })
         .when('/confirmation', {
+            title: 'Checkout Confirmation',
             controller: 'ConfirmationController',
             templateUrl: viewBase + 'confirmation.html'
             /*controllerAs: 'vm'*/
         })
         .when('/cart', {
+            title: 'Shopping Cart',
             controller: 'CartController',
             templateUrl: viewBase + 'cart.html'
             /*controllerAs: 'vm'*/
         })
         .when('/thankyou', {
+            title: 'Thank you!',
             controller: 'ThankYouController',
             templateUrl: viewBase + 'thankyou.html'
             /*controllerAs: 'vm'*/
         })
-        .otherwise({ redirectTo: '/products' });  //This could also be '/' instead
+        .otherwise({ redirectTo: '/home' });  //This could also be '/' instead
+}]);
+
+//Special case to change page title on each view
+appModule.run(['$rootScope', function($rootScope) {
+    $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
+        $rootScope.title = current.$$route.title; //or current.$$route.title;
+    });
 }]);
 
 //Note that controllers and factories, etc are in separate folders.
