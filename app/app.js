@@ -54,7 +54,7 @@ appModule.config(['$routeProvider', function($routeProvider)
             templateUrl: viewBase + 'thankyou.html'
             /*controllerAs: 'vm'*/
         })
-        .otherwise({ redirectTo: '/view1' });  //This could also be '/' instead
+        .otherwise({ redirectTo: '/products' });  //This could also be '/' instead
 }]);
 
 //Note that controllers and factories, etc are in separate folders.

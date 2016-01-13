@@ -5,6 +5,46 @@
 
 //Create a basic controller. Note: Angular will go look for simpleFactory and inject it here
 //to be used by the controller
+
+//All of the services use the dataService. Services are singletons,
+//so the dataService has data that is shared across all controllers.
+appModule.controller("ShippingController", function($scope, dataService) {
+});
+
+appModule.controller("BillingController", function($scope, dataService) {
+    //$scope.
+
+});
+
+appModule.controller("PaymentController", function($scope, dataService) {
+    $scope.test = dataService.getCustomers();
+    $scope.numbers = dataService.getNumbers();
+
+});
+
+appModule.controller("ProductController", function($scope, dataService) {
+    //$scope.
+
+});
+
+appModule.controller("ConfirmationController", function($scope, dataService) {
+    //$scope.
+
+});
+
+appModule.controller("CartController", function($scope, dataService) {
+    //Access the service Singleton through the factory
+    $scope.test = dataService.getCustomers();
+    $scope.numbers = dataService.getNumbers();
+});
+
+appModule.controller("ThankYouController", function($scope, dataService) {
+    //$scope.
+
+});
+
+
+/* //Not used in this app, but kept the comments for reference
 appModule.controller("SimpleController", function ($scope, simpleFactory)
 {
     //Use the factory to generate/retrieve the customer data
@@ -22,43 +62,7 @@ appModule.controller("SimpleController", function ($scope, simpleFactory)
     };
 
 });
-
-appModule.controller("ShippingController", function($scope, simpleFactory) {
-    $rootScope.main = {};
-    $rootScope.main.pageTitle = "test";
-});
-
-appModule.controller("BillingController", function($scope, simpleFactory) {
-    //$scope.
-
-});
-
-appModule.controller("PaymentController", function($scope, simpleFactory) {
-    //$scope.
-
-});
-
-appModule.controller("ProductController", function($scope, simpleFactory) {
-    //$scope.
-
-});
-
-appModule.controller("ConfirmationController", function($scope, simpleFactory) {
-    //$scope.
-
-});
-
-appModule.controller("CartController", function($scope, simpleFactory) {
-    //$scope.
-
-});
-
-appModule.controller("ThankYouController", function($scope, simpleFactory) {
-    //$scope.
-
-});
-
-
+*/
 
 //NOTE: This is the other way to create controllers, but I'm not sure if the simplyFactory actually works properly this way?
 
