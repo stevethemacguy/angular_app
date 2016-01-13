@@ -44,6 +44,16 @@ appModule.config(['$routeProvider', function($routeProvider)
             templateUrl: viewBase + 'confirmation.html'
             /*controllerAs: 'vm'*/
         })
+        .when('/cart', {
+            controller: 'CartController',
+            templateUrl: viewBase + 'cart.html'
+            /*controllerAs: 'vm'*/
+        })
+        .when('/thankyou', {
+            controller: 'ThankYouController',
+            templateUrl: viewBase + 'thankyou.html'
+            /*controllerAs: 'vm'*/
+        })
         .otherwise({ redirectTo: '/view1' });  //This could also be '/' instead
 }]);
 
