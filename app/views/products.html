@@ -1,7 +1,10 @@
+<p class="searchText">Search for a product</p>
+<input type="text" placeholder="e.g. apple, grenade" ng-model="filter.name"/>
 <p class="productText">Available products</p>
 <div class="container product-container">
     <div class="row">
-        <div class="col-lg-2 col-md-3 col-sm-4" ng-repeat="product in productList">
+        <!--Uses a basic string search that matches on any property of the object that has a string values-->
+        <div class="col-lg-2 col-md-3 col-sm-4" ng-repeat="product in productList | filter : filter.name">
             <div class="thumbnail">
                 <div class="image-holder">
                     <img class="product-image" ng-src="{{product.img}}" alt="No Image available"/>
