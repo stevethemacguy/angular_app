@@ -9,7 +9,7 @@
                 <div class="caption">
                     <h4 class="prod-name">{{product.name}}</h4>
                     <span class="prod-price">Price:</span>
-                    <span>{{product.price}}</span>
+                    <span>{{product.price | currency}}</span>
                     <div><button class="add-button btn btn-primary" ng-click="addToCart(product)" ng-disabled="alreadyInCart(item)">Add to Cart</button></div>
                 </div>
             </div>
