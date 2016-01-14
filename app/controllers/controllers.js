@@ -35,13 +35,13 @@ appModule.controller("PaymentController", function($scope, formService) {
     $scope.formData = formService.shippingData;
 });
 
-appModule.controller("ProductController", function($scope, dataService) {
+appModule.controller("ProductController", function($scope, dataService, shoppingCartService) {
     $scope.productList = dataService.getProducts();
 
     //Add the product to the locally stored shopping cart. This is passed in the function
-    $scope.addToCart = function(product)
+    $scope.shoppingCartService = function(product)
     {
-        dataService.addToCart(product);
+        shoppingCartService.addToCart(product);
     };
 
     //item argument comes from the view
@@ -58,13 +58,13 @@ appModule.controller("ConfirmationController", function($scope, dataService) {
 
 });
 
-appModule.controller("CartController", function($scope, dataService) {
+appModule.controller("CartController", function($scope, shoppingCartService) {
 
     //Initialize the empty shopping cart
     $scope.shoppingCart = [];
 
     //Get the current cart from the dataService
-    $scope.shoppingCart = dataService.getCart();
+    $scope.shoppingCart = shoppingCartService.getCart();
 
     //Price of all items in the cart. Starts with what's cart, but can change if things are added/removed
     $scope.totalPrice = 0;
@@ -75,21 +75,21 @@ appModule.controller("CartController", function($scope, dataService) {
     }
 
     //Number of items in the cart
-    $scope.itemCount = dataService.getItemCount();
+    $scope.itemCount = shoppingCartService.getItemCount();
 
     //Whether the cart is empty or not
-    $scope.empty = dataService.isCartEmpty();
+    $scope.empty = shoppingCartService.isCartEmpty();
 
     $scope.removeFromCart = function(productToRemove)
     {
         //subtract the product's price from the total price
         $scope.totalPrice -= dataService.getProductPrice(productToRemove);
-        dataService.removeFromCart(productToRemove);
+        shoppingCartService.removeFromCart(productToRemove);
 
         //Update the number of items if it changed.
         //CAUTION: There's probably a better way to do this in angular. I'm hacking this for now
         $scope.itemCount--;
-        $scope.empty = dataService.isCartEmpty();
+        $scope.empty = shoppingCartService.isCartEmpty();
     };
 
 });
