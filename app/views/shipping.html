@@ -28,8 +28,25 @@
         </div>
     </div>
     <div class="input-container">
-        <span>Phone: </span><input type="tel" ng-model="user.phone" /><br />
+        <span>Phone: </span><input type="tel" ng-model="user.phone" name="uPhone" ng-minlength="7" maxlength="10"/><br />
+        <div ng-show="shippingForm.$submitted || shippingForm.uPhone.$touched" class="error-message">
+            <span ng-show="shippingForm.uPhone.$error.minlength">Please enter at least 7 numbers</span>
+        </div>
     </div>
-    <input type="button" ng-click="reset()" value="Reset" />
-    <input type="submit" ng-click="update(user)" value="Save" />
+
+    <hr/>
+
+    <span class="productText">Please enter your billing information</span>
+    <div class="input-container sameAs">
+        <input type="checkbox" id="same" ng-model="sameAsShipping"/>
+        <label for="same">Use shipping information for billing</label>
+    </div>
+    <div class="input-container">
+        <span>Phone: </span><input type="tel" ng-model="user.billingPhone" name="billingPhone" ng-minlength="7" maxlength="10"/><br />
+        <div ng-show="shippingForm.$submitted || shippingForm.billingPhone.$touched" class="error-message">
+            <span ng-show="shippingForm.billingPhone.$error.minlength">Please enter at least 7 numbers</span>
+        </div>
+    </div>
+    <!--<input type="button" ng-click="reset()" value="Reset" />-->
+    <!--<input type="submit" ng-click="update(user)" value="Save" />-->
 </form>

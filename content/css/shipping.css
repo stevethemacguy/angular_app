@@ -1,0 +1,8 @@
+.sameAs {
+  margin-top: 8px;
+  margin-bottom: 15px;
+}
+.sameAs > label {
+  font-size: 12px;
+  font-weight: normal;
+}

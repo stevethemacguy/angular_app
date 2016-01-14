@@ -155,7 +155,7 @@ ul {
 
 //Only style inputs if they have been touched (i.e the input has been blurred)
 .ng-valid.ng-touched {
-   background-color: #78FA89;
+   //background-color: #78FA89;
 }
 
 //NOTE: Inputs must have the "required" attribute or else invalid styles won't be applied
@@ -176,6 +176,11 @@ ul {
 .input-container {
    position: relative;
    margin-bottom: 25px;
+
+   &.first
+   {
+      margin-top: 25px;
+   }
 }
 
 form {
