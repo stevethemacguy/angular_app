@@ -4,3 +4,32 @@
     <li><a href="#/billing">Billing</a></li>
     <li><a href="#/confirmation">Confirmation</a></li>
 </ol>
+<!--novalidate just tells the browser not to use normal form validation-->
+<!--NOTE: All forms are an instance of FormController. The "name" attr here allows us to use the scope of FormController, so it's important-->
+<!--Similiarlym inputs with that use ng-model become properties of the FormController instance, and you access them using their "name" attribute-->
+<form novalidate class="simple-form" name="shippingForm" ng-controller="ShippingFormController">
+    <div class="input-container">
+        <span>Name: </span><input type="text" ng-model="user.name" name="uName" required /><br />
+        <!--For example, this error message will be shown:
+                IF the form is submitted (even though the user hasn't touched the input)
+                    OR
+                If the input is touched (i.e. loses focus) but it is empty ($error.required checks for this. See https://docs.angularjs.org/api/ng/type/form.FormController)-->
+        <div ng-show="shippingForm.$submitted || shippingForm.uName.$touched" class="error-message">
+            <span ng-show="shippingForm.uName.$error.required">The name field is required</span>
+        </div>
+    </div>
+    <!--Two possible messages for invalid emails-->
+    <!--Notice that $error.email is shown if the email is not a valid email-->
+    <div class="input-container">
+        <span>Email: </span><input type="email" ng-model="user.email" name="uEmail" required /><br />
+        <div ng-show="shippingForm.$submitted || shippingForm.uEmail.$touched" class="error-message">
+            <span ng-show="shippingForm.uEmail.$error.required">The Email field is required</span>
+            <span ng-show="shippingForm.uEmail.$error.email">Invalid Email format</span>
+        </div>
+    </div>
+    <div class="input-container">
+        <span>Phone: </span><input type="tel" ng-model="user.phone" /><br />
+    </div>
+    <input type="button" ng-click="reset()" value="Reset" />
+    <input type="submit" ng-click="update(user)" value="Save" />
+</form>

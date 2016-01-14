@@ -150,29 +150,42 @@ ul {
    display: inline-block;
 }
 
-.important {
-   font-weight: bold;
+/* Form Input validation Styling. See https://docs.angularjs.org/guide/forms */
+
+
+//Only style inputs if they have been touched (i.e the input has been blurred)
+.ng-valid.ng-touched {
+   background-color: #78FA89;
 }
 
-.red {
+//NOTE: Inputs must have the "required" attribute or else invalid styles won't be applied
+//Only style inputs if they have been touched (i.e the input has been blurred)
+.ng-invalid.ng-touched {
+   background-color: #FA787E;
+}
+
+//inline input error messages
+.error-message {
+   font-size: 12px;
    color: red;
+   position: absolute;
+   top: 28px;
+   left: 44px;
 }
 
-.green {
-   color: green;
+.input-container {
+   position: relative;
+   margin-bottom: 25px;
 }
 
-.blue {
-   color: blue;
+form {
+   margin-top: 18px;
 }
 
-.black {
-   color: black
-}
 
-.bold {
-   font-weight: bold;
-}
+
+
+
 
 
 

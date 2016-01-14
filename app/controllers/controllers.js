@@ -9,6 +9,29 @@
 //All of the services use the dataService. Services are singletons,
 //so the dataService has data that is shared across all controllers.
 appModule.controller("ShippingController", function($scope, dataService) {
+    //This is also the form controller...but I could make them sepearte controllers if I wanted
+
+});
+
+appModule.controller("ShippingFormController", function($scope, dataService) {
+    //This is also the form controller...but I could make them sepearte controllers if I wanted
+
+    //Stores all form inputs once they are saved (i.e ready to be submitted)
+    $scope.master = {};
+
+    //Save the user input data from the view into our master storage object
+    $scope.update = function(user) {
+        $scope.master = angular.copy(user);
+    };
+
+    //Reset our saved data
+    $scope.reset = function() {
+        $scope.user = angular.copy($scope.master);
+    };
+
+    //Reset our saved data
+    $scope.reset();
+
 });
 
 appModule.controller("BillingController", function($scope, dataService) {
