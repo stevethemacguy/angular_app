@@ -1,5 +1,6 @@
-<p class="productText" ng-show="!empty">You have {{itemCount}} products in your cart. Your total cost is: {{totalPrice | currency}}</p>
-<p class="productText" ng-show="empty">Sorry, you have no items in your cart.</p>
+<span class="productText totalText" ng-show="!empty">You have {{itemCount}} products in your cart. Your total cost is: {{totalPrice | currency}}</span>
+<a href="#/shipping" ng-show="!empty" class="btn btn-primary">Checkout</a>
+<span class="productText" ng-show="empty">Sorry, you have no items in your cart.</span>
 <div class="container product-container">
     <div class="row">
         <div class="col-lg-2 col-md-3 col-sm-4" ng-repeat="item in shoppingCart">
