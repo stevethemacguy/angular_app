@@ -111,12 +111,18 @@ header {
   min-height: 100vh;
   padding: 15px;
   padding-top: calc(58px);
+  position: relative;
 }
 .nav,
 .pagination,
 .carousel,
 .panel-title a {
   cursor: pointer;
+}
+.breadcrumb {
+  position: absolute;
+  right: 0;
+  top: 53px;
 }
 ul {
   margin: 0;

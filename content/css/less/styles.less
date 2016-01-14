@@ -130,11 +130,19 @@ header {
    min-height: 100vh;
    padding: 15px;
    padding-top: calc(46px + 12px); //46px to clear the header + whatever else
+   position: relative;
 }
 
 //Required Angular fix, see https://angular-ui.github.io/bootstrap/#/pagination
 .nav, .pagination, .carousel, .panel-title a {
    cursor: pointer;
+}
+
+.breadcrumb
+{
+   position: absolute;
+   right: 0;
+   top: 53px;
 }
 
 ul {
