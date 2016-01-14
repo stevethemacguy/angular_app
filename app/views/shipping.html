@@ -1,15 +1,16 @@
 <span class="productText">Please enter your shipping information</span>
 <ol class="breadcrumb">
     <li class="active">Shipping</li>
-    <li><a href="#/billing">Billing</a></li>
+    <li><a href="#/payment">Payment</a></li>
     <li><a href="#/confirmation">Confirmation</a></li>
 </ol>
 <!--novalidate just tells the browser not to use normal form validation-->
 <!--NOTE: All forms are an instance of FormController. The "name" attr here allows us to use the scope of FormController, so it's important-->
 <!--Similiarlym inputs with that use ng-model become properties of the FormController instance, and you access them using their "name" attribute-->
-<form novalidate class="simple-form" name="shippingForm" ng-controller="ShippingFormController">
+<form novalidate class="simple-form" name="shippingForm">
     <div class="input-container">
-        <span>Name: </span><input type="text" ng-model="user.name" name="uName" required /><br />
+        <span>Name: </span><input type="text" ng-model="formData.name" name="uName" required/><br />
+        <!--For testing! {{formData.name}}-->
         <!--For example, this error message will be shown:
                 IF the form is submitted (even though the user hasn't touched the input)
                     OR
@@ -21,14 +22,14 @@
     <!--Two possible messages for invalid emails-->
     <!--Notice that $error.email is shown if the email is not a valid email-->
     <div class="input-container">
-        <span>Email: </span><input type="email" ng-model="user.email" name="uEmail" required /><br />
+        <span>Email: </span><input type="email" ng-model="formData.email" name="uEmail" required /><br />
         <div ng-show="shippingForm.$submitted || shippingForm.uEmail.$touched" class="error-message">
             <span ng-show="shippingForm.uEmail.$error.required">The Email field is required</span>
             <span ng-show="shippingForm.uEmail.$error.email">Invalid Email format</span>
         </div>
     </div>
     <div class="input-container">
-        <span>Phone: </span><input type="tel" ng-model="user.phone" name="uPhone" ng-minlength="7" maxlength="10"/><br />
+        <span>Phone: </span><input type="tel" ng-model="formData.phone" name="uPhone" ng-minlength="7" maxlength="10"/><br />
         <div ng-show="shippingForm.$submitted || shippingForm.uPhone.$touched" class="error-message">
             <span ng-show="shippingForm.uPhone.$error.minlength">Please enter at least 7 numbers</span>
         </div>
@@ -42,7 +43,7 @@
         <label for="same">Use shipping information for billing</label>
     </div>
     <div class="input-container">
-        <span>Phone: </span><input type="tel" ng-model="user.billingPhone" name="billingPhone" ng-minlength="7" maxlength="10"/><br />
+        <span>Phone: </span><input type="tel" ng-model="formData.billingPhone" name="billingPhone" ng-minlength="7" maxlength="10"/><br />
         <div ng-show="shippingForm.$submitted || shippingForm.billingPhone.$touched" class="error-message">
             <span ng-show="shippingForm.billingPhone.$error.minlength">Please enter at least 7 numbers</span>
         </div>

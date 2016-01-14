@@ -8,39 +8,31 @@
 
 //All of the services use the dataService. Services are singletons,
 //so the dataService has data that is shared across all controllers.
-appModule.controller("ShippingController", function($scope, dataService) {
-    //This is also the form controller...but I could make them sepearte controllers if I wanted
+appModule.controller("ShippingController", function($scope, formService) {
+    //This is also the form controller...but I could make them separate controllers if I wanted
+
+    //Bind the form data to our service data so that the state is preserved when switching views
+    $scope.formData = formService.shippingData;
+
+    //Initialize to empty values...these wil be set in the view (and then stored in the formSevice)
+    //Technically formService.shippingData.name might not exist before now, in which case this just creates it
+    //IF, however formService.shippingData.name DOES exist (e.g. after it is typed, for example),
+    //then the view will use this data! In other words, the data persists AND is bound to the view
+
+    //CAUTION: If the form inputs are invalid (according to angular) then the data
+    //will NOT actually be stored in the service. This is good, just be aware of it
+    $scope.formData.name = formService.shippingData.name;
+    $scope.formData.email = formService.shippingData.email;
+    $scope.formData.phone = formService.shippingData.phone;
+    $scope.formData.billingPhone = formService.shippingData.billingPhone;
+
 
 });
 
-appModule.controller("ShippingFormController", function($scope, dataService) {
-    //This is also the form controller...but I could make them sepearte controllers if I wanted
+appModule.controller("PaymentController", function($scope, formService) {
 
-    //Stores all form inputs once they are saved (i.e ready to be submitted)
-    $scope.master = {};
-
-    //Save the user input data from the view into our master storage object
-    $scope.update = function(user) {
-        $scope.master = angular.copy(user);
-    };
-
-    //Reset our saved data
-    $scope.reset = function() {
-        $scope.user = angular.copy($scope.master);
-    };
-
-    //Reset our saved data
-    $scope.reset();
-
-});
-
-appModule.controller("BillingController", function($scope, dataService) {
-    //$scope.
-
-});
-
-appModule.controller("PaymentController", function($scope, dataService) {
-
+    //Bind the form data to our service data so that the state is preserved when switching views
+    $scope.formData = formService.shippingData;
 });
 
 appModule.controller("ProductController", function($scope, dataService) {

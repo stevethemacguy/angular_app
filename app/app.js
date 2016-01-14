@@ -26,12 +26,6 @@ appModule.config(['$routeProvider', function($routeProvider)
             templateUrl: viewBase + 'shipping.html'
             /*controllerAs: 'vm'*/
         })
-        .when('/billing', {
-            title: 'Billing',
-            controller: 'BillingController',
-            templateUrl: viewBase + 'billing.html'
-            /*controllerAs: 'vm'*/
-        })
         .when('/payment', {
             title: 'Payment',
             controller: 'PaymentController',
