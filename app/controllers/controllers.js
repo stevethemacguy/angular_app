@@ -45,9 +45,20 @@ appModule.controller("ConfirmationController", function($scope, dataService) {
 
 appModule.controller("CartController", function($scope, dataService) {
 
-    //Get the current cart from the dataService, which might be an empty array
-    //and expose the shopping cart to the view.
+    //Initialize the empty shopping cart
+    $scope.shoppingCart = [];
+
+    //Get the current cart from the dataService
     $scope.shoppingCart = dataService.getCart();
+
+    //Price of all items in the cart. Starts with what's cart, but can change if things are added/removed
+    $scope.totalPrice = 0;
+
+    for (var i = 0; i < $scope.shoppingCart.length; i++)
+    {
+        console.log($scope.shoppingCart);
+        $scope.totalPrice += $scope.shoppingCart[i].price;
+    }
 
     //Number of items in the cart
     $scope.itemCount = dataService.getItemCount();
@@ -57,6 +68,8 @@ appModule.controller("CartController", function($scope, dataService) {
 
     $scope.removeFromCart = function(productToRemove)
     {
+        //subtract the product's price from the total price
+        $scope.totalPrice -= dataService.getProductPrice(productToRemove);
         dataService.removeFromCart(productToRemove);
 
         //Update the number of items if it changed. Also Update the text

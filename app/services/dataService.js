@@ -32,8 +32,21 @@ appModule.factory('dataService', function() {
         { id: 16, name: 'Watch', price: 189.00, img: imgPath + 'watch.png' },
         { id: 17, name: 'Flowers', price: 189.00, img: imgPath + 'flowers.png' },
         { id: 18, name: 'Cup', price: 189.00, img: imgPath + 'cup.png' }
-        
     ];
+
+    //Pass in a product id, and get it's price in return
+    theService.getProductPrice = function(productID)
+    {
+        var productPrice = 0;
+        for (var i = 0; i < products.length; i++)
+        {
+        	if(productID === products[i].id)
+            {
+                productPrice = products[i].price;
+            }
+        }
+        return productPrice;
+    };
 
     //The customer's shopping cart, which is initially empty
     var shoppingCart = [];
