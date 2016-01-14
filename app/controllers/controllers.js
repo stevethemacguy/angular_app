@@ -27,7 +27,15 @@ appModule.controller("ProductController", function($scope, dataService) {
     $scope.addToCart = function(product)
     {
         dataService.addToCart(product);
+    };
+
+    //item argument comes from the view
+    $scope.alreadyInCart = function(item)
+    {
+        //Check to see if the item is already in the cart
+        return dataService.isProductInCart(item);
     }
+
 });
 
 appModule.controller("ConfirmationController", function($scope, dataService) {
@@ -38,12 +46,25 @@ appModule.controller("ConfirmationController", function($scope, dataService) {
 appModule.controller("CartController", function($scope, dataService) {
 
     //Get the current cart from the dataService, which might be an empty array
-    var shoppingCart = dataService.getCart();
+    //and expose the shopping cart to the view.
+    $scope.shoppingCart = dataService.getCart();
 
-    for (var i = 0; i < shoppingCart.length; i++)
+    //Number of items in the cart
+    $scope.itemCount = dataService.getItemCount();
+
+    //Whether the cart is empty or not
+    $scope.empty = dataService.isCartEmpty();
+
+    $scope.removeFromCart = function(productToRemove)
     {
-        console.log(shoppingCart[i]);
-    }
+        dataService.removeFromCart(productToRemove);
+
+        //Update the number of items if it changed. Also Update the text
+        //CAUTION: There's probably a better way to do this in angular. I'm hacking this for now
+        $scope.itemCount = dataService.getItemCount();
+        $scope.empty = dataService.isCartEmpty();
+    };
+
 });
 
 appModule.controller("ThankYouController", function($scope, dataService) {

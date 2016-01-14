@@ -1,0 +1,19 @@
+<p class="productText" ng-show="!empty">You have {{itemCount}} products in your cart:</p>
+<p class="productText" ng-show="empty">Sorry, you have no items in your cart.</p>
+<div class="container product-container">
+    <div class="row">
+        <div class="col-lg-2 col-md-3 col-sm-4" ng-repeat="item in shoppingCart">
+            <div class="thumbnail">
+                <div class="image-holder">
+                    <img class="product-image" ng-src="{{item.img}}"/>
+                </div>
+                <div class="caption">
+                    <h4 class="prod-name">{{item.name}}</h4>
+                    <span class="prod-price">Price:</span>
+                    <span>{{item.price}}</span>
+                    <div><button class="add-button btn btn-primary" ng-click="removeFromCart(item.id)">Remove from Cart</button></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

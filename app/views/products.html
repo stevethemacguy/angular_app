@@ -10,7 +10,7 @@
                     <h4 class="prod-name">{{product.name}}</h4>
                     <span class="prod-price">Price:</span>
                     <span>{{product.price}}</span>
-                    <div><button class="add-button btn btn-primary" ng-click="addToCart(product)">Add to Cart</button></div>
+                    <div><button class="add-button btn btn-primary" ng-click="addToCart(product)" ng-disabled="alreadyInCart(item)">Add to Cart</button></div>
                 </div>
             </div>
         </div>
