@@ -46,3 +46,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+.searchInput {
+  padding: 3px;
+  padding-left: 7px;
+}
