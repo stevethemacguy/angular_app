@@ -95,6 +95,15 @@ header {
   top: 5px;
   font-size: 25px;
 }
+.counter {
+  position: relative;
+  top: -12px;
+  left: -12px;
+}
+.counter.active {
+  background: orange;
+  color: white;
+}
 .main {
   background: #F7F7F9;
   width: 94%;

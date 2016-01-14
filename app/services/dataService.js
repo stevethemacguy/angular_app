@@ -69,7 +69,7 @@ appModule.factory('dataService', function() {
         if (index == -1)
         {
             shoppingCart.push(product);
-            itemCount++
+            itemCount++;
         }
     };
 

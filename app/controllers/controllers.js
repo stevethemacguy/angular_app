@@ -56,7 +56,6 @@ appModule.controller("CartController", function($scope, dataService) {
 
     for (var i = 0; i < $scope.shoppingCart.length; i++)
     {
-        console.log($scope.shoppingCart);
         $scope.totalPrice += $scope.shoppingCart[i].price;
     }
 
@@ -72,9 +71,9 @@ appModule.controller("CartController", function($scope, dataService) {
         $scope.totalPrice -= dataService.getProductPrice(productToRemove);
         dataService.removeFromCart(productToRemove);
 
-        //Update the number of items if it changed. Also Update the text
+        //Update the number of items if it changed.
         //CAUTION: There's probably a better way to do this in angular. I'm hacking this for now
-        $scope.itemCount = dataService.getItemCount();
+        $scope.itemCount--;
         $scope.empty = dataService.isCartEmpty();
     };
 
@@ -83,6 +82,26 @@ appModule.controller("CartController", function($scope, dataService) {
 appModule.controller("ThankYouController", function($scope, dataService) {
     //$scope.
 
+});
+
+//Normally, you don't want any controllers in the index page, but I'm not sure how else to update the
+//cart badge icon. In this case, I'm passing the entire dataService into the scope, which seems weird.
+appModule.controller("IndexController", function($scope, dataService) {
+    //Sort of hacky?
+    $scope.dataService = dataService;
+
+    //Dirty hacky way to make angular watch for changes to the item count
+    //I'm doing this because trying to do $scope.itemCount = dataService.getItemCount() doesn't work, because it's only called once
+    $scope.itemCount= dataService.getItemCount();
+
+    $scope.$watch(
+        function(){ return dataService.getItemCount() },
+
+        function(newVal) {
+            $scope.itemCount = (newVal > 0);
+        }
+    );
+    ///END DIRTY HACK
 });
 
 
