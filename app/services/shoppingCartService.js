@@ -14,7 +14,7 @@ appModule.factory('shoppingCartService', function() {
     shoppingCartService.theCart = [];
 
     //Number of items in . Public constant that's exposed
-    shoppingCartService.itemCount = 0;
+    var itemCount = 0;
 
     //Adds a selected product to the customer's cart
     shoppingCartService.addToCart = function(product) {
@@ -24,18 +24,18 @@ appModule.factory('shoppingCartService', function() {
         //Don't add duplicates
         if (index == -1) {
             theCart.push(product);
-            shoppingCartService.itemCount++;
+            itemCount++;
         }
     };
 
     //Returns the total number of items in the cart
     shoppingCartService.getItemCount = function() {
-        return shoppingCartService.itemCount;
+        return itemCount;
     };
 
     //Returns true if the cart is empty
     shoppingCartService.isCartEmpty = function() {
-        return shoppingCartService.itemCount <= 0;
+        return itemCount <= 0;
     };
 
     //Adds a selected product to the customer's cart
@@ -50,7 +50,7 @@ appModule.factory('shoppingCartService', function() {
                 //if it is, then remove it
                 if (index > -1) {
                     theCart.splice(index, 1);
-                    shoppingCartService.itemCount--;
+                    itemCount--;
                 }
             }
         }

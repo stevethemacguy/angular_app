@@ -64,8 +64,9 @@ appModule.controller("CartController", function($scope, shoppingCartService, dat
         $scope.totalPrice += shoppingCartService.getCart()[i].price;
     }
 
-    //Number of items in the cart
-    $scope.itemCount = shoppingCartService.itemCount;
+    //Number of items in the cart. Warning: do not glue the getItemCount FUNCTION to the scope!
+    //Just bind the return value by calling the function (like it is here)
+    $scope.itemCount = shoppingCartService.getItemCount();
 
     //Whether the cart is empty or not
     $scope.empty = shoppingCartService.isCartEmpty();
@@ -77,8 +78,8 @@ appModule.controller("CartController", function($scope, shoppingCartService, dat
         $scope.totalPrice -= dataService.getProductPrice(productToRemove);
         shoppingCartService.removeFromCart(productToRemove);
 
-        //Update the number of items if it changed.
-        $scope.itemCount = shoppingCartService.itemCount;
+        //Update the number of items if it has changed.
+        $scope.itemCount = shoppingCartService.getItemCount();
         $scope.empty = shoppingCartService.isCartEmpty();
     };
 
