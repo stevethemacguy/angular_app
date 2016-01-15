@@ -4,8 +4,6 @@ appModule.controller("ShippingController", function($scope, formService) {
 
     //Create a formData object (i.e. the model) that references the data created by our service.
     //This allows the state to be preserved between views, since it's stored in the service.
-
-    //In other words, the view update a property on the MODEL (i.e. formData).
     $scope.formData = formService.shippingData;
 
     //Note: you can NOT do $scope.formData.name = "" here because you get a new instance
@@ -53,9 +51,11 @@ appModule.controller("CartController", function($scope, shoppingCartService, dat
 
     //Price of all items in the cart. Starts with what's cart, but can change if things are added/removed
     $scope.totalPrice = 0;
-    //The view needs to display all of the cart items, so add the cart in the service to the scope
+
+    //The view needs to display all of the cart items, so add the cart to the scope
     $scope.cart = shoppingCartService.getCart();
 
+    //Update the total price
     for (var i = 0; i < shoppingCartService.getCart().length; i++)
     {
         $scope.totalPrice += shoppingCartService.getCart()[i].price;
@@ -88,21 +88,23 @@ appModule.controller("ThankYouController", function($scope, dataService) {
 });
 
 //Normally, you don't want any controllers in the index page, but I'm not sure how else to update the
-//cart badge icon. In this case, I'm passing the entire dataService into the scope, which seems weird.
+//cart badge icon. The cart icon is outside of all other views, so needs a controller of it's own.
 appModule.controller("IndexController", function($scope, shoppingCartService) {
-    $scope.shoppingCartService = shoppingCartService;
 
-    //Dirty hacky way to make angular watch for changes to the item count
-    $scope.itemCount= shoppingCartService.itemCount;
-
-    /*$scope.$watch(
-        function(){ return dataService.getItemCount() },
+    //Sort of hacky way to make angular watch for changes to the item count
+    //The first function should return the value which is being watched.
+    //AngularJS can then check the value returned against the value the watch function
+    //returned the last time. if the value has changed, the second function is executed.
+    //In this case, it updates itemCount in the view with the new value
+    $scope.$watch(
+        function() {
+            return shoppingCartService.getItemCount()
+        },
 
         function(newVal) {
-            $scope.itemCount = (newVal > 0);
+            $scope.itemCount = newVal;
         }
-    );*/
-    ///END DIRTY HACK
+    );
 });
 
 
