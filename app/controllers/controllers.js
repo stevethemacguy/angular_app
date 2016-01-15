@@ -2,14 +2,13 @@
 //so the dataService has data that is shared across all controllers.
 appModule.controller("ShippingController", function($scope, formService) {
 
-    //Create a formData object (i.e. the model) that references the data created by our service.
-    //This allows the state to be preserved between views, since it's stored in the service.
+    //$scope.formData is the glue between the view and the controller (i.e. formData is the "model")
+    //formData directly references (i.e. updates) the shippingData in the service so that
+    //the state is preserved when switching views.
     $scope.formData = formService.shippingData;
 
     //Note: you can NOT do $scope.formData.name = "" here because you get a new instance
     //of a controller with each view. You could, however, do this in the service.
-    //The $scope.formData object IS the glue between the view and the controller
-    //(i.e. formData is the "model")
 
     //CAUTION: If the form inputs are invalid (according to angular) then the data
     //will NOT actually be stored in the service. This is good, just be aware of it
@@ -17,8 +16,8 @@ appModule.controller("ShippingController", function($scope, formService) {
 
 appModule.controller("PaymentController", function($scope, formService) {
 
-    //Make the form data (i.e the "model") point to our service data so that the state is preserved when switching views
-    $scope.formData = formService.shippingData;
+    //Make the form data (i.e the "model") point to the service data so that the state is preserved when switching views
+    $scope.formData = formService.paymentData;
 });
 
 appModule.controller("ProductController", function($scope, dataService, shoppingCartService) {
@@ -67,7 +66,6 @@ appModule.controller("CartController", function($scope, shoppingCartService, dat
 
     //Whether the cart is empty or not
     $scope.empty = shoppingCartService.isCartEmpty();
-
 
     $scope.removeFromCart = function(productToRemove)
     {
