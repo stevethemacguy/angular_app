@@ -36,6 +36,9 @@
   max-width: 100%;
   height: 100%;
 }
+.product-image[disabled] {
+  opacity: .5;
+}
 .prod-price {
   font-size: 15px;
 }
