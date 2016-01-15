@@ -1,11 +1,3 @@
-//In the demo, he created his controllers this way with an anonymous function.
-//I prefer the other way (see my comments below), but I really don't know if the factory
-//is working properly with my way (it works, but maybe just because it's in the same file),
-//so you may want to use his way.
-
-//Create a basic controller. Note: Angular will go look for simpleFactory and inject it here
-//to be used by the controller
-
 //All of the services use the dataService. Services are singletons,
 //so the dataService has data that is shared across all controllers.
 appModule.controller("ShippingController", function($scope, formService) {
@@ -26,7 +18,6 @@ appModule.controller("ShippingController", function($scope, formService) {
     $scope.formData.phone = formService.shippingData.phone;
     $scope.formData.billingPhone = formService.shippingData.billingPhone;
 
-
 });
 
 appModule.controller("PaymentController", function($scope, formService) {
@@ -38,17 +29,20 @@ appModule.controller("PaymentController", function($scope, formService) {
 appModule.controller("ProductController", function($scope, dataService, shoppingCartService) {
     $scope.productList = dataService.getProducts();
 
-    //Add the product to the locally stored shopping cart. This is passed in the function
-    $scope.shoppingCartService = function(product)
+    //Add the product to the the shopping cart. The product is passed in the function
+    //Since the cart is actually stored in the shoppingCartService, the data will persist across views
+    $scope.addToCart = function(product)
     {
         shoppingCartService.addToCart(product);
+        //Print out the contents of the cart
+        /*shoppingCartService.printCart();*/
     };
 
     //item argument comes from the view
     $scope.alreadyInCart = function(item)
     {
         //Check to see if the item is already in the cart
-        return dataService.isProductInCart(item);
+        return shoppingCartService.isProductInCart(item);
     }
 
 });
@@ -58,27 +52,24 @@ appModule.controller("ConfirmationController", function($scope, dataService) {
 
 });
 
-appModule.controller("CartController", function($scope, shoppingCartService) {
-
-    //Initialize the empty shopping cart
-    $scope.shoppingCart = [];
-
-    //Get the current cart from the dataService
-    $scope.shoppingCart = shoppingCartService.getCart();
+appModule.controller("CartController", function($scope, shoppingCartService, dataService) {
 
     //Price of all items in the cart. Starts with what's cart, but can change if things are added/removed
     $scope.totalPrice = 0;
+    //The view needs to display all of the cart items, so add the cart in the service to the scope
+    $scope.cart = shoppingCartService.getCart();
 
-    for (var i = 0; i < $scope.shoppingCart.length; i++)
+    for (var i = 0; i < shoppingCartService.getCart().length; i++)
     {
-        $scope.totalPrice += $scope.shoppingCart[i].price;
+        $scope.totalPrice += shoppingCartService.getCart()[i].price;
     }
 
     //Number of items in the cart
-    $scope.itemCount = shoppingCartService.getItemCount();
+    $scope.itemCount = shoppingCartService.itemCount;
 
     //Whether the cart is empty or not
     $scope.empty = shoppingCartService.isCartEmpty();
+
 
     $scope.removeFromCart = function(productToRemove)
     {
@@ -87,8 +78,7 @@ appModule.controller("CartController", function($scope, shoppingCartService) {
         shoppingCartService.removeFromCart(productToRemove);
 
         //Update the number of items if it changed.
-        //CAUTION: There's probably a better way to do this in angular. I'm hacking this for now
-        $scope.itemCount--;
+        $scope.itemCount = shoppingCartService.itemCount;
         $scope.empty = shoppingCartService.isCartEmpty();
     };
 
@@ -101,24 +91,30 @@ appModule.controller("ThankYouController", function($scope, dataService) {
 
 //Normally, you don't want any controllers in the index page, but I'm not sure how else to update the
 //cart badge icon. In this case, I'm passing the entire dataService into the scope, which seems weird.
-appModule.controller("IndexController", function($scope, dataService) {
-    //Sort of hacky?
-    $scope.dataService = dataService;
+appModule.controller("IndexController", function($scope, shoppingCartService) {
+    $scope.shoppingCartService = shoppingCartService;
 
     //Dirty hacky way to make angular watch for changes to the item count
-    //I'm doing this because trying to do $scope.itemCount = dataService.getItemCount() doesn't work, because it's only called once
-    $scope.itemCount= dataService.getItemCount();
+    $scope.itemCount= shoppingCartService.itemCount;
 
-    $scope.$watch(
+    /*$scope.$watch(
         function(){ return dataService.getItemCount() },
 
         function(newVal) {
             $scope.itemCount = (newVal > 0);
         }
-    );
+    );*/
     ///END DIRTY HACK
 });
 
+
+//In the demo, he created his controllers this way with an anonymous function.
+//I prefer the other way (see my comments below), but I really don't know if the factory
+//is working properly with my way (it works, but maybe just because it's in the same file),
+//so you may want to use his way.
+
+//Create a basic controller. Note: Angular will go look for simpleFactory and inject it here
+//to be used by the controller
 
 /* //Not used in this app, but kept the comments for reference
 appModule.controller("SimpleController", function ($scope, simpleFactory)

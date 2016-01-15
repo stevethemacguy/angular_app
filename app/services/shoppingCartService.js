@@ -6,12 +6,15 @@ appModule.factory('shoppingCartService', function() {
     //The customer's shopping cart, which is initially empty
     var theCart = [];
 
-    //Number of items in the cart
-    var itemCount = 0;
-
+    //An array of objects
     shoppingCartService.getCart = function() {
         return theCart;
     };
+
+    shoppingCartService.theCart = [];
+
+    //Number of items in . Public constant that's exposed
+    shoppingCartService.itemCount = 0;
 
     //Adds a selected product to the customer's cart
     shoppingCartService.addToCart = function(product) {
@@ -21,18 +24,18 @@ appModule.factory('shoppingCartService', function() {
         //Don't add duplicates
         if (index == -1) {
             theCart.push(product);
-            itemCount++;
+            shoppingCartService.itemCount++;
         }
     };
 
     //Returns the total number of items in the cart
     shoppingCartService.getItemCount = function() {
-        return itemCount;
+        return shoppingCartService.itemCount;
     };
 
     //Returns true if the cart is empty
     shoppingCartService.isCartEmpty = function() {
-        return itemCount <= 0;
+        return shoppingCartService.itemCount <= 0;
     };
 
     //Adds a selected product to the customer's cart
@@ -47,7 +50,7 @@ appModule.factory('shoppingCartService', function() {
                 //if it is, then remove it
                 if (index > -1) {
                     theCart.splice(index, 1);
-                    itemCount--;
+                    shoppingCartService.itemCount--;
                 }
             }
         }
@@ -63,14 +66,10 @@ appModule.factory('shoppingCartService', function() {
     //For debugging
     shoppingCartService.printCart = function() {
         for (var index = 0; index < theCart.length; index++) {
-            var item = shoppingCart[index];
+            var item = theCart[index];
             console.log("id: " + item.id + " name: " + item.name + " price: " + item.price);
         }
     };
 
-    return shoppingCart;
+    return shoppingCartService;
 });
-
-
-
-
