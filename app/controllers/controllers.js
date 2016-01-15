@@ -1,28 +1,25 @@
 //All of the services use the dataService. Services are singletons,
 //so the dataService has data that is shared across all controllers.
 appModule.controller("ShippingController", function($scope, formService) {
-    //This is also the form controller...but I could make them separate controllers if I wanted
 
-    //Bind the form data to our service data so that the state is preserved when switching views
+    //Create a formData object (i.e. the model) that references the data created by our service.
+    //This allows the state to be preserved between views, since it's stored in the service.
+
+    //In other words, the view update a property on the MODEL (i.e. formData).
     $scope.formData = formService.shippingData;
 
-    //Initialize to empty values...these wil be set in the view (and then stored in the formSevice)
-    //Technically formService.shippingData.name might not exist before now, in which case this just creates it
-    //IF, however formService.shippingData.name DOES exist (e.g. after it is typed, for example),
-    //then the view will use this data! In other words, the data persists AND is bound to the view
+    //Note: you can NOT do $scope.formData.name = "" here because you get a new instance
+    //of a controller with each view. You could, however, do this in the service.
+    //The $scope.formData object IS the glue between the view and the controller
+    //(i.e. formData is the "model")
 
     //CAUTION: If the form inputs are invalid (according to angular) then the data
     //will NOT actually be stored in the service. This is good, just be aware of it
-    $scope.formData.name = formService.shippingData.name;
-    $scope.formData.email = formService.shippingData.email;
-    $scope.formData.phone = formService.shippingData.phone;
-    $scope.formData.billingPhone = formService.shippingData.billingPhone;
-
 });
 
 appModule.controller("PaymentController", function($scope, formService) {
 
-    //Bind the form data to our service data so that the state is preserved when switching views
+    //Make the form data (i.e the "model") point to our service data so that the state is preserved when switching views
     $scope.formData = formService.shippingData;
 });
 
