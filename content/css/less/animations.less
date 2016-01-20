@@ -1,6 +1,36 @@
 //CSS Animations (note these can also be done in JS)
 
-//Slide in/out for all views "loaded" into ng-view
+.animate-repeat
+{
+
+   &.ng-enter, &.ng-leave
+   {
+      -webkit-transition: all 1.5s ease;
+      transition: all 1.5s ease;
+   }
+
+   //Slowly hide the product before it's removed from the dom
+   &.ng-leave-active
+   {
+      opacity: 0;
+   }
+
+   //If you could add list items (like with a button), then these styles would fade the new product in (I tested and it works!)
+   //Starting styles for the CSS animation. These would work if we were adding new items to the dom
+   &.ng-enter
+   {
+      opacity: 0;
+   }
+
+   //The finishing CSS styles for what the transition will animate towards (from .ng-enter)
+   &.ng-enter-active
+   {
+      opacity:1;
+   }
+}
+
+//Slide in/out for all views "loaded" into ng-view. Annoying so disabled for now.
+/*
 .slide {
    position: absolute;
    left: 0;
@@ -13,13 +43,15 @@
    -webkit-transition: all 1s ease;
    transition: all 1s ease;
 }
-//As the view is entering (happens before enter-active)
+
+//The starting CSS styles for the enter animation. Happens before enter-active
 .slide.ng-enter {
    left: 100%;
    color: red;
 }
 
-//As the view is entering (but after ng-enter)
+//The finishing CSS styles for what the transition will animate towards (from .ng-enter)
+//As the view is entering (but after ng-enter). Class is removed once the view is in view
 .slide.ng-enter-active {
    left: 0;
    color: yellow;
@@ -35,4 +67,4 @@
 .slide.ng-leave-active {
    color: green;
    left: 0;
-}
+}*/

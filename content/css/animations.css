@@ -1,27 +1,52 @@
+.animate-repeat.ng-enter,
+.animate-repeat.ng-leave {
+  -webkit-transition: all 1.5s ease;
+  transition: all 1.5s ease;
+}
+.animate-repeat.ng-leave-active {
+  opacity: 0;
+}
+.animate-repeat.ng-enter {
+  opacity: 0;
+}
+.animate-repeat.ng-enter-active {
+  opacity: 1;
+}
+/*
 .slide {
-  position: absolute;
-  left: 0;
-  width: 100%;
-  height: 100%;
+   position: absolute;
+   left: 0;
+   //top: 0;
+   width: 100%;
+   height: 100%;
 }
 .slide.ng-enter,
 .slide.ng-leave {
-  -webkit-transition: all 1s ease;
-  transition: all 1s ease;
+   -webkit-transition: all 1s ease;
+   transition: all 1s ease;
 }
+
+//The starting CSS styles for the enter animation. Happens before enter-active
 .slide.ng-enter {
-  left: 100%;
-  color: red;
+   left: 100%;
+   color: red;
 }
+
+//The finishing CSS styles for what the transition will animate towards (from .ng-enter)
+//As the view is entering (but after ng-enter). Class is removed once the view is in view
 .slide.ng-enter-active {
-  left: 0;
-  color: yellow;
+   left: 0;
+   color: yellow;
 }
+
+//As the view is leaving (happens before leave-active)
 .slide.ng-leave {
-  left: 0;
-  color: blue;
+   left: 0;
+   color: blue;
 }
+
+//As the view is leaving (but after ng-leave)
 .slide.ng-leave-active {
-  color: green;
-  left: 0;
-}
+   color: green;
+   left: 0;
+}*/

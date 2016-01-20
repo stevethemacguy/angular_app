@@ -20,8 +20,36 @@ appModule.controller("PaymentController", function($scope, formService) {
     $scope.formData = formService.paymentData;
 });
 
-appModule.controller("ProductController", function($scope, dataService, shoppingCartService) {
-    $scope.productList = dataService.getProducts();
+appModule.controller("ProductController", function($scope, $timeout, dataService, shoppingCartService) {
+
+    //Option 1: Get all of the products (they're displayed immediately)
+    //$scope.productList = dataService.getProducts();
+
+    //Option 2: Instead of immediately initializing with all products. Add them one by one to the list
+    //This allows the items to animate as they are added! (see weird for-loop below!)
+    $scope.productList  = [];
+
+    //Instead of immediately adding the products. Add each one by one. Allows the list to animate on load!
+    //You can't do this in a normal for loop, but I found this solution online
+
+    //Temporary store the complete list of products
+    var tempProductList = dataService.getProducts();
+
+    //Create a function that does the same thing as a for-loop and execute it immediately.
+    //Uses Angular $timeout, which is the same as window.setTimeout. Basically pushes items every 100ms
+    var index = 0;
+    (function myLoop () {
+        $timeout(function () {
+            //normal check condition (if index < array length)
+            if (index < tempProductList.length) {
+                //Push a product into the scope from the temporary list
+                $scope.productList.push(tempProductList[index]);
+                //console.log(tempProductList[index]); //Testing
+                index++; //Increment
+                myLoop(); //Keep looping
+            }
+        }, 30)
+    })();
 
     //Add the product to the the shopping cart. The product is passed in the function
     //Since the cart is actually stored in the shoppingCartService, the data will persist across views
