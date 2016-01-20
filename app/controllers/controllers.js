@@ -22,7 +22,7 @@ appModule.controller("PaymentController", function($scope, formService) {
 
 appModule.controller("ProductController", function($scope, $timeout, dataService, shoppingCartService) {
 
-    //Option 1: Get all of the products (they're displayed immediately)
+    //Option 1: Get all of the products. This is how you would do it 99.9% of the time, but I wanted animation.
     //$scope.productList = dataService.getProducts();
 
     //Option 2: Instead of immediately initializing with all products. Add them one by one to the list
