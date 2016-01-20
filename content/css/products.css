@@ -1,3 +1,6 @@
+.main {
+  min-height: 101vh;
+}
 .load-animation.ng-enter {
   -webkit-transition: all .6s ease;
   transition: all .6s ease;
