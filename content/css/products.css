@@ -1,3 +1,13 @@
+.load-animation.ng-enter {
+  -webkit-transition: all .6s ease;
+  transition: all .6s ease;
+}
+.load-animation.ng-enter {
+  opacity: 0;
+}
+.load-animation.ng-enter-active {
+  opacity: 1;
+}
 .ellipsis {
   overflow: hidden;
   text-overflow: ellipsis;

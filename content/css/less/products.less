@@ -1,3 +1,27 @@
+//Animate products in when the page loads
+.load-animation
+{
+   &.ng-enter
+   {
+      -webkit-transition: all .6s ease;
+      transition: all .6s ease;
+   }
+
+   //Fade a new product in when it's added to the ng-repeat. In this case, I do this on the product page.
+   //Starting styles for the CSS animation. These would work if we were adding new items to the dom
+   &.ng-enter
+   {
+      opacity: 0;
+   }
+
+   //The finishing CSS styles for what the transition will animate towards (from .ng-enter)
+   &.ng-enter-active
+   {
+      opacity:1;
+   }
+}
+
+
 .ellipsis {
    overflow: hidden;
    text-overflow: ellipsis;
@@ -24,7 +48,6 @@
    font-size: 18px;
    margin-bottom: 5px;
 }
-
 
 
 .caption
