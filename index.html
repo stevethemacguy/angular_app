@@ -32,7 +32,7 @@
             <a href="#/cart" class="cart-holder" ng-controller="IndexController">
                 <span class="cart-text">Cart</span>
                 <span class="glyphicon glyphicon-shopping-cart cart-icon " aria-hidden="false"></span>
-                <span class="badge counter animated " ng-class="{active : itemCount, bounceIn : itemCount}">{{itemCount}}</span>
+                <span class="badge counter animated " ng-class="{active : itemCount, bounceIn : notZero}">{{itemCount}}</span>
             </a>
         </nav>
     </header>

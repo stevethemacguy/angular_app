@@ -25,10 +25,6 @@
     transform: scale3d(1.03, 1.03, 1.03);
   }
   80% {
-    -webkit-transform: scale3d(0.97, 0.97, 0.97);
-    transform: scale3d(0.97, 0.97, 0.97);
-  }
-  to {
     -webkit-transform: scale3d(1, 1, 1);
     transform: scale3d(1, 1, 1);
   }
@@ -60,10 +56,6 @@
     transform: scale3d(1.03, 1.03, 1.03);
   }
   80% {
-    -webkit-transform: scale3d(0.97, 0.97, 0.97);
-    transform: scale3d(0.97, 0.97, 0.97);
-  }
-  to {
     -webkit-transform: scale3d(1, 1, 1);
     transform: scale3d(1, 1, 1);
   }
@@ -71,9 +63,8 @@
 .bounceIn {
   -webkit-animation-name: bounceIn;
   animation-name: bounceIn;
-  color: red;
-  animation-duration: 1s;
-  -webkit-animation-duration: 1s;
+  animation-duration: .8s;
+  -webkit-animation-duration: .8s;
 }
 /*
 .slide {

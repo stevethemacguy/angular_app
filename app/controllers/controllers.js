@@ -115,20 +115,31 @@ appModule.controller("ThankYouController", function($scope, dataService) {
 
 //Normally, you don't want any controllers in the index page, but I'm not sure how else to update the
 //cart badge icon. The cart icon is outside of all other views, so needs a controller of it's own.
-appModule.controller("IndexController", function($scope, shoppingCartService) {
+appModule.controller("IndexController", function($scope, $timeout, shoppingCartService) {
 
     //Sort of hacky way to make angular watch for changes to the item count
     //The first function should return the value which is being watched.
     //AngularJS can then check the value returned against the value the watch function
     //returned the last time. if the value has changed, the second function is executed.
     //In this case, it updates itemCount in the view with the new value
+
     $scope.$watch(
         function() {
             return shoppingCartService.getItemCount()
         },
 
         function(newVal) {
-            $scope.itemCount = newVal;
+            //A little true/false flag so we can remove the bouncein class (and quickly re-add it)
+            //The itemCount animates with each change. If we didn't use the flag, then the class would be added once
+            //but never removed (i.e. the first item would animate, but adding/removing others would have no effect
+            $scope.notZero = false;
+
+            //Change the item count after a tiny delay to ensure we remove the animation class first.
+            $timeout(function () {
+                //Set the actual count
+                $scope.itemCount = newVal;
+                $scope.notZero = true;
+            }, 50);
         }
     );
 });
