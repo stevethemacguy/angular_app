@@ -51,7 +51,7 @@ appModule.controller("ProductController", function($scope, $timeout, dataService
         }, 30)
     })();
 
-    //Add the product to the the shopping cart. The product is passed in the function
+    //Add the product to the the shopping cart. The product is passed in the function.
     //Since the cart is actually stored in the shoppingCartService, the data will persist across views
     $scope.addToCart = function(product)
     {
