@@ -4,8 +4,11 @@
 var appModule = angular.module("appModule", ['ngRoute','door3.css','ngAnimate','ui.bootstrap']);
 
 //Configure routes for the app (i.e. "glue" the views to their respective controllers.
-appModule.config(['$routeProvider', function($routeProvider)
+appModule.config(['$routeProvider','$locationProvider', function($routeProvider,$locationProvider)
 {
+    //Turn on HTML5 mode for routing
+    $locationProvider.html5Mode(true).hashPrefix('#'); //The hashprefix is the backup for non-html5 browsers
+
     var viewBase = 'app/views/';
     var cssPath = 'content/css/'; //Used by routeStyles
 
@@ -64,6 +67,9 @@ appModule.config(['$routeProvider', function($routeProvider)
             css: cssPath + 'thankyou.css'
             /*controllerAs: 'vm'*/
         })
+        //If you want an error message when people enter a bad url, then you could create it here instead of sending
+        //users back home. Note: A 404 error, however, is not possible in angular becuase it doesn't make server requests.
+        //If you want a true 404, then you have to do it on the server.
         .otherwise({ redirectTo: '/home' });  //This could also be '/' instead
 }]);
 

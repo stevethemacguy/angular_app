@@ -7,10 +7,11 @@
     <!--Use Full Bootstrap CDN instead-->
     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"></head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">-->
-    <link href="content/css/bootstrap/bootstrap.css" rel="stylesheet" type="text/css">
-    <link href="content/css/bootstrap/bootstrap-theme.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="content/css/styles.css" type="text/css">
-    <link rel="stylesheet" href="content/css/animations.css" type="text/css">
+    <link href="/content/css/bootstrap/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="/content/css/bootstrap/bootstrap-theme.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/content/css/styles.css" type="text/css">
+    <link rel="stylesheet" href="/content/css/animations.css" type="text/css">
+    <base href="/">
 <body>
     <header>
         <nav class="navbar navbar-default">
@@ -18,12 +19,12 @@
             <span class="page-title" ng-bind="title"></span>
             <ul class="navlist">
                 <li>
-                    <a href="#/home"><span class="glyphicon glyphicon-home"></span></a>
+                    <a href="/home"><span class="glyphicon glyphicon-home"></span></a>
                 </li>
             </ul>
             <!--Normally, you want to set up a route to glue each view to one controller, but the index page is different
             because it's outside of any route, so I'm giving it access to it's own controller here to update the item count-->
-            <a href="#/cart" class="cart-holder" ng-controller="IndexController">
+            <a href="/cart" class="cart-holder" ng-controller="IndexController">
                 <span class="cart-text">Cart</span>
                 <span class="glyphicon glyphicon-shopping-cart cart-icon " aria-hidden="false"></span>
                 <span class="badge counter animated " ng-class="{active : itemCount, bounceIn : notZero}">{{itemCount}}</span>
