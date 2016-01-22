@@ -14,17 +14,6 @@ appModule.config(['$routeProvider','$locationProvider', function($routeProvider,
 
     $routeProvider
         .when('/',{ redirectTo: '/home' })//just redirect to home if they come in from localhost:3000
-        .when('/view1',          //This could also be '/' to default to view1
-            {
-                controller: 'SimpleController',
-                templateUrl: viewBase + 'view1.html'
-                /*controllerAs: 'vm'*/
-            })
-        .when('/view2', {
-            controller: 'SimpleController',
-            templateUrl: viewBase + 'view2.html'
-            /*controllerAs: 'vm'*/
-        })
         .when('/shipping', {
             title: 'Shipping',
             controller: 'ShippingController',
