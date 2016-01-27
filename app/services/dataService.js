@@ -7,6 +7,9 @@ appModule.factory('dataService', function($http) {
     //Create the empty service object
     var theService = {};
 
+    //Whether the "DB" has already been loaded with data from the server
+    var alreadyInitialized = false;
+
     //Create private variables/functions here that won't be exposed by the
     //service. If you want to expose them, add them to theService object.
 
@@ -22,7 +25,7 @@ appModule.factory('dataService', function($http) {
         {id: 3, name: 'Xbox', price: 199.99, img: imgPath + '/xbox.png'},
         {id: 4, name: 'Sony Camera', price: 60.00, img: imgPath + '/camera.png'},
         {id: 5, name: 'LOTR Trilogy; Blue Ray', price: 49.99, img: imgPath + '/dvd.png'},
-        {id: 6, name: 'Band aids', price: 2.50, img: imgPath + '/band.png'},
+        /*{id: 6, name: 'Band aids', price: 2.50, img: imgPath + '/band.png'},*/  //Only the server version should show band aids now
         {id: 7, name: 'Apple pie', price: 5.00, img: imgPath + '/pie.png'},
         {id: 8, name: 'Tennis ball (x10)', price: 5.49, img: imgPath + '/ball.png'},
         {id: 9, name: 'Diamond necklace', price: 20000, img: imgPath + '/diamond.png'},
@@ -48,7 +51,9 @@ appModule.factory('dataService', function($http) {
         //products aren't updated until the AJAX call finishes
         return $http.get("https://mean-app-sd.herokuapp.com/products")
             .then(function(response) {
+                alreadyInitialized = true;
                 console.log("Ajax call was successful");
+                products = response.data;
                 return response.data; //Success handler for the ajax request
             }, responseError);
     };
@@ -60,20 +65,21 @@ appModule.factory('dataService', function($http) {
         console.log("Status Text: " + response.statusText);
     };
 
-    //Get the hardcoded data
-    theService.getProductsFromDB = function()
-    {
+    //Prevents duplicate ajax calls from occurring if the database is already ready
+    theService.isDBInitialized = function() {
+        return alreadyInitialized;
+    };
+
+    //Get the product data, which was either hardcoded or retrieved from the server
+    theService.getProducts = function() {
         return products;
     };
 
     //Pass in a product id, and get it's price in return
-    theService.getProductPrice = function(productID)
-    {
+    theService.getProductPrice = function(productID) {
         var productPrice = 0;
-        for (var i = 0; i < products.length; i++)
-        {
-        	if(productID === products[i].id)
-            {
+        for (var i = 0; i < products.length; i++) {
+            if (productID === products[i].id) {
                 productPrice = products[i].price;
             }
         }
