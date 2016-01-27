@@ -20,10 +20,7 @@ appModule.controller("PaymentController", function($scope, formService) {
     $scope.formData = formService.paymentData;
 });
 
-appModule.controller("ProductController", function($scope, $timeout, dataService, httpService, shoppingCartService) {
-
-    //Retrieve the product list via ajax. Not needed if you use the hardcoded data.
-   // dataService.initializeDB();
+appModule.controller("ProductController", function($scope, $http, $timeout, dataService, shoppingCartService) {
 
     //Option 1: Get all of the products. This is how you would do it 99.9% of the time, but I wanted animation.
     //$scope.productList = dataService.getProducts();
@@ -32,21 +29,19 @@ appModule.controller("ProductController", function($scope, $timeout, dataService
     //This allows the items to animate as they are added! (see weird for-loop below!)
     $scope.productList  = [];
 
-    //Instead of immediately adding the products. Add each one by one. Allows the list to animate on load!
-    //You can't do this in a normal for loop, but I found this solution online
-
     //Temporary store the complete list of products
     var tempProductList = [];
-    //tempProductList = dataService.getProducts();
 
-    httpService.getProductsFromServer().then(function(promise){
-        tempProductList = promise.data;
+    //Instead of immediately adding the products. Add each one by one. Allows the list to animate on load!
+    //You can't do this in a normal for loop, but I found this solution online
+    var generateProductList = function(data) {
+        tempProductList = data; //NOTE: data is only used for the "real" http request version
 
         //Create a function that does the same thing as a for-loop and execute it immediately.
         //Uses Angular $timeout, which is the same as window.setTimeout. Basically pushes items every 100ms
         var index = 0;
-        (function myLoop () {
-            $timeout(function () {
+        (function myLoop() {
+            $timeout(function() {
                 //normal check condition (if index < array length)
                 if (index < tempProductList.length) {
                     //Push a product into the scope from the temporary list
@@ -57,20 +52,27 @@ appModule.controller("ProductController", function($scope, $timeout, dataService
                 }
             }, 30)
         })();
-    });
+    };
+
+    //Get a hardcoded list of products "from the DB" and generate the "model" using this list
+    //Use EITHER this line or getProductsFromServer(), but not both.
+    generateProductList(dataService.getProductsFromDB());
+
+    //Retrieve the product list via a real ajax call. Not needed if you use the hardcoded data.
+    /*dataService.getProductsFromServer().then(function(data) {
+        generateProductList(data);
+    });*/
 
     //Add the product to the the shopping cart. The product is passed in the function.
     //Since the cart is actually stored in the shoppingCartService, the data will persist across views
-    $scope.addToCart = function(product)
-    {
+    $scope.addToCart = function(product) {
         shoppingCartService.addToCart(product);
         //Print out the contents of the cart
         /*shoppingCartService.printCart();*/
     };
 
     //item argument comes from the view
-    $scope.alreadyInCart = function(item)
-    {
+    $scope.alreadyInCart = function(item) {
         //Check to see if the item is already in the cart
         return shoppingCartService.isProductInCart(item);
     }
