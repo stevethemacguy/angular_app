@@ -1,5 +1,5 @@
-//All of the services use the dataService. Services are singletons,
-//so the dataService has data that is shared across all controllers.
+//Services are singletons. formService has a shippingData object that lives in the formService and
+//can be shared across multiple controllers.
 appModule.controller("ShippingController", function($scope, formService) {
 
     //$scope.formData is the glue between the view and the controller (i.e. formData is the "model")
@@ -7,20 +7,24 @@ appModule.controller("ShippingController", function($scope, formService) {
     //the state is preserved when switching views.
     $scope.formData = formService.shippingData;
 
-    //Note: you can NOT do $scope.formData.name = "" here because you get a new instance
-    //of a controller with each view. You could, however, do this in the service.
+    //Note: you can NOT do $scope.formData.name = "" here if you want the data to persist between views,
+    //This is because you get a new instance of the controller with each view. You could, however, do this in the service.
 
-    //CAUTION: If the form inputs are invalid (according to angular) then the data
+    //CAUTION: If the form inputs are invalid when entered (according to angular), then this data
     //will NOT actually be stored in the service. This is good, just be aware of it
 });
 
-appModule.controller("PaymentController", function($scope, formService) {
-
+//Proper "bracket" syntax that won't break with minification
+appModule.controller("PaymentController", ['$scope', "formService", function($scope, formService)
+{
     //Make the form data (i.e the "model") point to the service data so that the state is preserved when switching views
     $scope.formData = formService.paymentData;
-});
 
-appModule.controller("ProductController", function($scope, $http, $timeout, dataService, shoppingCartService) {
+}]);
+
+//Note: This controller still uses the simple syntax because it's easier to read, but technically this would break if minifying. Here is the best practice syntax:
+//appModule.controller("ProductController", ['$scope', '$timeout', 'dataService','shoppingCartService', function($scope,$timeout,dataService,shoppingCartService) { ... }]);
+appModule.controller("ProductController", function($scope, $timeout, dataService, shoppingCartService) {
 
     //Option 1: Get all of the products. This is how you would do it 99.9% of the time, but I wanted animation.
     //$scope.productList = dataService.getProducts();
@@ -86,12 +90,14 @@ appModule.controller("ProductController", function($scope, $http, $timeout, data
 
 });
 
-appModule.controller("ConfirmationController", function($scope, dataService) {
+appModule.controller('ConfirmationController', ['$scope', 'dataService', function($scope, dataService)
+{
     //$scope.
-});
+}]);
 
-appModule.controller("CartController", function($scope, shoppingCartService, dataService) {
-
+//Cart controller (now using correct Inline Bracket Syntax)
+appModule.controller('CartController', ['$scope', 'shoppingCartService', 'dataService', function($scope, shoppingCartService, dataService)
+{
     //Price of all items in the cart. Starts with what's cart, but can change if things are added/removed
     $scope.totalPrice = 0;
 
@@ -121,13 +127,12 @@ appModule.controller("CartController", function($scope, shoppingCartService, dat
         $scope.itemCount = shoppingCartService.getItemCount();
         $scope.empty = shoppingCartService.isCartEmpty();
     };
+}]);
 
-});
-
-appModule.controller("ThankYouController", function($scope, dataService) {
+appModule.controller('ThankYouController', ['$scope', 'dataService', function($scope, dataService)
+{
     //$scope.
-
-});
+}]);
 
 //Normally, you don't want any controllers in the index page, but I'm not sure how else to update the
 //cart badge icon. The cart icon is outside of all other views, so needs a controller of it's own.
