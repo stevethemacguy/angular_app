@@ -54,8 +54,8 @@ appModule.controller("ProductController", function($scope, $http, $timeout, data
         })();
     };
 
-    //Generate the "model" using the stored list of products. These are hardcoded by default,
-    //Do NOT use this line and the Ajax generateProductList() call at the same time!
+    //Generate the "model" using the stored list of products, which are hardcoded by default,
+    //Do NOT use this line and the Ajax generateProductList() lines below at the same time!
     //generateProductList(dataService.getProducts());
 
     //Retrieve the product list via a real ajax call. Comment out these lines if you just want to use the hardcoded data.
@@ -66,8 +66,7 @@ appModule.controller("ProductController", function($scope, $http, $timeout, data
         });
     }
     else {
-        //Generate the "model" using the stored list of products. These are hardcoded by default,
-        //but using the getProductsFromServer() function above will override the products with those on the server.
+        //Generate the "model" using the existing list of products
         generateProductList(dataService.getProducts());
     }
 
@@ -89,7 +88,6 @@ appModule.controller("ProductController", function($scope, $http, $timeout, data
 
 appModule.controller("ConfirmationController", function($scope, dataService) {
     //$scope.
-
 });
 
 appModule.controller("CartController", function($scope, shoppingCartService, dataService) {

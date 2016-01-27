@@ -53,8 +53,8 @@ appModule.factory('dataService', function($http) {
             .then(function(response) {
                 alreadyInitialized = true;
                 console.log("Ajax call was successful");
-                products = response.data;
-                return response.data; //Success handler for the ajax request
+                products = response.data; //Initialize the product list, which will be used in future calls to getProducts()
+                return response.data; //Success handler for the ajax request, which returns the data
             }, responseError);
     };
 
