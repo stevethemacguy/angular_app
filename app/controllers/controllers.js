@@ -20,7 +20,10 @@ appModule.controller("PaymentController", function($scope, formService) {
     $scope.formData = formService.paymentData;
 });
 
-appModule.controller("ProductController", function($scope, $timeout, dataService, shoppingCartService) {
+appModule.controller("ProductController", function($scope, $timeout, dataService, httpService, shoppingCartService) {
+
+    //Retrieve the product list via ajax. Not needed if you use the hardcoded data.
+   // dataService.initializeDB();
 
     //Option 1: Get all of the products. This is how you would do it 99.9% of the time, but I wanted animation.
     //$scope.productList = dataService.getProducts();
@@ -33,23 +36,28 @@ appModule.controller("ProductController", function($scope, $timeout, dataService
     //You can't do this in a normal for loop, but I found this solution online
 
     //Temporary store the complete list of products
-    var tempProductList = dataService.getProducts();
+    var tempProductList = [];
+    //tempProductList = dataService.getProducts();
 
-    //Create a function that does the same thing as a for-loop and execute it immediately.
-    //Uses Angular $timeout, which is the same as window.setTimeout. Basically pushes items every 100ms
-    var index = 0;
-    (function myLoop () {
-        $timeout(function () {
-            //normal check condition (if index < array length)
-            if (index < tempProductList.length) {
-                //Push a product into the scope from the temporary list
-                $scope.productList.push(tempProductList[index]);
-                //console.log(tempProductList[index]); //Testing
-                index++; //Increment
-                myLoop(); //Keep looping
-            }
-        }, 30)
-    })();
+    httpService.getProductsFromServer().then(function(promise){
+        tempProductList = promise.data;
+
+        //Create a function that does the same thing as a for-loop and execute it immediately.
+        //Uses Angular $timeout, which is the same as window.setTimeout. Basically pushes items every 100ms
+        var index = 0;
+        (function myLoop () {
+            $timeout(function () {
+                //normal check condition (if index < array length)
+                if (index < tempProductList.length) {
+                    //Push a product into the scope from the temporary list
+                    $scope.productList.push(tempProductList[index]);
+                    //console.log(tempProductList[index]); //Testing
+                    index++; //Increment
+                    myLoop(); //Keep looping
+                }
+            }, 30)
+        })();
+    });
 
     //Add the product to the the shopping cart. The product is passed in the function.
     //Since the cart is actually stored in the shoppingCartService, the data will persist across views
