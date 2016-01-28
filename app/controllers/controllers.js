@@ -39,10 +39,11 @@ appModule.controller("ProductController", function($scope, $timeout, dataService
     //Instead of immediately adding the products. Add each one by one. Allows the list to animate on load!
     //You can't do this in a normal for loop, but I found this solution online
     var generateProductList = function(data) {
-        tempProductList = data; //NOTE: data is only used for the "real" http request version
+        //This can be the data returned from the "real" http request version or the current products in "the DB"
+        tempProductList = data;
 
         //Create a function that does the same thing as a for-loop and execute it immediately.
-        //Uses Angular $timeout, which is the same as window.setTimeout. Basically pushes items every 100ms
+        //Uses Angular $timeout, which is the same as window.setTimeout. Basically pushes items every 30ms
         var index = 0;
         (function myLoop() {
             $timeout(function() {

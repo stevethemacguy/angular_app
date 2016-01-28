@@ -46,16 +46,17 @@ appModule.factory('dataService', function($http) {
     //This should only be called once when the application loads
     theService.getProductsFromServer = function() {
 
-        //Http request to retrieve an JSON object of products. This call
-        //RETURNS A PROMISE, which is then used in the controller to make sure
-        //products aren't updated until the AJAX call finishes
+        //Http request to retrieve products (a JSON object). $http returns a promise when the ajax completes that
+        //is immediately used by .then(). The .then() wraps the reponse data in a NEW promise (promise2). This
+        //is the promise that is actually returned to the controller. Using .then() in the controller further
+        //ensures that products aren't updated until both the AJAX and the .then() promise finishes.
         return $http.get("https://mean-app-sd.herokuapp.com/products")
-            .then(function(response) {
+            .then(function(response) { //After the ajax succeeds
                 alreadyInitialized = true;
                 console.log("Ajax call was successful");
                 products = response.data; //Initialize the product list, which will be used in future calls to getProducts()
-                return response.data; //Success handler for the ajax request, which returns the data
-            }, responseError);
+                return response.data; //This actually returns a promise (that contains response data)
+            }, responseError); //Error handler if the $http request fails.
     };
 
     //Error handler for the ajax request
