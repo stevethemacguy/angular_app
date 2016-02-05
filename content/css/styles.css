@@ -149,7 +149,7 @@ ul {
 form {
   margin-top: 18px;
 }
-#toast-container.toast-top-center .notification {
+#toast-container.toast-top-center .toast {
   height: 46px;
   width: 335px;
   padding-top: 14px;

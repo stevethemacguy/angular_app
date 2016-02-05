@@ -5,33 +5,27 @@ var appModule = angular.module("appModule", ['ngRoute','door3.css','ngAnimate','
 
 appModule.config(function(toastrConfig)
 {
-    //Configure the toastr container
+    //Configure the toastr notifications
     angular.extend(toastrConfig, {
-
-        autoDismiss: false,
+        //Configure the toastr container
         containerId: 'toast-container', //ID of the hidden html container that holds the toasts
         maxOpened: 0,   //Maximum number of toasts that can be opened. 0 meansno limit
-        newestOnTop: true,
+        newestOnTop: false, //put new toasts at the bottom
         positionClass: 'toast-top-center',
-        /*preventDuplicates: false,
-        preventOpenDuplicates: false,*/
-        target: 'body'
-    });
-
-    //Configure the toastr message itself (what's inside the toast-container)
-    angular.extend(toastrConfig, {
-        closeButton: true,
-        //iconClass: 'notification',   //The default type classes for the different toasts.
-        timeOut: 0, //How long before hiding the notification
+        preventOpenDuplicates: false, //Prevent duplicates of open toasts.
         /*preventDuplicates: false,
         preventOpenDuplicates: false,*/
         target: 'body',
+
+        //Configure the toastr message itself (what's inside the toast-container)
+        closeButton: true,
+        //iconClass: 'notification',   //The default type classes for the different toasts.
+        timeOut: 2000, //How long before hiding the notification, If zero, they won't hide
         messageClass: 'notification-message', //The class for the toast's message.
-        titleClass: 'notification-title', //The class for the toast's title, if it has one.
-        toastClass: 'notification'//The main class for toasts (i.e the visible container)
+        //toastClass: 'notification'//The main class for toasts (i.e the visible container)
+        //WARNING: toastClass currently breaks animation for some reason. Target the .toastr class directly! instead
+        titleClass: 'notification-title' //The class for the toast's title, if it has one.
     });
-
-
 
 });
 
