@@ -20,7 +20,7 @@ appModule.config(function(toastrConfig)
         //Configure the toastr message itself (what's inside the toast-container)
         closeButton: true,
         //iconClass: 'notification',   //The default type classes for the different toasts.
-        timeOut: 2000, //How long before hiding the notification, If zero, they won't hide
+        timeOut: 1850, //How long before hiding the notification, If zero, they won't hide
         messageClass: 'notification-message', //The class for the toast's message.
         //toastClass: 'notification'//The main class for toasts (i.e the visible container)
         //WARNING: toastClass currently breaks animation for some reason. Target the .toastr class directly! instead

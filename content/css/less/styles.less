@@ -182,12 +182,20 @@ form {
 //Needed to override toastr selector
 #toast-container.toast-top-center{
 
+   //When the container width is 100%, if covers the entire header, making the cart button unclickable while a
+   //notification is visible. Change the container width to remove this issue
+   width: 400px;
+   left: 50%;
+   margin-left: -200px;
+
    //All Toastr Notifications. USE .toast! Do not try a different class or animation will break.
    .toast {
-      height: 46px;
-      width: 335px;
+      line-height: 1.3; //override bootstrap
+      min-height: 46px;
+      width: 400px;
       padding-top: 14px;
-      opacity: 1;
+      padding-bottom: 7px;
+      overflow: visible; //Let the text go over one line
       box-shadow: 0 2px 3px #999999;
       -webkit-box-shadow: 0 2px 3px #999999;
    }

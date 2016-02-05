@@ -1,5 +1,5 @@
 //Cart controller (now using correct Inline Bracket Syntax)
-appModule.controller('CartController', ['$scope', 'shoppingCartService', 'dataService', function($scope, shoppingCartService, dataService)
+appModule.controller('CartController', ['$scope', 'shoppingCartService', 'dataService','toastr', function($scope, shoppingCartService, dataService,toastr)
 {
     //Price of all items in the cart. Starts with what's cart, but can change if things are added/removed
     $scope.totalPrice = 0;
@@ -20,11 +20,12 @@ appModule.controller('CartController', ['$scope', 'shoppingCartService', 'dataSe
     //Whether the cart is empty or not
     $scope.empty = shoppingCartService.isCartEmpty();
 
-    $scope.removeFromCart = function(productToRemove)
+    $scope.removeFromCart = function(productToRemove, productName)
     {
         //subtract the product's price from the total price
         $scope.totalPrice -= dataService.getProductPrice(productToRemove);
         shoppingCartService.removeFromCart(productToRemove);
+        toastr.success(productName + " was successfully removed from your cart");
 
         //Update the number of items if it has changed.
         $scope.itemCount = shoppingCartService.getItemCount();

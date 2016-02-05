@@ -58,7 +58,7 @@ appModule.controller("ProductController", function($scope, $timeout, dataService
         shoppingCartService.addToCart(product);
 
         //Notification
-        toastr.success('Successfully added 1 item to the cart');
+        toastr.success('Successfully added 1 item to your cart');
 
         //Print out the contents of the cart
         /*shoppingCartService.printCart();*/
