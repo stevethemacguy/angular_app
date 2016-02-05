@@ -149,3 +149,14 @@ ul {
 form {
   margin-top: 18px;
 }
+#toast-container.toast-top-center .notification {
+  height: 46px;
+  width: 335px;
+  padding-top: 14px;
+  opacity: 1;
+  box-shadow: 0 2px 3px #999999;
+  -webkit-box-shadow: 0 2px 3px #999999;
+}
+#toast-container.toast-top-center .toast-close-button {
+  top: -7px;
+}

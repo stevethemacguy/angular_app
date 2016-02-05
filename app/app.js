@@ -1,7 +1,39 @@
 //Create a Module to be used with this app and call the module "appModule".
 //You don't have to use the same name as the variable, but it's a good idea.
 //NOTE: Some versions of phpStorm won't recognize .module or .controller...It is a bug!
-var appModule = angular.module("appModule", ['ngRoute','door3.css','ngAnimate','ui.bootstrap']);
+var appModule = angular.module("appModule", ['ngRoute','door3.css','ngAnimate','ui.bootstrap','toastr']);
+
+appModule.config(function(toastrConfig)
+{
+    //Configure the toastr container
+    angular.extend(toastrConfig, {
+
+        autoDismiss: false,
+        containerId: 'toast-container', //ID of the hidden html container that holds the toasts
+        maxOpened: 0,   //Maximum number of toasts that can be opened. 0 meansno limit
+        newestOnTop: true,
+        positionClass: 'toast-top-center',
+        /*preventDuplicates: false,
+        preventOpenDuplicates: false,*/
+        target: 'body'
+    });
+
+    //Configure the toastr message itself (what's inside the toast-container)
+    angular.extend(toastrConfig, {
+        closeButton: true,
+        //iconClass: 'notification',   //The default type classes for the different toasts.
+        timeOut: 0, //How long before hiding the notification
+        /*preventDuplicates: false,
+        preventOpenDuplicates: false,*/
+        target: 'body',
+        messageClass: 'notification-message', //The class for the toast's message.
+        titleClass: 'notification-title', //The class for the toast's title, if it has one.
+        toastClass: 'notification'//The main class for toasts (i.e the visible container)
+    });
+
+
+
+});
 
 //Configure routes for the app (i.e. "glue" the views to their respective controllers.
 appModule.config(['$routeProvider','$locationProvider', function($routeProvider,$locationProvider)

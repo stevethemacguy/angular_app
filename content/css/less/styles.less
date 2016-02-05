@@ -75,6 +75,7 @@ header {
    display: inline-block;
    font-size: 25px;
 }
+
 //override bootstrap theme
 .navbar-default {
    border-radius: 0;
@@ -82,15 +83,13 @@ header {
    border-left: 0;
 }
 
-.navlist
-{
-   position:absolute;
+.navlist {
+   position: absolute;
    left: 11px;
    top: 6px;
 }
 
-.cart-holder
-{
+.cart-holder {
    display: inline-block;
    float: right;
    left: -20px;
@@ -98,26 +97,22 @@ header {
    cursor: pointer;
 }
 
-.cart-text
-{
+.cart-text {
    font-size: 19px;
    margin-right: 5px;
 }
 
-.cart-icon
-{
+.cart-icon {
    position: relative;
    top: 5px;
    font-size: 25px;
 }
 
-.counter
-{
+.counter {
    position: relative;
    top: -12px;
    left: -12px;
-   &.active
-   {
+   &.active {
       background: orange;
       color: white;
    }
@@ -138,8 +133,7 @@ header {
    cursor: pointer;
 }
 
-.breadcrumb
-{
+.breadcrumb {
    position: absolute;
    right: 0;
    top: 53px;
@@ -151,7 +145,6 @@ ul {
 }
 
 /* Form Input validation Styling. See https://docs.angularjs.org/guide/forms */
-
 
 //Only style inputs if they have been touched (i.e the input has been blurred)
 .ng-valid.ng-touched {
@@ -177,8 +170,7 @@ ul {
    position: relative;
    margin-bottom: 25px;
 
-   &.first
-   {
+   &.first {
       margin-top: 25px;
    }
 }
@@ -187,6 +179,24 @@ form {
    margin-top: 18px;
 }
 
+//Needed to override toastr selector
+#toast-container.toast-top-center{
+
+   //All Toastr Notifications
+   .notification {
+      height: 46px;
+      width: 335px;
+      padding-top: 14px;
+      opacity: 1;
+      box-shadow: 0 2px 3px #999999;
+      -webkit-box-shadow: 0 2px 3px #999999;
+   }
+
+   .toast-close-button {
+      top: -7px
+   }
+
+}
 
 
 
