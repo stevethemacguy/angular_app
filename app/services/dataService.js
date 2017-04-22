@@ -2,7 +2,7 @@
 //or an http request can be made to the hedoku server (my "mean-app") for the data.
 
 //Factory is used here to creates a service. ALl services returns a singleton object.
-appModule.factory('dataService', function($http) {
+appModule.factory('dataService', function($http, toastr) {
 
     //Create the empty service object
     var theService = {};
@@ -15,6 +15,7 @@ appModule.factory('dataService', function($http) {
 
     var imgPath = "content/images/";
 
+    var apiUrlBase = "http://192.168.173.201:5000/api/";
     //Start with an empty list
     var products = ["The product list is empty. The ajax call may have failed"];
 
@@ -59,8 +60,21 @@ appModule.factory('dataService', function($http) {
             }, responseError); //Error handler if the $http request fails.
     };
 
+    //Get the products from the .Net Core API
+    theService.getProductsFromApi = function() {
+
+        return $http.get(apiUrlBase+"products")
+            .then(function(response) { //After the ajax succeeds
+                alreadyInitialized = true;
+                console.log("Ajax call was successful");
+                products = response.data; //Initialize the product list, which will be used in future calls to getProducts()
+                return response.data; //This actually returns a promise (that contains response data)
+            }, responseError); //Error handler if the $http request fails.
+    };
+
     //Error handler for the ajax request
     var responseError = function(response) {
+        toastr.error("Unable to retrieve product details from the Server. Check that the API Server is running and try again.");
         console.log("The ajax request failed :(");
         console.log("Status: " + response.status);
         console.log("Status Text: " + response.statusText);

@@ -36,12 +36,14 @@ appModule.controller("ProductController", function($scope, $timeout, dataService
         })();
     };
 
+    /////// Starting point fo the app \\\\\\\\\\
+
     //Generate the "model" using the stored list of products, which are hardcoded by default,
     //Do NOT use this line and the Ajax generateProductList() lines below at the same time!
     //generateProductList(dataService.getProducts());
 
     //Retrieve the product list via a real ajax call. Comment out these lines if you just want to use the hardcoded data.
-    if (dataService.isDBInitialized() == false) {
+   /* if (dataService.isDBInitialized() == false) {
         //Can NOT initialize more than once or else we'll lose information about which products are in the cart, etc.
         dataService.getProductsFromServer().then(function(data) {
             generateProductList(data);
@@ -50,7 +52,11 @@ appModule.controller("ProductController", function($scope, $timeout, dataService
     else {
         //Generate the "model" using the existing list of products
         generateProductList(dataService.getProducts());
-    }
+    }*/
+
+    dataService.getProductsFromApi().then(function(data) {
+        generateProductList(data);
+    });
 
     //Add the product to the the shopping cart. The product is passed in the function.
     //Since the cart is actually stored in the shoppingCartService, the data will persist across views
