@@ -1,7 +1,13 @@
 //Create a Module to be used with this app and call the module "appModule".
 //You don't have to use the same name as the variable, but it's a good idea.
 //NOTE: Some versions of phpStorm won't recognize .module or .controller...It is a bug!
-var appModule = angular.module("appModule", ['ngRoute','door3.css','ngAnimate','ui.bootstrap','toastr']);
+var appModule = angular.module("appModule", [
+    'ngRoute',
+    'door3.css',
+    'ngAnimate',
+    'ui.bootstrap',
+    'toastr']
+);
 
 appModule.config(function(toastrConfig)
 {

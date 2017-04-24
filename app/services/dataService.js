@@ -15,38 +15,27 @@ appModule.factory('dataService', function($http, toastr) {
 
     var imgPath = "content/images/";
 
-    var apiUrlBase = "http://192.168.173.201:5000/api/";
     //Start with an empty list
     var products = ["The product list is empty. The ajax call may have failed"];
 
-    //A list of all available products (hardcoded)
-    products = [
-        {id: 1, name: 'Apple', price: 1.50, img: imgPath + '/apple.png'},
-        {id: 2, name: 'Pencil', price: .50, img: imgPath + '/pencil.png'},
-        {id: 3, name: 'Xbox', price: 199.99, img: imgPath + '/xbox.png'},
-        {id: 4, name: 'Sony Camera', price: 60.00, img: imgPath + '/camera.png'},
-        {id: 5, name: 'LOTR Trilogy; Blue Ray', price: 49.99, img: imgPath + '/dvd.png'},
-        /*{id: 6, name: 'Band aids', price: 2.50, img: imgPath + '/band.png'},*/  //Only the server version should show band aids now
-        {id: 7, name: 'Apple pie', price: 5.00, img: imgPath + '/pie.png'},
-        {id: 8, name: 'Tennis ball (x10)', price: 5.49, img: imgPath + '/ball.png'},
-        {id: 9, name: 'Diamond necklace', price: 20000, img: imgPath + '/diamond.png'},
-        {id: 10, name: 'Hand grenade', price: 15.00, img: imgPath + '/grenade.png'},
-        {id: 11, name: 'Printer', price: 150.00, img: imgPath + '/printer.png'},
-        {id: 12, name: 'Monitor', price: 335.00, img: imgPath + '/monitor.png'},
-        {id: 13, name: 'Book', price: 5.00, img: imgPath + '/book.png'},
-        {id: 14, name: 'Couch', price: 189.00, img: imgPath + '/couch.gif'},
-        {id: 15, name: 'Silverware', price: 189.00, img: imgPath + '/silver.png'},
-        {id: 16, name: 'Watch', price: 189.00, img: imgPath + '/watch.png'},
-        {id: 17, name: 'Flowers', price: 189.00, img: imgPath + '/flowers.png'},
-        {id: 18, name: 'Cup', price: 189.00, img: imgPath + '/cup.png'}
-    ];
+    //Get products using the .Net Core Product API.
+    theService.getProductsFromApi = function() {
+        return $http.get(config.apiEndPoints.products.getAllProducts)
+            .then(function(response) { //After the ajax succeeds
+                alreadyInitialized = true;
+                products = response.data; //Initialize the product list, which will be used in future calls to getProducts()
+                toastr.success("Successfully Retrieved " + products.length + " Products from the API");
+                return products;
+            }).catch(function(error) {
+                responseError(error)//Error handler if the $http request fails.
+            });
+    };
 
     ///Retrieve a list of products from the server (my "mean_app" on a heroku).
     //This does a real http request to fetch a json file on the server. The images
     //are also on the server. Technically, I did not create a real "API", it just goes directly the the url
     //This should only be called once when the application loads
-    theService.getProductsFromServer = function() {
-
+    theService.getProductsFromHeroku = function() {
         //Http request to retrieve products (a JSON object). $http returns a promise when the ajax completes that
         //is immediately used by .then(). The .then() wraps the reponse data in a NEW promise (promise2). This
         //is the promise that is actually returned to the controller. Using .then() in the controller further
@@ -57,37 +46,27 @@ appModule.factory('dataService', function($http, toastr) {
                 console.log("Ajax call was successful");
                 products = response.data; //Initialize the product list, which will be used in future calls to getProducts()
                 return response.data; //This actually returns a promise (that contains response data)
-            }, responseError); //Error handler if the $http request fails.
+            }).catch(function(error) {
+                responseError(error)//Error handler if the $http request fails.
+            });
     };
 
-    //Get the products from the .Net Core API
-    theService.getProductsFromApi = function() {
-
-        return $http.get(apiUrlBase+"products")
-            .then(function(response) { //After the ajax succeeds
-                alreadyInitialized = true;
-                console.log("Ajax call was successful");
-                products = response.data; //Initialize the product list, which will be used in future calls to getProducts()
-                return response.data; //This actually returns a promise (that contains response data)
-            }, responseError); //Error handler if the $http request fails.
+    //Returns hard-coded test data
+    theService.getTestProducts = function() {
+        return productData;
     };
 
     //Error handler for the ajax request
     var responseError = function(response) {
+        console.log("The ajax request failed");
+        console.log("If you're using the Heroku server, make sure you're using the CORS plugin in Chrome");
+        console.log(response);
         toastr.error("Unable to retrieve product details from the Server. Check that the API Server is running and try again.");
-        console.log("The ajax request failed :(");
-        console.log("Status: " + response.status);
-        console.log("Status Text: " + response.statusText);
     };
 
     //Prevents duplicate ajax calls from occurring if the database is already ready
     theService.isDBInitialized = function() {
         return alreadyInitialized;
-    };
-
-    //Get the product data, which was either hardcoded or retrieved from the server
-    theService.getProducts = function() {
-        return products;
     };
 
     //Pass in a product id, and get it's price in return
