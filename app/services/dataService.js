@@ -13,8 +13,6 @@ appModule.factory('dataService', function($http, toastr) {
     //Create private variables/functions here that won't be exposed by the
     //service. If you want to expose them, add them to theService object.
 
-    var imgPath = "content/images/";
-
     //Start with an empty list
     var products = ["The product list is empty. The ajax call may have failed"];
 

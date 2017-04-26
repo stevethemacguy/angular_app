@@ -7,7 +7,7 @@
         <div class="col-lg-2 col-md-3 col-sm-4 load-animation" ng-repeat="product in productList | filter : filter.name">
             <div class="thumbnail">
                 <div class="image-holder">
-                    <img ng-disabled="alreadyInCart(product)" class="product-image" ng-src="{{product.img}}" alt="No Image available"/>
+                    <img ng-disabled="alreadyInCart(product)" class="product-image" ng-src="{{product.imageUrl}}" alt="No Image available"/>
                     <!--<img ng-disabled="alreadyInCart(product)" class="product-image" ng-src="{{product.img}}" alt="No Image available"/>-->
                 </div>
                 <div class="caption">
