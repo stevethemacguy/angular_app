@@ -1,12 +1,9 @@
 {
   "name": "node_app",
   "version": "1.0.0",
-  "description": "",
+  "description": "Basic AngularJS Application using Node and Express. Can retrive product data from: a local .Net Core Product API, a JSON file deployed on a heroku server, or local test data",
   "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
+  "author": "Steven Dunn",
   "license": "ISC",
   "dependencies": {
     "express": "^4.13.3"
@@ -20,6 +17,7 @@
     "grunt": "^1.0.1",
     "grunt-browser-sync": "^2.0.0",
     "grunt-contrib-sass": "^1.0.0",
-    "grunt-contrib-watch": "^1.0.0"
+    "grunt-contrib-watch": "^1.0.0",
+    "opn": "^4.0.2"
   }
 }
