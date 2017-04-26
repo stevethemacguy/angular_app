@@ -23,18 +23,18 @@
                     <a href="/home"><span class="glyphicon glyphicon-home"></span></a>
                 </li>
             </ul>
-            <!--Normally, you want to set up a route to glue each view to one controller, but the index page is different
-            because it's outside of any route, so I'm giving it access to it's own controller here to update the item count-->
-            <a href="/manage-products" class="cart-holder" ng-controller="IndexController">
-                <span class="cart-text">Cart</span>
-                <span class="glyphicon glyphicon-shopping-cart cart-icon " aria-hidden="false"></span>
-                <span class="badge counter animated " ng-class="{active : itemCount, bounceIn : notZero}">{{itemCount}}</span>
-            </a>
-            <a href="/cart" class="cart-holder" ng-controller="IndexController">
-                <span class="cart-text">Cart</span>
-                <span class="glyphicon glyphicon-shopping-cart cart-icon " aria-hidden="false"></span>
-                <span class="badge counter animated " ng-class="{active : itemCount, bounceIn : notZero}">{{itemCount}}</span>
-            </a>
+            <div class="user-actions">
+                <!--Normally, you want to set up a route to glue each view to one controller, but the index page is different
+                because it's outside of any route, so I'm giving it access to it's own controller here to update the item count-->
+                <a href="/cart" class="cart-holder" ng-controller="IndexController">
+                    <span class="cart-text">Cart</span>
+                    <span class="glyphicon glyphicon-shopping-cart cart-icon " aria-hidden="false"></span>
+                    <span class="badge counter animated " ng-class="{active : itemCount, bounceIn : notZero}">{{itemCount}}</span>
+                </a>
+                <a href="/manage-products" class="manage-product-link" ng-controller="IndexController">
+                    <span class="glyphicon glyphicon glyphicon-cog cart-icon " aria-hidden="false"></span>
+                </a>
+            </div>
         </nav>
     </header>
     <!-- //Use angular alerts instead!

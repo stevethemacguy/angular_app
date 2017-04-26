@@ -60,7 +60,7 @@ appModule.config(['$routeProvider','$locationProvider', function($routeProvider,
             css: cssPath + 'payment.css'
             /*controllerAs: 'vm'*/
         })
-        .when('/payment', {
+        .when('/manage-products', {
             title: 'Product Management',
             controller: 'ProductManagementController',
             templateUrl: viewBase + 'manage-products.html',

@@ -24,7 +24,9 @@ header {
   border-left: 0;
   border-right: 0;
   height: 100%;
-  padding: 5px 2px 2px 15px; }
+  padding: 5px 2px 2px 15px;
+  /*display: flex;
+  justify-content: flex-end;*/ }
   .navbar ul {
     list-style: none;
     font-size: 25px;
@@ -70,12 +72,12 @@ header {
   left: 11px;
   top: 6px; }
 
-.cart-holder {
-  display: inline-block;
+.user-actions {
   float: right;
   left: -20px;
   position: relative;
-  cursor: pointer; }
+  cursor: pointer;
+  display: inline-block; }
 
 .cart-text {
   font-size: 19px;
