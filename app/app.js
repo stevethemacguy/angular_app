@@ -42,7 +42,7 @@ appModule.config(['$routeProvider','$locationProvider', function($routeProvider,
     $locationProvider.html5Mode(true).hashPrefix('#'); //The hashprefix is the backup for non-html5 browsers
 
     var viewBase = 'app/views/';
-    var cssPath = 'content/css/'; //Used by routeStyles
+    var cssPath = 'content/sass/css/'; //Used by routeStyles
 
     $routeProvider
         .when('/',{ redirectTo: '/home' })//just redirect to home if they come in from localhost:3000
@@ -58,6 +58,13 @@ appModule.config(['$routeProvider','$locationProvider', function($routeProvider,
             controller: 'PaymentController',
             templateUrl: viewBase + 'payment.html',
             css: cssPath + 'payment.css'
+            /*controllerAs: 'vm'*/
+        })
+        .when('/payment', {
+            title: 'Product Management',
+            controller: 'ProductManagementController',
+            templateUrl: viewBase + 'manage-products.html',
+            css: cssPath + 'manage-products.css'
             /*controllerAs: 'vm'*/
         })
         .when('/home', {

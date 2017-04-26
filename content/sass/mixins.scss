@@ -1,0 +1,17 @@
+/**
+ * Author: Steven Dunn
+ * Date Created: April 15, 2017
+ **/
+
+// Vertically and horizontally center child elements (i.e. flex-items)
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

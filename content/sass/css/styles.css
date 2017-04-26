@@ -1,0 +1,154 @@
+/*testing colors*/
+html {
+  box-sizing: border-box; }
+
+*, *:before, *:after {
+  box-sizing: inherit; }
+
+body {
+  background: #F7F7F9;
+  margin: 0 auto;
+  padding: 0;
+  position: relative; }
+
+header {
+  height: 47px;
+  color: white;
+  position: fixed;
+  width: 100%;
+  text-align: center;
+  z-index: 3; }
+
+.navbar {
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  height: 100%;
+  padding: 5px 2px 2px 15px; }
+  .navbar ul {
+    list-style: none;
+    font-size: 25px;
+    padding: 0;
+    display: inline-block; }
+  .navbar a {
+    font-weight: 500;
+    color: white; }
+  .navbar a:link {
+    color: white;
+    text-decoration: none;
+    outline: none; }
+  .navbar a:visited {
+    color: white;
+    text-decoration: none;
+    outline: none; }
+  .navbar a:focus {
+    color: white;
+    text-decoration: none;
+    outline: none; }
+  .navbar a:hover {
+    color: lavender;
+    text-decoration: none;
+    outline: none;
+    cursor: pointer; }
+  .navbar a:active {
+    color: white;
+    text-decoration: none;
+    outline: none; }
+
+.page-title {
+  color: white;
+  display: inline-block;
+  font-size: 25px; }
+
+.navbar-default {
+  border-radius: 0;
+  border-top: 0;
+  border-left: 0; }
+
+.navlist {
+  position: absolute;
+  left: 11px;
+  top: 6px; }
+
+.cart-holder {
+  display: inline-block;
+  float: right;
+  left: -20px;
+  position: relative;
+  cursor: pointer; }
+
+.cart-text {
+  font-size: 19px;
+  margin-right: 5px; }
+
+.cart-icon {
+  position: relative;
+  top: 5px;
+  font-size: 25px; }
+
+.counter {
+  position: relative;
+  top: -12px;
+  left: -12px; }
+  .counter.active {
+    background: orange;
+    color: white; }
+
+.main {
+  background: #F7F7F9;
+  width: 94%;
+  margin: 0 auto;
+  min-height: 100vh;
+  padding: 15px;
+  padding-top: calc(46px + 16px);
+  position: relative; }
+
+.nav, .pagination, .carousel, .panel-title a {
+  cursor: pointer; }
+
+.breadcrumb {
+  position: absolute;
+  right: 0;
+  top: 53px; }
+
+ul {
+  margin: 0;
+  display: inline-block; }
+
+/* Form Input validation Styling. See https://docs.angularjs.org/guide/forms */
+.ng-invalid.ng-touched {
+  background-color: #FA787E; }
+
+.error-message {
+  font-size: 12px;
+  color: red;
+  position: absolute;
+  top: 28px;
+  left: 44px; }
+
+.input-container {
+  position: relative;
+  margin-bottom: 25px; }
+  .input-container.first {
+    margin-top: 25px; }
+
+form {
+  margin-top: 18px; }
+
+#toast-container.toast-top-center {
+  width: 400px;
+  left: 50%;
+  margin-left: -200px; }
+  #toast-container.toast-top-center .toast {
+    line-height: 1.3;
+    min-height: 46px;
+    width: 400px;
+    padding-top: 14px;
+    padding-bottom: 7px;
+    overflow: visible;
+    box-shadow: 0 2px 3px #999999;
+    -webkit-box-shadow: 0 2px 3px #999999; }
+  #toast-container.toast-top-center .toast-close-button {
+    top: -7px; }
+
+/*# sourceMappingURL=styles.css.map */

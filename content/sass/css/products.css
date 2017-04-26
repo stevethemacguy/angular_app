@@ -1,68 +1,70 @@
+/**
+ * Author: Steven Dunn
+ * Date Created: April 15, 2017
+ **/
 .main {
-  min-height: 101vh;
-}
+  min-height: 101vh; }
+
 .load-animation.ng-enter {
   -webkit-transition: all .6s ease;
-  transition: all .6s ease;
-}
+  transition: all .6s ease; }
 .load-animation.ng-enter {
-  opacity: 0;
-}
+  opacity: 0; }
 .load-animation.ng-enter-active {
-  opacity: 1;
-}
+  opacity: 1; }
+
 .ellipsis {
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
-}
+  white-space: nowrap; }
+
 .productText {
   font-size: 18px;
-  margin-top: 15px;
-}
+  margin-top: 15px; }
+
 .product-container {
   width: 100%;
-  padding: 0;
-}
+  padding: 0; }
+
 .products {
   list-style: none;
   padding: 0;
-  margin: 0;
-}
+  margin: 0; }
+
 .searchText {
   font-size: 18px;
-  margin-bottom: 5px;
-}
+  margin-bottom: 5px; }
+
 .caption {
-  text-align: center;
-}
+  text-align: center; }
+
 .image-holder {
   /* border: 1px solid teal;*/
   width: 99%;
   height: 150px;
-  text-align: center;
-}
+  text-align: center; }
+
 .add-button {
-  margin-top: 8px;
-}
+  margin-top: 8px; }
+
 .product-image {
   max-width: 100%;
-  height: 100%;
-}
-.product-image[disabled] {
-  opacity: .5;
-}
+  height: 100%; }
+  .product-image[disabled] {
+    opacity: .5; }
+
 .prod-price {
-  font-size: 15px;
-}
+  font-size: 15px; }
+
 .prod-name {
-  margin-top: 3px;
-  margin-bottom: 3px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
+  margin-top: 3px;
+  margin-bottom: 3px; }
+
 .searchInput {
   padding: 3px;
-  padding-left: 7px;
-}
+  padding-left: 7px; }
+
+/*# sourceMappingURL=products.css.map */

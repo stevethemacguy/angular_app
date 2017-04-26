@@ -1,0 +1,25 @@
+<p class="searchText">Add Product</p>
+<input class="searchInput" type="text" placeholder="e.g. apple, grenade" ng-model="filter.name"/>
+
+
+<p class="searchText">Remove Product</p>
+<p class="productText">Available products</p>
+<div class="container product-container">
+    <div class="row">
+        <!--Uses a basic string search that matches on any property of the object that has a string values-->
+        <div class="col-lg-2 col-md-3 col-sm-4 load-animation" ng-repeat="product in productList | filter : filter.name">
+            <div class="thumbnail">
+                <div class="image-holder">
+                    <img ng-disabled="alreadyInCart(product)" class="product-image" ng-src="{{product.imageUrl}}" alt="No Image available"/>
+                    <!--<img ng-disabled="alreadyInCart(product)" class="product-image" ng-src="{{product.img}}" alt="No Image available"/>-->
+                </div>
+                <div class="caption">
+                    <h4 class="prod-name">{{product.name}}</h4>
+                    <span class="prod-price">Price:</span>
+                    <span>{{product.price | currency}}</span>
+                    <div><button class="add-button btn btn-primary" ng-click="addToCart(product)" ng-disabled="alreadyInCart(product)">Add to Cart</button></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

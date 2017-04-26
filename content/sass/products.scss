@@ -1,3 +1,5 @@
+@import "mixins";
+
 //Make the main container extend past the viewable area to force a scrollbar on the product page.
 //Otherwise, there is a bit of a visual "shift" when the scrollbar is added (after all products load).
 .main
@@ -92,9 +94,9 @@
 
 .prod-name
 {
+   @include ellipsis;
    margin-top: 3px;
    margin-bottom: 3px;
-   .ellipsis;
 }
 .searchInput
 {

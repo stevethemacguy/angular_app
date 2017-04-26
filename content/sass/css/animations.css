@@ -1,71 +1,47 @@
 @-webkit-keyframes bounceIn {
-  from,
-  20%,
-  40%,
-  60%,
-  80%,
-  to {
+  from, 20%, 40%, 60%, 80%, to {
     -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-  }
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1); }
   0% {
     -webkit-transform: scale3d(0.3, 0.3, 0.3);
-    transform: scale3d(0.3, 0.3, 0.3);
-  }
+    transform: scale3d(0.3, 0.3, 0.3); }
   20% {
     -webkit-transform: scale3d(1.1, 1.1, 1.1);
-    transform: scale3d(1.1, 1.1, 1.1);
-  }
+    transform: scale3d(1.1, 1.1, 1.1); }
   40% {
     -webkit-transform: scale3d(0.9, 0.9, 0.9);
-    transform: scale3d(0.9, 0.9, 0.9);
-  }
+    transform: scale3d(0.9, 0.9, 0.9); }
   60% {
     -webkit-transform: scale3d(1.03, 1.03, 1.03);
-    transform: scale3d(1.03, 1.03, 1.03);
-  }
+    transform: scale3d(1.03, 1.03, 1.03); }
   80% {
     -webkit-transform: scale3d(1, 1, 1);
-    transform: scale3d(1, 1, 1);
-  }
-}
+    transform: scale3d(1, 1, 1); } }
 @keyframes bounceIn {
-  from,
-  20%,
-  40%,
-  60%,
-  80%,
-  to {
+  from, 20%, 40%, 60%, 80%, to {
     -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-  }
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1); }
   0% {
     -webkit-transform: scale3d(0.3, 0.3, 0.3);
-    transform: scale3d(0.3, 0.3, 0.3);
-  }
+    transform: scale3d(0.3, 0.3, 0.3); }
   20% {
     -webkit-transform: scale3d(1.1, 1.1, 1.1);
-    transform: scale3d(1.1, 1.1, 1.1);
-  }
+    transform: scale3d(1.1, 1.1, 1.1); }
   40% {
     -webkit-transform: scale3d(0.9, 0.9, 0.9);
-    transform: scale3d(0.9, 0.9, 0.9);
-  }
+    transform: scale3d(0.9, 0.9, 0.9); }
   60% {
     -webkit-transform: scale3d(1.03, 1.03, 1.03);
-    transform: scale3d(1.03, 1.03, 1.03);
-  }
+    transform: scale3d(1.03, 1.03, 1.03); }
   80% {
     -webkit-transform: scale3d(1, 1, 1);
-    transform: scale3d(1, 1, 1);
-  }
-}
+    transform: scale3d(1, 1, 1); } }
 .bounceIn {
   -webkit-animation-name: bounceIn;
   animation-name: bounceIn;
   animation-duration: .8s;
-  -webkit-animation-duration: .8s;
-}
+  -webkit-animation-duration: .8s; }
+
 /*
 .slide {
    position: absolute;
@@ -104,3 +80,5 @@
    color: green;
    left: 0;
 }*/
+
+/*# sourceMappingURL=animations.css.map */
