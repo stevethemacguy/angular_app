@@ -3,6 +3,9 @@
 //appModule.controller("ProductController", ['$scope', '$timeout', 'dataService','shoppingCartService', function($scope,$timeout,dataService,shoppingCartService) { ... }]);
 appModule.controller("ProductController", function($scope, $timeout, dataService, shoppingCartService, toastr) {
 
+    //Make sure the shopping cart is up-to-date
+    shoppingCartService.initializeCart();
+
     //Option 1: Get all of the products. This is how you would do it 99.9% of the time, but I wanted animation.
     //$scope.productList = dataService.getProducts();
 
@@ -64,11 +67,10 @@ appModule.controller("ProductController", function($scope, $timeout, dataService
 
     //Add the product to the the shopping cart. The product is passed in the function.
     //Since the cart is actually stored in the shoppingCartService, the data will persist across views
-    $scope.addToCart = function(product) {
-        shoppingCartService.addToCart(product);
-
-        //Notification
-        toastr.success('Successfully added 1 item to your cart');
+    $scope.addToCart = function(productId) {
+        shoppingCartService.addProductToCart(productId);
+        //Old method
+        //shoppingCartService.addToCart(product);
 
         //Print out the contents of the cart
         /*shoppingCartService.printCart();*/

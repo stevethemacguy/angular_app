@@ -1,39 +1,96 @@
 //A service that saves the "state" of the shopping cart so that we can access it between views.
-appModule.factory('shoppingCartService', function() {
+appModule.factory('shoppingCartService', function(dataService, toastr) {
 
     var theService = {};
 
+    ///Old cart
+    //var theCart = [];
+
     //The customer's shopping cart, which is initially empty
-    var theCart = [];
+    var theCart =
+        {
+            totalPrice: 0,
+            itemCount: 0,
+            cartItems: []
+        };
 
-    //Number of items in the cart
-    var itemCount = 0;
+    function updateTotalCost() {
+        //Update the total price
+        for (var i = 0; i < theCart.cartItems.length; i++) {
+            theCart.totalPrice += theCart.cartItems[i].price;
+        }
+    }
 
-    //An array of objects
+    //Comment out this line if you are using test Data
+    theService.initializeCart = function() {
+        theCart.itemCount = 0;
+        theCart.totalPrice = 0;
+        theCart.cartItems = [];
+
+        return dataService.getProductsFromCart()
+            .then(function(response) {
+                theCart.cartItems = response.data;
+                theCart.itemCount = response.data.length;
+                updateTotalCost();
+            });
+    };
+
+    //An array of products
     theService.getCart = function() {
-        return theCart;
+        return theCart.cartItems;
+    };
+
+    theService.getTotalCost = function()
+    {
+        return theCart.totalPrice;
     };
 
     //Adds a selected product to the customer's cart
-    theService.addToCart = function(product) {
+    /*theService.addToCart = function(product) {
         //See if the item is in the cart
         var index = (theCart.indexOf(product));
 
+
         //Don't add duplicates
-        if (index == -1) {
+        if (index === -1) {
             theCart.push(product);
             itemCount++;
         }
+    };*/
+
+    //Adds a selected product to the cart in the database using .NET Products API
+    theService.addProductToCart = function(productId) {
+        //make sure we have the most recent version of the cart before attempting to add
+        return dataService.getProductsFromCart()
+            .then(function(response) {
+                theCart.cartItems = response.data;
+                theCart.itemCount = response.data.length;
+                updateTotalCost();
+
+                var index = theCart.cartItems.map(function(el) {
+                    return el.id;
+                }).indexOf(productId);
+
+                //Don't add duplicates
+                if (index === -1) {
+                    dataService.addProductToCart(productId);
+                    theCart.itemCount++;
+                    toastr.success('Successfully added 1 item to your cart');
+                }
+                else {
+                    toastr.warning("The Product is already in the cart")
+                }
+            });
     };
 
     //Returns the total number of items in the cart
     theService.getItemCount = function() {
-        return itemCount;
+        return theCart.itemCount;
     };
 
     //Returns true if the cart is empty
     theService.isCartEmpty = function() {
-        return itemCount <= 0;
+        return theCart.itemCount <= 0;
     };
 
     //Adds a selected product to the customer's cart
@@ -57,14 +114,14 @@ appModule.factory('shoppingCartService', function() {
     //Returns true if the item passed is currently in the shopping cart array
     theService.isProductInCart = function(productObj) {
         //See if the item is in the cart
-        var index = (theCart.indexOf(productObj));
+        var index = (theCart.cartItems.indexOf(productObj));
         return index > -1;
     };
 
     //For debugging
     theService.printCart = function() {
         for (var index = 0; index < theCart.length; index++) {
-            var item = theCart[index];
+            var item = theCart.cartItems[index];
             console.log("id: " + item.id + " name: " + item.name + " price: " + item.price);
         }
     };

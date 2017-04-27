@@ -13,7 +13,6 @@ appModule.controller('ManageProductsController', ['$scope', 'dataService', 'toas
         dataService.getProductsFromApi()
             .then(function(data) {
                 $scope.productList = data;
-                $scope.apply();
             });
     }
 

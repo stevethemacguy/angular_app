@@ -7,16 +7,21 @@
 (function () {
     'use strict';
 
+    var productUrl = config.apiUrl + "products";
+    var cartUrl = config.apiUrl + "cart";
+
     //apiUrlBase
     var products= {
-        getAllProducts: config.apiUrl + "products",
+        getAllProducts: productUrl,
         getProductById: "",
         getProductByName: config.apiUrl + "getproductbyname?name={productName}",
-        addProduct: config.apiUrl + "products",
-        removeProduct: config.apiUrl + "products/{productId}"
+        addProduct: productUrl,
+        removeProduct: productUrl + "/{productId}"
     };
 
     var cart = {
+        addProductToCart: cartUrl+ "/{cartId}/addproduct/{productId}",
+        getCartProducts: cartUrl+ "/{cartId}/getproducts"
     };
 
     // Register end points

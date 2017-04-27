@@ -101,6 +101,29 @@ appModule.factory('dataService', function($http, toastr) {
             });
     };
 
+
+    //// Shopping Cart Methods
+    theService.addProductToCart = function(productIdToAdd) {
+        //Cart id is currently hardcoded because the api currently only supports a single cart
+        var apiUrl = config.apiEndPoints.cart.addProductToCart.replace('{cartId}', 1).replace('{productId}', productIdToAdd);
+        return $http.post(apiUrl, productIdToAdd)
+            .then(function(response) {
+               return response;
+            }).catch(function(error) {
+                responseError(error)//Error handler if the $http request fails.
+            });
+    };
+
+    theService.getProductsFromCart = function() {
+        var apiUrl = config.apiEndPoints.cart.getCartProducts.replace('{cartId}', 1);
+        return $http.get(apiUrl)
+            .then(function(response) { //After the ajax succeeds
+                return response;
+            }).catch(function(error) {
+                responseError(error)//Error handler if the $http request fails.
+            });
+    };
+
     //Error handler for the ajax request
     function responseError(response) {
         toastr.error("Ajax Request failed. "+ response.status + ": "+ response.statusText);
