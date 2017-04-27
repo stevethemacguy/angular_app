@@ -1,28 +1,25 @@
 @import url(/content/sass/css/products.css);
-.addProductButton {
+.addProductPage .addProductButton {
   width: 150px;
   height: 50px; }
-
-.addProdLabel {
+.addProductPage .addProdLabel {
   width: 135px;
   margin-right: 10px;
   font-size: 14px; }
-
-.addProductContainer {
+.addProductPage .addProductContainer {
   margin-bottom: 18px; }
-  .addProductContainer.url {
+  .addProductPage .addProductContainer.url {
     margin-bottom: 25px; }
-
-#price {
+.addProductPage #price {
   width: 70px; }
-
-#productUrl {
+.addProductPage #productUrl {
   width: 350px; }
-
-.addProductTitle {
+.addProductPage .addProductTitle {
+  display: inline-block;
   margin-bottom: 20px; }
-
-.sd-primary-btn {
+  .addProductPage .addProductTitle.remove {
+    margin-top: 30px; }
+.addProductPage .sd-primary-btn {
   border-radius: 2px;
   background-color: #415693;
   height: 36px;
@@ -33,26 +30,33 @@
   color: #ffffff;
   font-weight: normal;
   letter-spacing: 0.5px; }
-  .sd-primary-btn.inline {
+  .addProductPage .sd-primary-btn.inline {
     display: inline-flex; }
-  .sd-primary-btn:active {
+  .addProductPage .sd-primary-btn:active {
     box-shadow: inset 0 1px 3px 0 rgba(0, 0, 0, 0.25); }
-  .sd-primary-btn:hover {
+  .addProductPage .sd-primary-btn:hover {
     opacity: .4; }
-
-.thumbnail {
+.addProductPage .thumbnail {
   text-align: right; }
-
-.deleteProductIcon {
+.addProductPage .deleteProductIcon {
   cursor: pointer;
   font-size: 25px;
   height: 50px;
   padding: 5px;
   position: relative; }
-  .deleteProductIcon:hover {
+  .addProductPage .deleteProductIcon:hover {
     top: -2px;
     left: 2px;
     font-size: 30px;
     color: red; }
+.addProductPage .productSearch {
+  display: inline-block;
+  float: right;
+  position: relative;
+  top: 8px; }
+.addProductPage .searchText {
+  opacity: .7;
+  font-size: 13px;
+  margin-bottom: 3px; }
 
 /*# sourceMappingURL=manage-products.css.map */

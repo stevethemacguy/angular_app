@@ -80,12 +80,22 @@ appModule.factory('dataService', function($http, toastr) {
         return productPrice;
     };
 
-    theService.addProduct = function(productToAdd)
-    {
+    theService.addProduct = function(productToAdd) {
         var apiUrl = config.apiEndPoints.products.addProduct;
         return $http.post(apiUrl, productToAdd)
             .then(function(response) {
                 toastr.success("Product successfully added.");
+            }).catch(function(error) {
+                responseError(error)//Error handler if the $http request fails.
+            });
+    };
+
+    theService.removeProduct = function(productToRemove) {
+        var apiUrl = config.apiEndPoints.products.removeProduct.replace('{productId}', productToRemove.id);
+        console.log(apiUrl);
+        return $http.delete(apiUrl)
+            .then(function(response) {
+                toastr.success("Product successfully removed.");
             }).catch(function(error) {
                 responseError(error)//Error handler if the $http request fails.
             });

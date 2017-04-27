@@ -1,40 +1,45 @@
-<h3 class="addProductTitle text-primary">Add a Product</h3>
+<div class="addProductPage">
+    <h3 class="addProductTitle text-primary">Add a Product</h3>
 
-<div class="input-container addProductContainer">
-    <label for="productName" class="addProdLabel name">Product Name</label>
-    <input id="productName" class="addProductInput" ng-model="productToAdd.name" name="productName" type="text" placeholder="apple, toy" title="Enter a name for the product" required/>
-</div>
-<div class="input-container addProductContainer price">
-    <label for="price" class="addProdLabel">Price</label>
-    <input id="price" maxlength="8" class="addProductInput" ng-model="productToAdd.price" name="price" type="text"
-           placeholder="15.00" title="Enter a price for the product" required onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
-</div>
-<div class="input-container addProductContainer url">
-    <label for="productUrl" class="addProdLabel">Product Image Url:</label>
-    <input id="productUrl" class="addProductInput" ng-model="productToAdd.imageUrl" name="productUrl" type="text" placeholder="www.photos.com/your-photo" title="Enter an image url for the product"/>
-</div>
+    <div class="input-container addProductContainer">
+        <label for="productName" class="addProdLabel name">Product Name</label>
+        <input id="productName" class="addProductInput" ng-model="productToAdd.name" name="productName" type="text" placeholder="apple, toy" title="Enter a name for the product" required/>
+    </div>
+    <div class="input-container addProductContainer price">
+        <label for="price" class="addProdLabel">Price</label>
+        <input id="price" maxlength="8" class="addProductInput" ng-model="productToAdd.price" name="price" type="text"
+               placeholder="15.00" title="Enter a price for the product" required onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
+    </div>
+    <div class="input-container addProductContainer url">
+        <label for="productUrl" class="addProdLabel">Product Image Url:</label>
+        <input id="productUrl" class="addProductInput" ng-model="productToAdd.imageUrl" name="productUrl" type="text" placeholder="www.photos.com/your-photo" title="Enter an image url for the product"/>
+    </div>
 
-<div class="addProductButton sd-primary-btn" ng-click="addProduct()">
-    <span>Add the Product</span>
-</div>
+    <div class="addProductButton sd-primary-btn" ng-click="addProduct()">
+        <span>Add Product</span>
+    </div>
 
-<h3 class="addProductTitle text-primary">Remove a Product</h3>
+    <h3 class="addProductTitle remove text-primary">Remove a Product</h3>
+    <div class="productSearch">
+        <p class="searchText">Find a product</p>
+        <input class="searchInput" type="text" placeholder="" ng-model="filter.name"/>
+    </div>
 
-<div class="container product-container">
-    <div class="row">
-        <!--Uses a basic string search that matches on any property of the object that has a string values-->
-        <div class="col-lg-2 col-md-3 col-sm-4 load-animation" ng-repeat="product in productList | filter : filter.name">
-            <div class="thumbnail">
-                <span class="glyphicon glyphicon-remove deleteProductIcon"></span>
-                <div class="image-holder">
-                    <img ng-disabled="alreadyInCart(product)" class="product-image" ng-src="{{product.imageUrl}}" alt="No Image available"/>
-                    <!--<img ng-disabled="alreadyInCart(product)" class="product-image" ng-src="{{product.img}}" alt="No Image available"/>-->
-                </div>
-                <div class="caption">
-                    <h4 class="prod-name">{{product.name}}</h4>
-                    <span class="prod-price">Price:</span>
-                    <span>{{product.price | currency}}</span>
-                    <!--<div><button class="add-button btn btn-primary" ng-click="addToCart(product)" ng-disabled="alreadyInCart(product)">Add to Cart</button></div>-->
+    <div class="container product-container">
+        <div class="row">
+            <!--Uses a basic string search that matches on any property of the object that has a string values-->
+            <div class="col-lg-2 col-md-3 col-sm-4 load-animation" ng-repeat="product in productList | filter : filter.name">
+                <div class="thumbnail">
+                    <span class="glyphicon glyphicon-remove deleteProductIcon" ng-click="removeProduct(product)"></span>
+                    <div class="image-holder">
+                        <img ng-disabled="alreadyInCart(product)" class="product-image" ng-src="{{product.imageUrl}}" alt="No Image available"/>
+                        <!--<img ng-disabled="alreadyInCart(product)" class="product-image" ng-src="{{product.img}}" alt="No Image available"/>-->
+                    </div>
+                    <div class="caption">
+                        <h4 class="prod-name">{{product.name}}</h4>
+                        <span class="prod-price">Price:</span>
+                        <span>{{product.price | currency}}</span>
+                    </div>
                 </div>
             </div>
         </div>

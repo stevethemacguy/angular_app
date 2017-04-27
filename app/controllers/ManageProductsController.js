@@ -2,6 +2,21 @@
 //can be shared across multiple controllers.
 appModule.controller('ManageProductsController', ['$scope', 'dataService', 'toastr', function($scope, dataService, toastr) {
 
+    $scope.productList = [];
+
+    //On Page load, get the list of products from the DB
+    getUpdatedProductList();
+
+    //On Page load, get the list of products from the DB
+    function getUpdatedProductList()
+    {
+        dataService.getProductsFromApi()
+            .then(function(data) {
+                $scope.productList = data;
+                $scope.apply();
+            });
+    }
+
     $scope.productToAdd =
     {
         name: '',
@@ -9,14 +24,23 @@ appModule.controller('ManageProductsController', ['$scope', 'dataService', 'toas
         imageUrl: ''
     };
 
-    //Add a product to the database
+    //Add a product to the database and refresh the product list on screen
     $scope.addProduct = function() {
         $scope.productToAdd.price = parseInt($scope.productToAdd.price);
-        dataService.addProduct($scope.productToAdd);
+        dataService.addProduct($scope.productToAdd)
+            .then(function(response) {
+                getUpdatedProductList();
+            });
     };
 
-    //Option 2: Instead of immediately initializing with all products. Add them one by one to the list
-    //This allows the items to animate as they are added! (see weird for-loop below!)
-    $scope.productList  = dataService.getTestProducts();
+    $scope.removeProduct = function(productToRemove) {
+        //Remove the product and refresh the product list on screen
+        dataService.removeProduct(productToRemove)
+            .then(function(response) {
+                getUpdatedProductList();
+                //Also remove it from the cart
+            }
+        );
+    };
 
 }]);
