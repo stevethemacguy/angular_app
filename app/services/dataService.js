@@ -4,6 +4,7 @@
 //Factory is used here to creates a service. ALl services returns a singleton object.
 appModule.factory('dataService', function($http, toastr) {
 
+
     //Create the empty service object
     var theService = {};
 

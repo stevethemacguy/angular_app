@@ -18,25 +18,25 @@
     <span>Add the Product</span>
 </div>
 
-<!--
-<p class="productText">Available products</p>
+<h3 class="addProductTitle text-primary">Remove a Product</h3>
+
 <div class="container product-container">
     <div class="row">
-        &lt;!&ndash;Uses a basic string search that matches on any property of the object that has a string values&ndash;&gt;
+        <!--Uses a basic string search that matches on any property of the object that has a string values-->
         <div class="col-lg-2 col-md-3 col-sm-4 load-animation" ng-repeat="product in productList | filter : filter.name">
             <div class="thumbnail">
+                <span class="glyphicon glyphicon-remove deleteProductIcon"></span>
                 <div class="image-holder">
                     <img ng-disabled="alreadyInCart(product)" class="product-image" ng-src="{{product.imageUrl}}" alt="No Image available"/>
-                    &lt;!&ndash;<img ng-disabled="alreadyInCart(product)" class="product-image" ng-src="{{product.img}}" alt="No Image available"/>&ndash;&gt;
+                    <!--<img ng-disabled="alreadyInCart(product)" class="product-image" ng-src="{{product.img}}" alt="No Image available"/>-->
                 </div>
                 <div class="caption">
                     <h4 class="prod-name">{{product.name}}</h4>
                     <span class="prod-price">Price:</span>
                     <span>{{product.price | currency}}</span>
-                    <div><button class="add-button btn btn-primary" ng-click="addToCart(product)" ng-disabled="alreadyInCart(product)">Add to Cart</button></div>
+                    <!--<div><button class="add-button btn btn-primary" ng-click="addToCart(product)" ng-disabled="alreadyInCart(product)">Add to Cart</button></div>-->
                 </div>
             </div>
         </div>
     </div>
 </div>
--->

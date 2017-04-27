@@ -41,10 +41,10 @@ appModule.controller("ProductController", function($scope, $timeout, dataService
     //On Page load, get the list of products
 
     //Retrieve the products using the .Net Product API. Comment out these lines if you want to use the hardcoded data.
-    dataService.getProductsFromApi()
+    /*dataService.getProductsFromApi()
         .then(function(data) {
             generateProductList(data);
-        });
+        });*/
 
     //Retrieve the products using Heroku. Comment out these lines if you just want to use the hardcoded data.
     /*if (dataService.isDBInitialized() === false) {
@@ -60,7 +60,7 @@ appModule.controller("ProductController", function($scope, $timeout, dataService
 
     //Retrieve the products using test data
     //Do NOT use this line and the Ajax generateProductList() lines above at the same time!
-    //generateProductList(dataService.getTestProducts());
+    generateProductList(dataService.getTestProducts());
 
     //Add the product to the the shopping cart. The product is passed in the function.
     //Since the cart is actually stored in the shoppingCartService, the data will persist across views

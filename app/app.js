@@ -62,7 +62,7 @@ appModule.config(['$routeProvider','$locationProvider', function($routeProvider,
         })
         .when('/manage-products', {
             title: 'Product Management',
-            controller: 'ManageProductController',
+            controller: 'ManageProductsController',
             templateUrl: viewBase + 'manage-products.html',
             css: cssPath + 'manage-products.css'
             /*controllerAs: 'vm'*/

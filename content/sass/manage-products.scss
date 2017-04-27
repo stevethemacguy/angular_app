@@ -1,3 +1,5 @@
+@import "/content/sass/css/products.css";
+
 .addProductButton {
     width: 150px;
     height: 50px;
@@ -9,22 +11,23 @@
     font-size: 14px;
 }
 
-.addProductContainer{
+.addProductContainer {
     margin-bottom: 18px;
 
-    &.url{
+    &.url {
         margin-bottom: 25px;
     }
 }
 
-#price{
+#price {
     width: 70px;
 }
 
-#productUrl{
+#productUrl {
     width: 350px;
 
 }
+
 .addProductTitle {
     margin-bottom: 20px;
 }
@@ -54,3 +57,34 @@
         opacity: .4;
     }
 }
+
+.thumbnail {
+    text-align: right;
+}
+
+.deleteProductIcon {
+    cursor: pointer;
+    font-size: 25px;
+    height: 50px;
+    padding: 5px;
+    position: relative;
+    &:hover {
+        top: -2px;
+        left: 2px;
+        font-size: 30px;
+        color: red;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
