@@ -35,6 +35,14 @@ appModule.factory('shoppingCartService', function(dataService, toastr) {
             });
     };
 
+    //Ensure the cart count is up-to-date. We could update the entire cart, but it's not really needed
+    theService.updateCartCount = function() {
+        return dataService.getProductsFromCart()
+            .then(function(response) {
+                theCart.itemCount = response.data.length;
+            });
+    };
+
     //An array of products
     theService.getCart = function() {
         return theCart.cartItems;

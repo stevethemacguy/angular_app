@@ -1,6 +1,9 @@
 //Services are singletons. formService has a shippingData object that lives in the formService and
 //can be shared across multiple controllers.
-appModule.controller('ManageProductsController', ['$scope', 'dataService', 'toastr', function($scope, dataService, toastr) {
+appModule.controller('ManageProductsController', ['$scope', 'dataService', 'shoppingCartService','toastr', function($scope, dataService, shoppingCartService, toastr) {
+
+    //Update the cart
+    shoppingCartService.initializeCart();
 
     $scope.productList = [];
 
@@ -8,8 +11,7 @@ appModule.controller('ManageProductsController', ['$scope', 'dataService', 'toas
     getUpdatedProductList();
 
     //On Page load, get the list of products from the DB
-    function getUpdatedProductList()
-    {
+    function getUpdatedProductList() {
         dataService.getProductsFromApi()
             .then(function(data) {
                 $scope.productList = data;
@@ -37,7 +39,7 @@ appModule.controller('ManageProductsController', ['$scope', 'dataService', 'toas
         dataService.removeProduct(productToRemove)
             .then(function(response) {
                 getUpdatedProductList();
-                //Also remove it from the cart
+                shoppingCartService.updateCartCount();
             }
         );
     };
