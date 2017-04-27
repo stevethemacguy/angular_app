@@ -21,6 +21,7 @@
 
     var cart = {
         addProductToCart: cartUrl+ "/{cartId}/addproduct/{productId}",
+        removeProductFromCart: cartUrl+ "/{cartId}/removeproduct/{productId}",
         getCartProducts: cartUrl+ "/{cartId}/getproducts"
     };
 

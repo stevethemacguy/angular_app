@@ -23,8 +23,7 @@ appModule.factory('dataService', function($http, toastr) {
             .then(function(response) { //After the ajax succeeds
                 alreadyInitialized = true;
                 products = response.data; //Initialize the product list, which will be used in future calls to getProducts()
-                //Todo: Use this for demo
-                //toastr.success("Successfully Retrieved " + products.length + " Products from the API");
+                toastr.success("Successfully Retrieved " + products.length + " Products from the API");
                 return products;
             }).catch(function(error) {
                 responseError(error)//Error handler if the $http request fails.
@@ -109,6 +108,17 @@ appModule.factory('dataService', function($http, toastr) {
         return $http.post(apiUrl, productIdToAdd)
             .then(function(response) {
                return response;
+            }).catch(function(error) {
+                responseError(error)//Error handler if the $http request fails.
+            });
+    };
+
+    theService.removeProductFromCart = function(productIdToRemove) {
+        //Cart id is currently hardcoded because the api currently only supports a single cart
+        var apiUrl = config.apiEndPoints.cart.removeProductFromCart.replace('{cartId}', 1).replace('{productId}', productIdToRemove);
+        return $http.delete(apiUrl)
+            .then(function(response) {
+                return response;
             }).catch(function(error) {
                 responseError(error)//Error handler if the $http request fails.
             });

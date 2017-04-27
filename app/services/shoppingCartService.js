@@ -101,8 +101,43 @@ appModule.factory('shoppingCartService', function(dataService, toastr) {
         return theCart.itemCount <= 0;
     };
 
+    theService.removeFromCart = function(productId) {
+        //make sure we have the most recent version of the cart before attempting to remove anything
+        return dataService.getProductsFromCart()
+            .then(function(response) {
+                theCart.cartItems = response.data;
+                theCart.itemCount = response.data.length;
+                updateTotalCost();
+
+                var index = theCart.cartItems.map(function(el) {
+                    return el.id;
+                }).indexOf(productId);
+
+                //Don't add duplicates
+                if (index === -1) {
+                    toastr.warning("Cannot remove the product because it is not in the cart")
+                }
+                else {
+                    dataService.removeProductFromCart(productId)
+                        .then(function(response) {
+                            dataService.getProductsFromCart()
+                                .then(function(response) {
+                                    theCart.cartItems = response.data;
+                                    theCart.itemCount = response.data.length;
+                                    theCart.totalPrice = 0;
+                                    updateTotalCost();
+                                    //console.log(theCart);
+                                });
+
+                            toastr.success('Successfully removed 1 item from your cart');
+                        });
+                }
+            });
+    };
+
+    //Old Method
     //Adds a selected product to the customer's cart
-    theService.removeFromCart = function(productID) {
+    /*theService.removeFromCart = function(productID) {
         //Go through every item in the cart
         for (var i = 0; i < theCart.length; i++) {
             var currentItem = theCart[i];
@@ -117,7 +152,7 @@ appModule.factory('shoppingCartService', function(dataService, toastr) {
                 }
             }
         }
-    };
+    };*/
 
     //Returns true if the item passed is currently in the shopping cart array
     theService.isProductInCart = function(productObj) {

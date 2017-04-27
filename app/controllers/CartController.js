@@ -15,7 +15,16 @@ appModule.controller('CartController', ['$scope', 'shoppingCartService', 'dataSe
             //Whether the cart is empty or not
             $scope.empty = shoppingCartService.isCartEmpty();
 
-            $scope.removeFromCart = function(productToRemove, productName) {
+            //Remove a product from the shopping cart
+            $scope.removeFromCart = function(productId) {
+                shoppingCartService.removeFromCart(productId).then(function(response)
+                {
+                    //Do something here to update the cart on screen?
+                })
+            };
+
+            //Old method
+            /*$scope.removeFromCart = function(productToRemove, productName) {
                 //subtract the product's price from the total price
                 $scope.totalPrice -= dataService.getProductPrice(productToRemove);
                 shoppingCartService.removeFromCart(productToRemove);
@@ -24,6 +33,6 @@ appModule.controller('CartController', ['$scope', 'shoppingCartService', 'dataSe
                 //Update the number of items if it has changed.
                 $scope.itemCount = shoppingCartService.getItemCount();
                 $scope.empty = shoppingCartService.isCartEmpty();
-            };
+            };*/
         });
 }]);
