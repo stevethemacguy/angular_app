@@ -37,7 +37,8 @@ module.exports = function(grunt) {
                 },
                 options: {
                     watchTask: true,
-                    server: './'
+                    server: './',
+                    notify: false //Remove the "Connected to BrowserSync" message that shows up in the top right
                 }
             }
         }

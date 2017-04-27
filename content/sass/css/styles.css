@@ -24,9 +24,7 @@ header {
   border-left: 0;
   border-right: 0;
   height: 100%;
-  padding: 5px 2px 2px 15px;
-  /*display: flex;
-  justify-content: flex-end;*/ }
+  padding: 5px 2px 2px 15px; }
   .navbar ul {
     list-style: none;
     font-size: 25px;
@@ -133,6 +131,9 @@ ul {
   margin-bottom: 25px; }
   .input-container.first {
     margin-top: 25px; }
+
+::placeholder {
+  opacity: .5; }
 
 form {
   margin-top: 18px; }

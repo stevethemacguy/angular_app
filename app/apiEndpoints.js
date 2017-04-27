@@ -11,7 +11,8 @@
     var products= {
         getAllProducts: config.apiUrl + "products",
         getProductById: "",
-        getProductByName: config.apiUrl + "getproductbyname?name={productName}"
+        getProductByName: config.apiUrl + "getproductbyname?name={productName}",
+        addProduct: config.apiUrl + "products"
     };
 
     var cart = {

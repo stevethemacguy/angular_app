@@ -175,6 +175,11 @@ ul {
    }
 }
 
+//All input placeholders
+::placeholder {
+   opacity: .5;
+}
+
 form {
    margin-top: 18px;
 }

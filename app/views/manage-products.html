@@ -1,8 +1,23 @@
-<p class="searchText">Add Product</p>
-<input class="searchInput" type="text" placeholder="e.g. apple, grenade" ng-model="filter.name"/>
+<h3 class="addProductTitle text-primary">Add a Product</h3>
 
+<div class="input-container addProductContainer">
+    <label for="productName" class="addProdLabel name">Product Name</label>
+    <input id="productName" class="addProductInput" ng-model="productToAdd.name" name="productName" type="text" placeholder="apple, toy" title="Enter a name for the product" required/>
+</div>
+<div class="input-container addProductContainer price">
+    <label for="price" class="addProdLabel">Price</label>
+    <input id="price" maxlength="8" class="addProductInput" ng-model="productToAdd.price" name="price" type="text"
+           placeholder="15.00" title="Enter a price for the product" required onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
+</div>
+<div class="input-container addProductContainer url">
+    <label for="productUrl" class="addProdLabel">Product Image Url:</label>
+    <input id="productUrl" class="addProductInput" ng-model="productToAdd.imageUrl" name="productUrl" type="text" placeholder="www.photos.com/your-photo" title="Enter an image url for the product"/>
+</div>
 
-<p class="searchText">Remove Product</p>
+<div class="addProductButton sd-primary-btn" ng-click="addProduct()">
+    <span>Add the Product</span>
+</div>
+
 <!--
 <p class="productText">Available products</p>
 <div class="container product-container">

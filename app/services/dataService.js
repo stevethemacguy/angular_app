@@ -22,7 +22,8 @@ appModule.factory('dataService', function($http, toastr) {
             .then(function(response) { //After the ajax succeeds
                 alreadyInitialized = true;
                 products = response.data; //Initialize the product list, which will be used in future calls to getProducts()
-                toastr.success("Successfully Retrieved " + products.length + " Products from the API");
+                //Todo: Use this for demo
+                //toastr.success("Successfully Retrieved " + products.length + " Products from the API");
                 return products;
             }).catch(function(error) {
                 responseError(error)//Error handler if the $http request fails.
@@ -45,7 +46,7 @@ appModule.factory('dataService', function($http, toastr) {
                 products = response.data; //Initialize the product list, which will be used in future calls to getProducts()
                 return response.data; //This actually returns a promise (that contains response data)
             }).catch(function(error) {
-                responseError(error)//Error handler if the $http request fails.
+                dataLoadError(error)//Error handler if the $http request fails.
             });
     };
 
@@ -55,12 +56,12 @@ appModule.factory('dataService', function($http, toastr) {
     };
 
     //Error handler for the ajax request
-    var responseError = function(response) {
+    function dataLoadError(response) {
         console.log("The ajax request failed");
         console.log("If you're using the Heroku server, make sure you're using the CORS plugin in Chrome");
         console.log(response);
         toastr.error("Unable to retrieve product details from the Server. Check that the API Server is running and try again.");
-    };
+    }
 
     //Prevents duplicate ajax calls from occurring if the database is already ready
     theService.isDBInitialized = function() {
@@ -77,6 +78,22 @@ appModule.factory('dataService', function($http, toastr) {
         }
         return productPrice;
     };
+
+    theService.addProduct = function(productToAdd)
+    {
+        var apiUrl = config.apiEndPoints.products.addProduct;
+        return $http.post(apiUrl, productToAdd)
+            .then(function(response) {
+                toastr.success("Product successfully added.");
+            }).catch(function(error) {
+                responseError(error)//Error handler if the $http request fails.
+            });
+    };
+
+    //Error handler for the ajax request
+    function responseError(response) {
+        toastr.error("Ajax Request failed. "+ response.status + ": "+ response.statusText);
+    }
 
     //return it
     return theService;
