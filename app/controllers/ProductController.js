@@ -77,9 +77,9 @@ appModule.controller("ProductController", function($scope, $timeout, dataService
     };
 
     //item argument comes from the view
-    $scope.alreadyInCart = function(item) {
+    $scope.alreadyInCart = function(productId) {
         //Check to see if the item is already in the cart
-        return shoppingCartService.isProductInCart(item);
+        return shoppingCartService.isProductInCart(productId);
     }
 
 });

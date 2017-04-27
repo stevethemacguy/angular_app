@@ -155,9 +155,13 @@ appModule.factory('shoppingCartService', function(dataService, toastr) {
     };*/
 
     //Returns true if the item passed is currently in the shopping cart array
-    theService.isProductInCart = function(productObj) {
+    theService.isProductInCart = function(productId) {
         //See if the item is in the cart
-        var index = (theCart.cartItems.indexOf(productObj));
+
+        var index = theCart.cartItems.map(function(el) {
+            return el.id;
+        }).indexOf(productId);
+
         return index > -1;
     };
 

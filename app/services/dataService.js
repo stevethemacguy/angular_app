@@ -23,7 +23,7 @@ appModule.factory('dataService', function($http, toastr) {
             .then(function(response) { //After the ajax succeeds
                 alreadyInitialized = true;
                 products = response.data; //Initialize the product list, which will be used in future calls to getProducts()
-                toastr.success("Successfully Retrieved " + products.length + " Products from the API");
+                //toastr.success("Successfully Retrieved " + products.length + " Products from the API");
                 return products;
             }).catch(function(error) {
                 responseError(error)//Error handler if the $http request fails.

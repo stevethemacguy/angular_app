@@ -17,9 +17,24 @@ appModule.controller('CartController', ['$scope', 'shoppingCartService', 'dataSe
 
             //Remove a product from the shopping cart
             $scope.removeFromCart = function(productId) {
-                shoppingCartService.removeFromCart(productId).then(function(response)
-                {
-                    //Do something here to update the cart on screen?
+                //Remove the product from the DB
+                shoppingCartService.removeFromCart(productId).then(function(response) {
+                    //At this point, the product has been removed from the cart via the API,
+                    //but the change won't be seen until a page refresh. Since we still have the id of the product
+                    //we just removed, remove it from the current $scope.cart so that the cart updates visually
+                    for (var i = 0; i < $scope.cart.length; i++) {
+                        var currentItem = $scope.cart[i];
+                        //if there's an item with the same id as the one we just removed, then remove it
+                        if (currentItem.id === productId) {
+                            var index = $scope.cart.indexOf(currentItem);
+                            //if it is, then remove it
+                            if (index > -1) {
+                                $scope.cart.splice(index, 1);
+                                $scope.totalPrice -= currentItem.price;
+                                $scope.itemCount--;
+                            }
+                        }
+                    }
                 })
             };
 
