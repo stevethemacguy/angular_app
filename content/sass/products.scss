@@ -2,104 +2,100 @@
 
 //Make the main container extend past the viewable area to force a scrollbar on the product page.
 //Otherwise, there is a bit of a visual "shift" when the scrollbar is added (after all products load).
-.main
-{
-   min-height: 101vh;
+.main {
+    min-height: 101vh;
 }
 
 //Animate products in when the page loads
-.load-animation
-{
-   &.ng-enter
-   {
-      -webkit-transition: all .6s ease;
-      transition: all .6s ease;
-   }
+.load-animation {
+    &.ng-enter {
+        -webkit-transition: all .6s ease;
+        transition: all .6s ease;
+    }
 
-   //Fade a new product in when it's added to the ng-repeat. In this case, I do this on the product page.
-   //Starting styles for the CSS animation. These would work if we were adding new items to the dom
-   &.ng-enter
-   {
-      opacity: 0;
-   }
+    //Fade a new product in when it's added to the ng-repeat. In this case, I do this on the product page.
+    //Starting styles for the CSS animation. These would work if we were adding new items to the dom
+    &.ng-enter {
+        opacity: 0;
+    }
 
-   //The finishing CSS styles for what the transition will animate towards (from .ng-enter)
-   &.ng-enter-active
-   {
-      opacity:1;
-   }
+    //The finishing CSS styles for what the transition will animate towards (from .ng-enter)
+    &.ng-enter-active {
+        opacity: 1;
+    }
 }
 
-
 .ellipsis {
-   overflow: hidden;
-   text-overflow: ellipsis;
-   white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .productText {
-   font-size: 18px;
-   margin-top: 15px;
+    font-size: 18px;
+    margin-top: 15px;
 }
 
 .product-container {
-   width: 100%;
-   padding: 0;
+    width: 100%;
+    padding: 0;
 }
 
 .products {
-   list-style: none;
-   padding: 0;
-   margin: 0;
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 .searchText {
-   font-size: 18px;
-   margin-bottom: 5px;
+    font-size: 18px;
+    margin-bottom: 5px;
 }
 
-
-.caption
-{
-   text-align: center;
+.caption {
+    text-align: center;
 }
 
 .image-holder {
-   /* border: 1px solid teal;*/
-   width: 99%;
-   height: 150px;
-   text-align: center;
+    /* border: 1px solid teal;*/
+    width: 99%;
+    height: 150px;
+    text-align: center;
 }
 
-.add-button
-{
-   margin-top: 8px;
+.add-button {
+    margin-top: 8px;
 }
 
-.product-image
-{
-   max-width: 100%;
-   height: 100%;
+.product-image {
+    max-width: 100%;
+    height: 100%;
 
-   &[disabled]
-   {
-      opacity: .5;
-   }
+    &[disabled] {
+        opacity: .5;
+    }
 }
 
-.prod-price
-{
-   font-size: 15px;
+.prod-price {
+    font-size: 15px;
 }
 
-.prod-name
-{
-   @include ellipsis;
-   margin-top: 3px;
-   margin-bottom: 3px;
+.prod-name {
+    @include ellipsis;
+    margin-top: 3px;
+    margin-bottom: 3px;
 }
-.searchInput
-{
-   padding: 3px;
-   padding-left: 7px;
+
+.searchInput {
+    padding: 3px;
+    padding-left: 7px;
+}
+
+.loading-spinner {
+    height: 300px;
+    width: 300px;
+    position: fixed;
+    top: calc(50vh - 150px);
+    left: calc(50% - 154px);
+    z-index: 4;
 }

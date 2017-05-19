@@ -1,8 +1,8 @@
 
 //Note: This controller still uses the simple syntax because it's easier to read, but technically this would break if minifying. Here is the best practice syntax:
 //appModule.controller("ProductController", ['$scope', '$timeout', 'dataService','shoppingCartService', function($scope,$timeout,dataService,shoppingCartService) { ... }]);
-appModule.controller("ProductController", function($scope, $timeout, dataService, shoppingCartService, toastr) {
-
+appModule.controller("ProductController", function($scope, $timeout, dataService, shoppingCartService, toastr, $rootScope) {
+    $scope.isLoading = true;
     //Make sure the shopping cart is up-to-date
     shoppingCartService.initializeCart();
 
@@ -47,6 +47,7 @@ appModule.controller("ProductController", function($scope, $timeout, dataService
     dataService.getProductsFromApi()
         .then(function(data) {
             generateProductList(data);
+            $scope.isLoading = false;
         });
 
     //Retrieve the products using Heroku. Comment out these lines if you just want to use the hardcoded data.
