@@ -1,0 +1,21 @@
+<div>
+    <h3>Please login to continue</h3>
+    <div class="input-container">
+        <label for="email">Email: </label>
+        <input id="email" ng-model="user.email" name="email" type="text" placeholder="email" title="email" required autofocus/>
+        <div class="input-container">
+            <label for="password">Password: </label>
+            <input id="password" ng-model="user.password" name="password" type="text" placeholder="password" title="password" required/>
+        </div>
+        <div class="input-container">
+            <label for="confirmPassword">Confirm Password: </label>
+            <input id="confirmPassword" ng-model="user.confirmPassword" name="confirmPassword" type="text" placeholder="confirmPassword" title="confirmPassword" required/>
+        </div>
+        <div class="login-submit sd-primary-btn" ng-click="login()">
+            <span>submit</span>
+        </div>
+        <div class="errorMessage" ng-show="loginError">
+            <span class="error">There was an error, please try again</span>
+        </div>
+    </div>
+</div>

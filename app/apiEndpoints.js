@@ -9,6 +9,7 @@
 
     var productUrl = config.apiUrl + "products";
     var cartUrl = config.apiUrl + "cart";
+    var accountUrl = config.apiUrl + "account";
 
     //apiUrlBase
     var products= {
@@ -25,7 +26,15 @@
         getCartProducts: cartUrl+ "/{cartId}/getproducts"
     };
 
+
+    var account = {
+        register: accountUrl+ "/register",
+        login: accountUrl+ "/login?redirectUrl={url}",
+        logout: accountUrl+ "/logout"
+    };
+
     // Register end points
     config.apiEndPoints.products = products;
     config.apiEndPoints.cart = cart;
+    config.apiEndPoints.account = account;
 })();

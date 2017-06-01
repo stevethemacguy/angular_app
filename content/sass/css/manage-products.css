@@ -19,23 +19,6 @@
   margin-bottom: 20px; }
   .addProductPage .addProductTitle.remove {
     margin-top: 30px; }
-.addProductPage .sd-primary-btn {
-  border-radius: 2px;
-  background-color: #415693;
-  height: 36px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  color: #ffffff;
-  font-weight: normal;
-  letter-spacing: 0.5px; }
-  .addProductPage .sd-primary-btn.inline {
-    display: inline-flex; }
-  .addProductPage .sd-primary-btn:active {
-    box-shadow: inset 0 1px 3px 0 rgba(0, 0, 0, 0.25); }
-  .addProductPage .sd-primary-btn:hover {
-    opacity: .4; }
 .addProductPage .thumbnail {
   text-align: right; }
 .addProductPage .deleteProductIcon {
