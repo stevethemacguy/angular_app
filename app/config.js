@@ -5,6 +5,6 @@
     //GitHub Server (This uses Azure + GitHub for automatic builds)
     //apiUrl: "http://product-api-github.azurewebsites.net/api/",
 
-    localHostapiUrl: "http://192.168.173.201:5000/api/",
+    localHostApiUrl: "http://192.168.173.211:5000/api/",
     apiEndPoints: {}
 };

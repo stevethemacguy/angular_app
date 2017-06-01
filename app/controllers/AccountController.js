@@ -28,6 +28,14 @@ appModule.controller('AccountController', ['$scope', 'accountService', 'toastr',
         }
     };
 
+    $scope.logout = function() {
+        return accountService.logout()
+            .then(function(response) {
+                //redirect to the homepage
+                //$location.path(redirectUrl);
+            });
+    };
+
     $scope.register = function() {
         if ($scope.user.password !== $scope.user.confirmPassword) {
             $scope.errorMessage = "The passwords do not match";
