@@ -58,7 +58,19 @@ appModule.factory('accountService', function($http, toastr) {
 
     //Error handler for the ajax request
     function responseError(response) {
-        toastr.error("Ajax Request failed. "+ response.status + ": "+ response.statusText);
+        var errors = response.data.errorMessages;
+        var formattedMessage = "";
+
+        //build the error message to return in the toaster response
+        if (typeof errors !== 'undefined' && errors !== null) {
+            for (var i = 0; i < errors.length; i++) {
+                formattedMessage += errors[i] + "<br/>";
+            }
+        }
+
+        toastr.error("<br/>" + formattedMessage, "Ajax Request failed with status code: " + response.status, {
+            allowHtml: true
+        });
     }
 
     //return it

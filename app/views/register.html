@@ -11,6 +11,10 @@
             <label for="confirmPassword">Confirm Password: </label>
             <input id="confirmPassword" ng-model="user.confirmPassword" name="confirmPassword" type="text" placeholder="confirmPassword" title="confirmPassword" required/>
         </div>
+        <div class="input-container">
+            <label for="role">Make the user an admin?</label>
+            <input id="role" ng-model="roleCheckbox" name="role" type="checkbox" placeholder="ex. admin" title="role" required/>
+        </div>
         <div class="register-submit sd-primary-btn" ng-click="register()">
             <span>submit</span>
         </div>
