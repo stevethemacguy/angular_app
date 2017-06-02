@@ -30,7 +30,7 @@ appModule.config(['$routeProvider','$locationProvider', function($routeProvider,
             /*controllerAs: 'vm'*/
         })
         .when('/register', {
-            title: 'Register User',
+            title: 'User Registration',
             controller: 'AccountController',
             templateUrl: viewBase + 'register.html',
             css: cssPath + 'register.css'

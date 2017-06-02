@@ -11,6 +11,11 @@
     var cartUrl = config.apiUrl + "cart";
     var accountUrl = config.apiUrl + "account";
 
+    //To use with localhost and CORS
+    /*var productUrl = config.localHostApiUrl + "products";
+    var cartUrl = config.localHostApiUrl + "cart";
+    var accountUrl = config.localHostApiUrl + "account";*/
+
     //apiUrlBase
     var products= {
         getAllProducts: productUrl,
@@ -21,20 +26,21 @@
     };
 
     var cart = {
-        addProductToCart: cartUrl+ "/{cartId}/addproduct/{productId}",
-        removeProductFromCart: cartUrl+ "/{cartId}/removeproduct/{productId}",
-        getCartProducts: cartUrl+ "/{cartId}/getproducts"
+        addProductToCart: cartUrl + "/{cartId}/addproduct/{productId}",
+        removeProductFromCart: cartUrl + "/{cartId}/removeproduct/{productId}",
+        getCartProducts: cartUrl + "/{cartId}/getproducts"
     };
-
 
     var account = {
-        register: accountUrl+ "/register",
-        login: accountUrl+ "/login?redirectUrl={url}",
-        logout: accountUrl+ "/logout"
+        register: accountUrl + "/register",
+        login: accountUrl + "/login?redirectUrl={url}",
+        logout: accountUrl + "/logout",
+        getUserRoles: accountUrl + "/getuserroles"
     };
 
-    // Register end points
+    //Register end points
     config.apiEndPoints.products = products;
     config.apiEndPoints.cart = cart;
     config.apiEndPoints.account = account;
+
 })();

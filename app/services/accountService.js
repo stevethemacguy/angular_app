@@ -1,9 +1,8 @@
 //Factory is used here to creates a service. ALl services return a singleton object.
-appModule.factory('accountService', function($http, toastr, $location) {
+appModule.factory('accountService', function($rootScope, $http, toastr, $location) {
 
     //Create the empty service object
     var theService = {};
-
 
     theService.login = function(user, redirectUrl) {
         var apiUrl = config.apiEndPoints.account.login.replace('{url}', redirectUrl);
@@ -15,6 +14,7 @@ appModule.factory('accountService', function($http, toastr, $location) {
             }
         )
             .then(function(response) {
+                $rootScope.currentUser = user;
                 toastr.success("Login was successful");
                 $location.path("/home");
             }).catch(function(error) {
@@ -33,7 +33,8 @@ appModule.factory('accountService', function($http, toastr, $location) {
             }
             })
             .then(function(response) {
-                toastr.success("The user was successfully registered");
+                $rootScope.currentUser = user;
+                toastr.success("Registration was successful. You are now logged in");
                 $location.path("/home");
 
             }).catch(function(error) {
@@ -50,6 +51,7 @@ appModule.factory('accountService', function($http, toastr, $location) {
                 }
             })
             .then(function(response) {
+                $rootScope.currentUser = null;
                 toastr.success("Logout was successful");
                 $location.path("/logout");
             }).catch(function(error) {

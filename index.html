@@ -23,6 +23,14 @@
                     <a href="/home"><span class="glyphicon glyphicon-home"></span></a>
                 </li>
             </ul>
+            <div class="login-container" ng-show="currentUser" ng-controller="AccountController">
+                <!--<span>Logged in as:</span>-->
+                <span class="currentUser">{{currentUser.email}}</span>
+                <ul class="login-list">
+                    <li class="login-option" ng-click="logout()">Logout?</li>
+                </ul>
+            </div>
+            <a href="/login" class="loginNow" ng-show="!currentUser"><span>Login</span></a>
             <div class="user-actions" ng-controller="IndexController">
                 <!--Normally, you want to set up a route to glue each view to one controller, but the index page is different
                 because it's outside of any route, so I'm giving it access to it's own controller here to update the item count-->

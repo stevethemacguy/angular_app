@@ -1,3 +1,4 @@
+@import "mixins";
 //Base CSS for the index page
 
 /*testing colors*/
@@ -68,6 +69,69 @@ header {
       text-decoration: none;
       outline: none;
    }
+
+}
+
+.loginNow {
+   display: inline-block;
+   opacity: 0.8;
+   font-size: 12px;
+   position: fixed;
+   top: 15px;
+   left: 47px;
+   /*position: absolute;
+   top: -5px;
+   right: 134px;*/
+}
+
+.login-container {
+   @include ellipsis;
+   display: inline-block;
+   top: 16px;
+   left: 48px;
+   position: absolute;
+   text-align: left;
+   height: 17px;
+   z-index: 4;
+   /*position: absolute;
+   top: -5px;
+   right: 134px;*/
+   font-size: 12px;
+   /*width: 100px;
+   max-width: 100px;*/
+   /*width: 240px;
+   max-width: 240px;*/
+
+   &:hover {
+      .login-list {
+         display: block;
+      }
+   }
+
+   //Login section
+   .login-list {
+      background-color: #415693;
+      position: fixed;
+      font-size: 12px;
+      display: none;
+      z-index: 2;
+      top: 32px;
+      left: 48px;
+      text-align: center;
+      cursor: pointer;
+   }
+
+   .login-option {
+      width: 100px;
+      padding: 2px;
+      &:hover {
+         color: orange;
+      }
+   }
+
+   .currentUser {
+      opacity: 0.8;
+   }
 }
 
 .page-title {
@@ -93,8 +157,10 @@ header {
    float: right;
    left: -20px;
    position: relative;
-   cursor: pointer;
    display: inline-block;
+   a {
+      cursor: pointer;
+   }
 }
 
 .cart-text {
@@ -237,8 +303,6 @@ form {
       opacity: .4;
    }
 }
-
-
 
 
 

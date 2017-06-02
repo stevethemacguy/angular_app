@@ -36,6 +36,7 @@ appModule.controller('AccountController', ['$scope', 'accountService', 'toastr',
         return accountService.login($scope.user, redirectUrl)
             .then(function(response) {
                 if (typeof response !== "undefined") {
+                    $scope.currentUser = $scope.user;
                     //redirect to the homepage
                     $location.path(redirectUrl);
                 }

@@ -1,31 +1,28 @@
-<div>
-    <h3>Please register to continue</h3>
-    <form id="registerForm" name="registerForm" novalidate>
-        <div class="input-container">
-            <label for="email">Email: </label>
-            <input id="email" ng-model="user.email" name="email" type="email" placeholder="email" title="email" required autofocus/>
-            <div class="input-container">
-                <label for="password">Password: </label>
-                <input id="password" ng-model="user.password" name="password" type="password" placeholder="password" title="password" required/>
-            </div>
-            <div class="input-container">
-                <label for="confirmPassword">Confirm Password: </label>
-                <input id="confirmPassword" ng-model="user.confirmPassword" name="confirmPassword" type="password" placeholder="confirmPassword" title="confirmPassword" required/>
-            </div>
-            <div class="input-container">
-                <label for="role">Make the user an admin?</label>
-                <input id="role" ng-model="checkboxes.roleCheckbox" name="role" type="checkbox" placeholder="ex. admin" title="role"/>
-            </div>
-            <div class="register-submit sd-primary-btn" ng-click="register()">
-                <span>submit</span>
-            </div>
-            <div class="errorMessage" ng-show="showError">
-                <span class="error">The Passwords do not match</span>
-            </div>
-            <div class="errorMessage" ng-show="registerForm.password.$invalid && registerForm.password.$touched">
-                <span class="error" ng-show="registerForm.password.$error.required && !registerForm.password.$error.pattern && !noMatch()">Password is required</span>
-            </div>
-        </div>
-    </form>
-
-</div>
+<h3>Please register to continue</h3>
+<form id="registerForm" name="registerForm" novalidate>
+    <div class="input-container login-first">
+        <label for="email">Email: </label>
+        <input id="email" class="login-input" ng-model="user.email" name="email" type="email" placeholder="email" title="email" required autofocus/>
+    </div>
+    <div class="input-container">
+        <label for="password">Password: </label>
+        <input id="password" class="login-input" ng-model="user.password" name="password" type="password" placeholder="password" title="password" required/>
+    </div>
+    <div class="input-container">
+        <label for="confirmPassword">Confirm Password: </label>
+        <input id="confirmPassword" class="login-input" ng-model="user.confirmPassword" name="confirmPassword" type="password" placeholder="confirmPassword" title="confirmPassword" required/>
+    </div>
+    <div class="input-container">
+        <label for="role">Make the user an admin?</label>
+        <input id="role" class="make-admin" ng-model="checkboxes.roleCheckbox" name="role" type="checkbox" placeholder="ex. admin" title="role"/>
+    </div>
+    <div class="register-submit sd-primary-btn" ng-click="register()">
+        <span>submit</span>
+    </div>
+    <div class="errorMessage" ng-show="showError">
+        <span class="error">The Passwords do not match</span>
+    </div>
+    <div class="errorMessage" ng-show="registerForm.password.$invalid && registerForm.password.$touched">
+        <span class="error" ng-show="registerForm.password.$error.required && !registerForm.password.$error.pattern && !noMatch()">Password is required</span>
+    </div>
+</form>

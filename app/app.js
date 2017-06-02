@@ -43,6 +43,7 @@ appModule.run(['$rootScope', function($rootScope) {
     $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
         $rootScope.title = current.$$route.title; //or current.$$route.title;
     });
+    $rootScope.currentUser = null;
 }]);
 
 //Note that controllers and factories, etc are in separate folders.
