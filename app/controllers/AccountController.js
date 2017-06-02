@@ -1,5 +1,5 @@
 //Account controller (now using correct Inline Bracket Syntax)
-appModule.controller('AccountController', ['$scope', 'accountService', 'toastr','$location', function($scope, accountService, toastr, $location) {
+appModule.controller('AccountController', ['$scope', 'accountService', 'toastr', '$location', function($scope, accountService, toastr, $location) {
 
     $scope.user = {
         email: "",
@@ -14,27 +14,34 @@ appModule.controller('AccountController', ['$scope', 'accountService', 'toastr',
         roleCheckbox: false
     };
 
-    $scope.errorMessage = "";
-    $scope.loginError = false;
-    $scope.registerError = false;
+    $scope.showError = false;
+
+    //Check that both passwords match
+    $scope.noMatch = function() {
+        return !($scope.user.password === $scope.user.confirmPassword);
+    };
 
     $scope.login = function() {
-        if ($scope.user.password !== $scope.user.confirmPassword) {
-            $scope.errorMessage = "The passwords do not match";
-            $scope.loginError = true;
+        if ($scope.user.email === "") {
+            return;
         }
-        else {
-            $scope.loginError = false;
-            var redirectUrl = "home";
+        if ($scope.noMatch()) {
+            $scope.showError = true;
+            return;
+        }
+        $scope.showError = false;
 
-            return accountService.login($scope.user, redirectUrl)
-                .then(function(response) {
+        var redirectUrl = "home";
+
+        return accountService.login($scope.user, redirectUrl)
+            .then(function(response) {
+                if (typeof response !== "undefined") {
                     //redirect to the homepage
                     $location.path(redirectUrl);
-                }).catch(function(error) {
-                    responseError(error)//Error handler if the $http request fails.
-                });
-        }
+                }
+            }).catch(function(error) {
+                responseError(error)//Error handler if the $http request fails.
+            });
     };
 
     $scope.logout = function() {
@@ -48,29 +55,41 @@ appModule.controller('AccountController', ['$scope', 'accountService', 'toastr',
     };
 
     $scope.register = function() {
-        if ($scope.user.password !== $scope.user.confirmPassword) {
-            $scope.errorMessage = "The passwords do not match";
-            $scope.registerError = true;
+        if ($scope.user.email === "") {
+            return;
         }
-        else {
-            $scope.registerError = false;
-            //If checked, then the user is an admin. Otherwise, the default is "basic"
-            if ($scope.checkboxes.roleCheckbox){
-                $scope.user.role = "admin";
-                $scope.user.roleType = "admin";
-            }
-            return accountService.register($scope.user)
-                .then(function(response) {
-                    //redirect to the homepage
-                }).catch(function(error) {
-                    responseError(error)//Error handler if the $http request fails.
-                });
+        if ($scope.noMatch()) {
+            $scope.showError = true;
+            return;
         }
 
-        //Error handler for the ajax request
-        function responseError(response) {
-            toastr.error("Ajax Request failed. "+ response.status + ": "+ response.statusText);
-        }
+        $scope.showError = false;
 
+        //If checked, then the user is an admin. Otherwise, the default is "basic"
+        if ($scope.checkboxes.roleCheckbox) {
+            $scope.user.role = "admin";
+            $scope.user.roleType = "admin";
+        }
+        return accountService.register($scope.user)
+            .then(function(response) {
+                //do nothing
+            }).catch(function(error) {
+                responseError(error)//Error handler if the $http request fails.
+            });
     };
+
+    $scope.getUserRoles = function() {
+        return accountService.getUserRoles()
+            .then(function(response) {
+                return response;
+            }).catch(function(error) {
+                responseError(error)//Error handler if the $http request fails.
+            });
+    };
+
+    //Error handler for the ajax request
+    function responseError(response) {
+        toastr.error("Ajax Request failed. " + response.status + ": " + response.statusText);
+    }
+
 }]);

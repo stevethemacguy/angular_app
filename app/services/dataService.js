@@ -2,7 +2,7 @@
 //or an http request can be made to the hedoku server (my "mean-app") for the data.
 
 //Factory is used here to creates a service. ALl services returns a singleton object.
-appModule.factory('dataService', function($http, toastr) {
+appModule.factory('dataService', function($http, toastr, $location) {
 
 
     //Create the empty service object
@@ -130,7 +130,15 @@ appModule.factory('dataService', function($http, toastr) {
             .then(function(response) { //After the ajax succeeds
                 return response;
             }).catch(function(error) {
-                responseError(error)//Error handler if the $http request fails.
+                //If the user isn't authorized, then redirect them to the login page.
+                if (error.status === 401) {
+                    $location.path("/login");
+                    toastr.error("You must be logged in to view this page. Please login to continue");
+                }
+                else {
+                    responseError(error)//Error handler if the $http request fails.
+                }
+
             });
     };
 

@@ -1,14 +1,40 @@
-
 //Normally, you don't want any controllers in the index page, but I'm not sure how else to update the
 //cart badge icon. The cart icon is outside of all other views, so needs a controller of it's own.
-appModule.controller("IndexController", function($scope, $timeout, shoppingCartService) {
+appModule.controller("IndexController", function($scope, $timeout, shoppingCartService, accountService, $location, toastr) {
+
+    $scope.getUserRoles = function() {
+        accountService.getUserRoles()
+            .then(function fulfilled(response) {
+
+                if (response.data !== "unauthorized") {
+                    //Loop through the roles array, if the user has an admin role then let them pass
+                    var allowedToProceed = false;
+                    for (var i = 0; i < response.data.length; i++) {
+                        if (response.data[i] === "admin") {
+                            allowedToProceed = true;
+                        }
+                    }
+                    if (allowedToProceed) {
+                        $location.path("/manage-products");
+                    }
+                    else {
+                        toastr.warning("You do not have access to this feature. Please login as an admin user");
+                    }
+                }
+                else {
+                    toastr.error("You must be logged in to view this page. Please login to continue");
+                }
+            })
+            .catch(function rejected(response) {
+                toastr.error(response);
+            });
+    };
 
     //Sort of hacky way to make angular watch for changes to the item count
     //The first function should return the value which is being watched.
     //AngularJS can then check the value returned against the value the watch function
     //returned the last time. if the value has changed, the second function is executed.
     //In this case, it updates itemCount in the view with the new value
-
     $scope.$watch(
         function() {
             return shoppingCartService.getItemCount()
@@ -21,7 +47,7 @@ appModule.controller("IndexController", function($scope, $timeout, shoppingCartS
             $scope.notZero = false;
 
             //Change the item count after a tiny delay to ensure we remove the animation class first.
-            $timeout(function () {
+            $timeout(function() {
                 //Set the actual count
                 $scope.itemCount = newVal;
                 $scope.notZero = true;

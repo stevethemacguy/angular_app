@@ -22,6 +22,13 @@ appModule.config(['$routeProvider','$locationProvider', function($routeProvider,
             css: cssPath + 'login.css'
             /*controllerAs: 'vm'*/
         })
+        .when('/logout', {
+            title: 'Logout',
+            //controller: 'AccountController',
+            templateUrl: viewBase + 'logout.html',
+            css: cssPath + 'logout.css'
+            /*controllerAs: 'vm'*/
+        })
         .when('/register', {
             title: 'Register User',
             controller: 'AccountController',

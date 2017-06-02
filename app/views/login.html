@@ -5,20 +5,23 @@
         <input id="email" ng-model="user.email" name="email" type="text" placeholder="email" title="email" required autofocus/>
         <div class="input-container">
             <label for="password">Password: </label>
-            <input id="password" ng-model="user.password" name="password" type="text" placeholder="password" title="password" required/>
+            <input id="password" ng-model="user.password" name="password" type="password" placeholder="password" title="password" required/>
         </div>
         <div class="input-container">
             <label for="confirmPassword">Confirm Password: </label>
-            <input id="confirmPassword" ng-model="user.confirmPassword" name="confirmPassword" type="text" placeholder="confirmPassword" title="confirmPassword" required/>
+            <input id="confirmPassword" ng-model="user.confirmPassword" name="confirmPassword" type="password" placeholder="confirmPassword" title="confirmPassword" required/>
         </div>
         <div class="login-submit sd-primary-btn" ng-click="login()">
             <span>submit</span>
         </div>
-        <div class="errorMessage" ng-show="loginError">
-            <span class="error">There was an error, please try again</span>
-        </div>
     </div>
     <div class="login-submit sd-primary-btn" ng-click="logout()">
         <span>Logout</span>
+    </div>
+    <div class="errorMessage" ng-show="showError">
+        <span class="error">The Passwords do not match</span>
+    </div>
+    <div class="errorMessage" ng-show="registerForm.password.$invalid && registerForm.password.$touched">
+        <span class="error" ng-show="registerForm.password.$error.required && !registerForm.password.$error.pattern && !noMatch()">Password is required</span>
     </div>
 </div>

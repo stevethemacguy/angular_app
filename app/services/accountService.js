@@ -1,11 +1,10 @@
-
 //Factory is used here to creates a service. ALl services return a singleton object.
-appModule.factory('accountService', function($http, toastr) {
+appModule.factory('accountService', function($http, toastr, $location) {
 
     //Create the empty service object
     var theService = {};
 
-    //Get products using the .Net Core Product API.
+
     theService.login = function(user, redirectUrl) {
         var apiUrl = config.apiEndPoints.account.login.replace('{url}', redirectUrl);
         return $http.post(apiUrl, user, {
@@ -15,18 +14,19 @@ appModule.factory('accountService', function($http, toastr) {
                 }
             }
         )
-        .then(function(response) {
-            toastr.success("Login was successful");
-        }).catch(function(error) {
-            responseError(error)//Error handler if the $http request fails.
-        });
+            .then(function(response) {
+                toastr.success("Login was successful");
+                $location.path("/home");
+            }).catch(function(error) {
+                responseError(error)//Error handler if the $http request fails.
+            });
     };
 
-    //Get products using the .Net Core Product API.
     theService.register = function(user) {
+
         var apiUrl = config.apiEndPoints.account.register;
 
-        return $http.post(apiUrl, user,{
+        return $http.post(apiUrl, user, {
             withCredentials: true,
             headers: {
                 'Content-Type': 'application/json; charset=utf-8'
@@ -34,12 +34,13 @@ appModule.factory('accountService', function($http, toastr) {
             })
             .then(function(response) {
                 toastr.success("The user was successfully registered");
+                $location.path("/home");
+
             }).catch(function(error) {
                 responseError(error)//Error handler if the $http request fails.
             });
     };
 
-    //Get products using the .Net Core Product API.
     theService.logout = function(user, redirectUrl) {
         var apiUrl = config.apiEndPoints.account.logout;
         return $http.post(apiUrl, user, {
@@ -47,10 +48,20 @@ appModule.factory('accountService', function($http, toastr) {
                 headers: {
                     'Content-Type': 'application/json; charset=utf-8'
                 }
-            }
-        )
+            })
             .then(function(response) {
                 toastr.success("Logout was successful");
+                $location.path("/logout");
+            }).catch(function(error) {
+                responseError(error)//Error handler if the $http request fails.
+            });
+    };
+
+    theService.getUserRoles = function() {
+        var apiUrl = config.apiEndPoints.account.getUserRoles;
+        return $http.get(apiUrl)
+            .then(function(response) {
+                return response;
             }).catch(function(error) {
                 responseError(error)//Error handler if the $http request fails.
             });
@@ -58,19 +69,20 @@ appModule.factory('accountService', function($http, toastr) {
 
     //Error handler for the ajax request
     function responseError(response) {
-        var errors = response.data.errorMessages;
-        var formattedMessage = "";
-
-        //build the error message to return in the toaster response
-        if (typeof errors !== 'undefined' && errors !== null) {
-            for (var i = 0; i < errors.length; i++) {
-                formattedMessage += errors[i] + "<br/>";
+        if (typeof response !== "undefined" && typeof response.data !== "undefined") {
+            var errors = response.data.errorMessages;
+            var formattedMessage = "";
+            //build the error message to return in the toaster response
+            if (typeof errors !== 'undefined' && errors !== null) {
+                for (var i = 0; i < errors.length; i++) {
+                    formattedMessage += errors[i] + "<br/>";
+                }
             }
-        }
 
-        toastr.error("<br/>" + formattedMessage, "Ajax Request failed with status code: " + response.status, {
-            allowHtml: true
-        });
+            toastr.error("<br/>" + formattedMessage, "Ajax Request failed with status code: " + response.status, {
+                allowHtml: true
+            });
+        }
     }
 
     //return it
