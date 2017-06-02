@@ -22,42 +22,55 @@
     top: -2px;
 }
 
-.login-submit {
+.login-submit-btn {
     margin-top: 15px;
     width: 120px;
     height: 32px;
     margin-right: 16px;
     display: inline-flex;
+
+    &.login {
+        background-color: darkgreen;
+    }
+
+    &.logout {
+        background-color: grey;
+    }
 }
 
-.register-link {
-    a {
-        color: white;
-    }
-    a:link {
-        color: white;
-        text-decoration: none;
-        outline: none;
-    }
-    a:visited {
-        color: white;
-        text-decoration: none;
-        outline: none;
-    }
-    a:focus {
-        color: white;
-        text-decoration: none;
-        outline: none;
-    }
-    a:hover {
-        color: lavender;
-        text-decoration: none;
-        outline: none;
-        cursor: pointer;
-    }
-    a:active {
-        color: white;
-        text-decoration: none;
-        outline: none;
-    }
+a {
+    color: white;
+    text-decoration: none;
+    outline: none;
 }
+
+a:link {
+    color: white;
+    text-decoration: none;
+    outline: none;
+}
+
+a:visited {
+    color: white;
+    text-decoration: none;
+    outline: none;
+}
+
+a:focus {
+    color: white;
+    text-decoration: none;
+    outline: none;
+}
+
+a:hover {
+    color: lavender;
+    text-decoration: none;
+    outline: none;
+    cursor: pointer;
+}
+
+a:active {
+    color: white;
+    text-decoration: none;
+    outline: none;
+    }

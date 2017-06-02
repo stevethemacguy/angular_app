@@ -17,33 +17,44 @@
   position: relative;
   top: -2px; }
 
-.login-submit {
+.login-submit-btn {
   margin-top: 15px;
   width: 120px;
   height: 32px;
   margin-right: 16px;
   display: inline-flex; }
+  .login-submit-btn.login {
+    background-color: darkgreen; }
+  .login-submit-btn.logout {
+    background-color: grey; }
 
-.register-link a {
-  color: white; }
-.register-link a:link {
+a {
   color: white;
   text-decoration: none;
   outline: none; }
-.register-link a:visited {
+
+a:link {
   color: white;
   text-decoration: none;
   outline: none; }
-.register-link a:focus {
+
+a:visited {
   color: white;
   text-decoration: none;
   outline: none; }
-.register-link a:hover {
+
+a:focus {
+  color: white;
+  text-decoration: none;
+  outline: none; }
+
+a:hover {
   color: lavender;
   text-decoration: none;
   outline: none;
   cursor: pointer; }
-.register-link a:active {
+
+a:active {
   color: white;
   text-decoration: none;
   outline: none; }

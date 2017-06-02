@@ -11,17 +11,17 @@
     <label for="confirmPassword">Confirm Password: </label>
     <input id="confirmPassword" class="login-input" ng-model="user.confirmPassword" name="confirmPassword" type="password" placeholder="confirmPassword" title="confirmPassword" required/>
 </div>
-<div class="login-submit sd-primary-btn" ng-click="login()">
-    <span>submit</span>
-</div>
-<div class="login-submit sd-primary-btn" ng-click="logout()">
-    <span>Logout</span>
+<div class="login-submit-btn login sd-primary-btn" ng-click="login()">
+    <span>Login</span>
 </div>
 <a href="/register">
-    <div class="login-submit sd-primary-btn register-link">
+    <div class="login-submit-btn register sd-primary-btn register-link">
         <span>Register</span>
     </div>
 </a>
+<div class="login-submit-btn logout sd-primary-btn" ng-click="logout()">
+    <span>Logout</span>
+</div>
 <div class="errorMessage" ng-show="showError">
     <span class="error">The Passwords do not match</span>
 </div>
