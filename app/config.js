@@ -1,6 +1,6 @@
 ﻿var config = {
     //Visual Studio Team Services Server on Azure. This uses VS-TS for continuous Integration)
-    apiUrl: "http://product-api-sql.azurewebsites.net/api/",
+    apiUrl: "https://product-api-sql.azurewebsites.net/api/",
 
     //GitHub Server (This uses Azure + GitHub for automatic builds)
     //apiUrl: "http://product-api-github.azurewebsites.net/api/",

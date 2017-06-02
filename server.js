@@ -25,11 +25,10 @@ app.get('/*', function(req, res) {
     res.sendFile(__dirname + '/index.html');
 });
 
-/////////// For use with Heroku only:
-//To run that app locally, comment out this WHOLEsection
+/////////// For use with Heroku:
 
 //If node already has an enviornment variable set, use that one, otherwise use development
-app.set('port', (process.env.PORT || 5000));
+app.set('port', (process.env.PORT || 3000));
 
 app.listen(app.get('port'), function() {
     console.log('Listening on port', app.get('port'));
@@ -37,14 +36,16 @@ app.listen(app.get('port'), function() {
 ////////// End Heroku section
 
 /////////// For LOCALHOST
-//To run that app locally, UNCOMMENT this CODE (and comment out the Heroku code above
-
 /*
 app.listen(3000, function () {
     console.log('Listening on port 3000');
 });
+*/
 
+//To run that app locally, just uncomment these two opn lines:
+/*
 var opn = require('opn');
 
 //Opens the url in the default browser. This line should probably be removed if you deploy the app.
-opn('http://localhost:3000');*/
+opn('http://localhost:3000');
+*/
