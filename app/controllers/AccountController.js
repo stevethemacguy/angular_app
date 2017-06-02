@@ -9,8 +9,10 @@ appModule.controller('AccountController', ['$scope', 'accountService', 'toastr',
         roleType: "basic" //A string description to make a .Net Claim (i.e. a key/value pair to make it easier to read the roleType)
     };
 
-    //Role checkbox
-    $scope.roleCheckbox=false;
+    //$scope doesn't work well without an object, so create a checkboxes object and put the roleCheckbox property on it
+    $scope.checkboxes = {
+        roleCheckbox: false
+    };
 
     $scope.errorMessage = "";
     $scope.loginError = false;
@@ -52,9 +54,8 @@ appModule.controller('AccountController', ['$scope', 'accountService', 'toastr',
         }
         else {
             $scope.registerError = false;
-
             //If checked, then the user is an admin. Otherwise, the default is "basic"
-            if ($scope.roleCheckbox){
+            if ($scope.checkboxes.roleCheckbox){
                 $scope.user.role = "admin";
                 $scope.user.roleType = "admin";
             }
