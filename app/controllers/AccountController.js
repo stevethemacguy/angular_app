@@ -1,5 +1,5 @@
 //Account controller (now using correct Inline Bracket Syntax)
-appModule.controller('AccountController', ['$scope', 'accountService', 'toastr', '$location', function($scope, accountService, toastr, $location) {
+appModule.controller('AccountController', ['$rootScope', '$scope', 'accountService', 'toastr', '$location', function($rootScope, $scope, accountService, toastr, $location) {
 
     $scope.user = {
         email: "",
@@ -8,6 +8,25 @@ appModule.controller('AccountController', ['$scope', 'accountService', 'toastr',
         role: "basic", //Used by the identity framework
         roleType: "basic" //A string description to make a .Net Claim (i.e. a key/value pair to make it easier to read the roleType)
     };
+
+    //Check to see if a user is logged in
+    accountService.getCurrentUser()
+        .then(function fulfilled(response) {
+            if (typeof response === 'undefined') {
+                $rootScope.currentUser = null;
+            }
+            else {
+                $rootScope.currentUser = response.data;
+            }
+        })
+        .catch(function(error) {
+            if (error.status === 401) {
+                toastr.error("You must be logged in to view this page. Please login to continue");
+            }
+            else {
+                responseError(error)
+            }
+        });
 
     //$scope doesn't work well without an object, so create a checkboxes object and put the roleCheckbox property on it
     $scope.checkboxes = {

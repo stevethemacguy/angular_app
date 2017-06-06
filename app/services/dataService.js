@@ -133,12 +133,10 @@ appModule.factory('dataService', function($http, toastr, $location) {
                 //If the user isn't authorized, then redirect them to the login page.
                 if (error.status === 401) {
                     $location.path("/login");
-                    toastr.error("You must be logged in to view this page. Please login to continue");
                 }
                 else {
                     responseError(error)//Error handler if the $http request fails.
                 }
-
             });
     };
 

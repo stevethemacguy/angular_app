@@ -59,13 +59,21 @@ appModule.factory('accountService', function($rootScope, $http, toastr, $locatio
             });
     };
 
+    theService.getCurrentUser = function() {
+        var apiUrl = config.apiEndPoints.account.getCurrentUser;
+        return $http.get(apiUrl)
+            .then(function(response) {
+                return response;
+            });
+    };
+
     theService.getUserRoles = function() {
         var apiUrl = config.apiEndPoints.account.getUserRoles;
         return $http.get(apiUrl)
             .then(function(response) {
                 return response;
             }).catch(function(error) {
-                responseError(error)//Error handler if the $http request fails.
+                responseError(error)
             });
     };
 
