@@ -31,11 +31,11 @@
                 </ul>
             </div>
             <a href="/login" class="loginNow" ng-show="!currentUser"><span>Login</span></a>
-            <div class="user-actions" ng-controller="IndexController">
+            <div class="user-actions" ng-controller="IndexController" ng-show="currentUser">
                 <!--Normally, you want to set up a route to glue each view to one controller, but the index page is different
                 because it's outside of any route, so I'm giving it access to it's own controller here to update the item count-->
                 <a href="/cart" class="cart-holder">
-                    <span class="cart-text">Cart</span>
+                    <!--<span class="cart-text">Cart</span>-->
                     <span class="glyphicon glyphicon-shopping-cart cart-icon " aria-hidden="false"></span>
                     <span class="badge counter animated " ng-class="{active : itemCount, bounceIn : notZero}">{{itemCount}}</span>
                 </a>

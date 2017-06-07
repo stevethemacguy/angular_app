@@ -1,6 +1,5 @@
 //Factory is used here to creates a service. ALl services return a singleton object.
 appModule.factory('accountService', function($rootScope, $http, toastr, $location) {
-
     //Create the empty service object
     var theService = {};
 
@@ -11,10 +10,8 @@ appModule.factory('accountService', function($rootScope, $http, toastr, $locatio
                 headers: {
                     'Content-Type': 'application/json; charset=utf-8'
                 }
-            }
-        )
+            })
             .then(function(response) {
-                $rootScope.currentUser = user;
                 toastr.success("Login was successful");
                 $location.path("/home");
             }).catch(function(error) {
@@ -34,6 +31,8 @@ appModule.factory('accountService', function($rootScope, $http, toastr, $locatio
             })
             .then(function(response) {
                 $rootScope.currentUser = user;
+                //Associate the current user with his/her shopping cart by using the user's ID as the cart ID
+                $rootScope.cartId = user.id;
                 toastr.success("Registration was successful. You are now logged in");
                 $location.path("/home");
 
@@ -52,6 +51,7 @@ appModule.factory('accountService', function($rootScope, $http, toastr, $locatio
             })
             .then(function(response) {
                 $rootScope.currentUser = null;
+                $rootScope.cartId = null;
                 toastr.success("Logout was successful");
                 $location.path("/logout");
             }).catch(function(error) {

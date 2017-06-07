@@ -1,7 +1,6 @@
 //Normally, you don't want any controllers in the index page, but I'm not sure how else to update the
 //cart badge icon. The cart icon is outside of all other views, so needs a controller of it's own.
 appModule.controller("IndexController", function($scope, $rootScope, $timeout, shoppingCartService, accountService, $location, toastr) {
-
     $scope.getUserRoles = function() {
         accountService.getUserRoles()
             .then(function fulfilled(response) {

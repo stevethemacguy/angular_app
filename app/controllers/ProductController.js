@@ -1,10 +1,30 @@
 
 //Note: This controller still uses the simple syntax because it's easier to read, but technically this would break if minifying. Here is the best practice syntax:
 //appModule.controller("ProductController", ['$scope', '$timeout', 'dataService','shoppingCartService', function($scope,$timeout,dataService,shoppingCartService) { ... }]);
-appModule.controller("ProductController", function($scope, $timeout, dataService, shoppingCartService, toastr, $rootScope) {
+appModule.controller("ProductController", function($scope, $timeout, dataService, shoppingCartService, accountService, toastr, $rootScope) {
     $scope.isLoading = true;
-    //Make sure the shopping cart is up-to-date
-    shoppingCartService.initializeCart();
+
+    //Check to see if a user is logged in
+    accountService.getCurrentUser()
+        .then(function fulfilled(response) {
+            if (typeof response === 'undefined') {
+                $rootScope.currentUser = null;
+            }
+            else {
+                $rootScope.currentUser = response.data;
+                $rootScope.cartId = $rootScope.currentUser.id;
+                //Make sure the shopping cart is up-to-date
+                shoppingCartService.initializeCart();
+            }
+        })
+        .catch(function(error) {
+            if (error.status === 401) {
+                toastr.error("You must be logged in to view this page. Please login to continue");
+            }
+            else {
+                responseError(error)
+            }
+        });
 
     //Option 1: Get all of the products. This is how you would do it 99.9% of the time, but I wanted animation.
     //$scope.productList = dataService.getProducts();
@@ -42,7 +62,6 @@ appModule.controller("ProductController", function($scope, $timeout, dataService
     /////// Starting point fo the app \\\\\\\\\\
 
     //On Page load, get the list of products
-
     //Retrieve the products using the .Net Product API. Comment out these lines if you want to use the hardcoded data.
     dataService.getProductsFromApi()
         .then(function(data) {

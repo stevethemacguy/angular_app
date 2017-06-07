@@ -26,7 +26,6 @@ appModule.factory('shoppingCartService', function(dataService, toastr) {
         theCart.itemCount = 0;
         theCart.totalPrice = 0;
         theCart.cartItems = [];
-
         return dataService.getProductsFromCart()
             .then(function(response) {
                 theCart.cartItems = response.data;
@@ -75,9 +74,16 @@ appModule.factory('shoppingCartService', function(dataService, toastr) {
                 theCart.itemCount = response.data.length;
                 updateTotalCost();
 
-                var index = theCart.cartItems.map(function(el) {
-                    return el.id;
-                }).indexOf(productId);
+                var index = -1;
+                //If the cart has any items
+                if (theCart.cartItems !== null && theCart.itemCount !== 0)
+                {
+                    //Check to see if the new item being added already exists in the list
+                    //If the item already exists than the index will be something other than -1.
+                    index = theCart.cartItems.map(function(el) {
+                        return el.id;
+                    }).indexOf(productId);
+                }
 
                 //Don't add duplicates
                 if (index === -1) {

@@ -2,7 +2,7 @@
 //or an http request can be made to the hedoku server (my "mean-app") for the data.
 
 //Factory is used here to creates a service. ALl services returns a singleton object.
-appModule.factory('dataService', function($http, toastr, $location) {
+appModule.factory('dataService', function($http, $rootScope, toastr, $location) {
 
 
     //Create the empty service object
@@ -104,7 +104,7 @@ appModule.factory('dataService', function($http, toastr, $location) {
     //// Shopping Cart Methods
     theService.addProductToCart = function(productIdToAdd) {
         //Cart id is currently hardcoded because the api currently only supports a single cart
-        var apiUrl = config.apiEndPoints.cart.addProductToCart.replace('{cartId}', 1).replace('{productId}', productIdToAdd);
+        var apiUrl = config.apiEndPoints.cart.addProductToCart.replace('{cartId}', $rootScope.cartId).replace('{productId}', productIdToAdd);
         return $http.post(apiUrl, productIdToAdd)
             .then(function(response) {
                return response;
@@ -115,7 +115,7 @@ appModule.factory('dataService', function($http, toastr, $location) {
 
     theService.removeProductFromCart = function(productIdToRemove) {
         //Cart id is currently hardcoded because the api currently only supports a single cart
-        var apiUrl = config.apiEndPoints.cart.removeProductFromCart.replace('{cartId}', 1).replace('{productId}', productIdToRemove);
+        var apiUrl = config.apiEndPoints.cart.removeProductFromCart.replace('{cartId}', $rootScope.cartId).replace('{productId}', productIdToRemove);
         return $http.delete(apiUrl)
             .then(function(response) {
                 return response;
@@ -125,7 +125,7 @@ appModule.factory('dataService', function($http, toastr, $location) {
     };
 
     theService.getProductsFromCart = function() {
-        var apiUrl = config.apiEndPoints.cart.getCartProducts.replace('{cartId}', 1);
+        var apiUrl = config.apiEndPoints.cart.getCartProducts.replace('{cartId}', $rootScope.cartId);
         return $http.get(apiUrl)
             .then(function(response) { //After the ajax succeeds
                 return response;
