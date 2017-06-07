@@ -43,9 +43,7 @@ app.listen(3000, function () {
 */
 
 //To run that app locally, just uncomment these two opn lines:
-/*
-var opn = require('opn');
+/*var opn = require('opn');
 
 //Opens the url in the default browser. This line should probably be removed if you deploy the app.
-opn('http://localhost:3000');
-*/
+opn('http://localhost:3000');*/

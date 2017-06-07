@@ -12,9 +12,9 @@
     var accountUrl = config.apiUrl + "account";
 
     //To use with localhost and CORS
-    var productUrl = config.localHostApiUrl + "products";
+  /*  var productUrl = config.localHostApiUrl + "products";
     var cartUrl = config.localHostApiUrl + "cart";
-    var accountUrl = config.localHostApiUrl + "account";
+    var accountUrl = config.localHostApiUrl + "account";*/
 
     //apiUrlBase
     var products= {
