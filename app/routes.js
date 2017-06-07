@@ -50,6 +50,13 @@ appModule.config(['$routeProvider','$locationProvider', function($routeProvider,
             css: cssPath + 'manage-products.css'
             /*controllerAs: 'vm'*/
         })
+        .when('/manage-users', {
+            title: 'User Management',
+            controller: 'ManageUsersController',
+            templateUrl: viewBase + 'manage-users.html',
+            css: cssPath + 'manage-users.css'
+            /*controllerAs: 'vm'*/
+        })
         .when('/home', {
             title: 'Home',
             controller: 'ProductController',

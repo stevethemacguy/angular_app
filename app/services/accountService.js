@@ -67,6 +67,14 @@ appModule.factory('accountService', function($rootScope, $http, toastr, $locatio
             });
     };
 
+    theService.getAllUsers = function() {
+        var apiUrl = config.apiEndPoints.account.getAllUsers;
+        return $http.get(apiUrl)
+            .then(function(response) {
+                return response;
+            });
+    };
+
     theService.getUserRoles = function() {
         var apiUrl = config.apiEndPoints.account.getUserRoles;
         return $http.get(apiUrl)

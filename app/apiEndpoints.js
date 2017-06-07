@@ -36,7 +36,8 @@
         login: accountUrl + "/login?redirectUrl={url}",
         logout: accountUrl + "/logout",
         getUserRoles: accountUrl + "/getuserroles",
-        getCurrentUser: accountUrl + "/getcurrentuser"
+        getCurrentUser: accountUrl + "/getcurrentuser",
+        getAllUsers: accountUrl + "/getusers"
     };
 
     //Register end points

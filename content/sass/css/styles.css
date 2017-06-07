@@ -225,6 +225,20 @@ form {
   .sd-primary-btn:active {
     box-shadow: inset 0 1px 3px 0 rgba(0, 0, 0, 0.25); }
   .sd-primary-btn:hover {
-    opacity: .4; }
+    opacity: .5; }
+  .sd-primary-btn.disabled {
+    color: black;
+    pointer-events: none;
+    cursor: not-allowed;
+    opacity: .55;
+    background-color: dimgrey; }
+
+.loading-spinner {
+  height: 300px;
+  width: 300px;
+  position: fixed;
+  top: calc(50vh - 150px);
+  left: calc(50% - 154px);
+  z-index: 4; }
 
 /*# sourceMappingURL=styles.css.map */
