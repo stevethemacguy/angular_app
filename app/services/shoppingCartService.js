@@ -23,7 +23,6 @@ appModule.factory('shoppingCartService', function(dataService, toastr) {
 
     //Comment out this line if you are using test Data
     theService.initializeCart = function() {
-        theCart.itemCount = 0;
         theCart.totalPrice = 0;
         theCart.cartItems = [];
         return dataService.getProductsFromCart()

@@ -13,6 +13,9 @@ appModule.factory('accountService', function($rootScope, $http, toastr, $locatio
             })
             .then(function(response) {
                 toastr.success("Login was successful");
+                $rootScope.currentUser = user;
+                //Associate the current user with his/her shopping cart by using the user's ID as the cart ID
+                $rootScope.cartId = user.id;
                 $location.path("/home");
             }).catch(function(error) {
                 responseError(error)//Error handler if the $http request fails.
