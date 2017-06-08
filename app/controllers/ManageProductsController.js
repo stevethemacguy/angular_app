@@ -1,9 +1,22 @@
 //Services are singletons. formService has a shippingData object that lives in the formService and
 //can be shared across multiple controllers.
-appModule.controller('ManageProductsController', ['$scope', 'dataService', 'shoppingCartService','toastr', function($scope, dataService, shoppingCartService, toastr) {
+appModule.controller('ManageProductsController', ['$scope', '$rootScope','dataService', 'shoppingCartService', 'accountService', 'toastr', function($scope, $rootScope, dataService, shoppingCartService, accountService, toastr) {
 
-    //Update the cart
-    shoppingCartService.initializeCart();
+    //Update the shopping cart
+    if (typeof $rootScope.cartId !== 'undefined' && $rootScope.cartId !== null) {
+        shoppingCartService.initializeCart();
+    }
+    else {
+        //If the user navigates directly to the cart page (i.e. without clicking on the cart icon), then
+        //$rootScope will not yet contain the logged in user. In this case, get the current user before loading the cart.
+        accountService.getCurrentUser()
+            .then(function fulfilled(response) {
+                shoppingCartService.initializeCart();
+            })
+            .catch(function(error) {
+                responseError(error)//Error handler if the $http request fails.
+            });
+    }
 
     $scope.productList = [];
 
@@ -43,5 +56,10 @@ appModule.controller('ManageProductsController', ['$scope', 'dataService', 'shop
             }
         );
     };
+
+    //Error handler for the ajax request
+    function responseError(response) {
+        toastr.error("Ajax Request failed. " + response.status + ": " + response.statusText);
+    }
 
 }]);
