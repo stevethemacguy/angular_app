@@ -19,7 +19,7 @@
         <span>Register</span>
     </div>
 </a>
-<div class="login-submit-btn logout sd-primary-btn" ng-click="logout()">
+<div class="login-submit-btn logout sd-primary-btn" ng-click="logout()" ng-show="currentUser">
     <span>Logout</span>
 </div>
 <div class="errorMessage" ng-show="showError">

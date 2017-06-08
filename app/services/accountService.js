@@ -62,8 +62,29 @@ appModule.factory('accountService', function($rootScope, $http, toastr, $locatio
     theService.getCurrentUser = function() {
         var apiUrl = config.apiEndPoints.account.getCurrentUser;
         return $http.get(apiUrl)
-            .then(function(response) {
-                return response;
+            .then(function fulfilled(response) {
+                if (typeof response === 'undefined') {
+                    $rootScope.currentUser = null;
+                    $rootScope.cartId = null;
+                }
+                else {
+                    $rootScope.currentUser = response.data;
+                    //Associate the current user with his/her shopping cart by using the user's ID as the cart ID
+                    $rootScope.cartId = $rootScope.currentUser.id;
+                }
+            })
+            .catch(function(error) {
+                if (error.status === 404) {
+                    toastr.error("There was an error singing you in. Please register to continue");
+                    $location.path("/register");
+                }
+                if (error.status === 401) {
+                    toastr.error("You must be logged in to view this page. Please login to continue");
+                    $location.path("/login");
+                }
+                else {
+                    responseError(error)
+                }
             });
     };
 

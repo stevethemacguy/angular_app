@@ -17,21 +17,21 @@ appModule.config(['$routeProvider','$locationProvider', function($routeProvider,
         })
         .when('/login', {
             title: 'Login',
-            controller: 'AccountController',
+            controller: 'LoginController',
             templateUrl: viewBase + 'login.html',
             css: cssPath + 'login.css'
             /*controllerAs: 'vm'*/
         })
         .when('/logout', {
             title: 'Logout',
-            //controller: 'AccountController',
+            //controller: 'LogoutController',
             templateUrl: viewBase + 'logout.html',
             css: cssPath + 'logout.css'
             /*controllerAs: 'vm'*/
         })
         .when('/register', {
             title: 'User Registration',
-            controller: 'AccountController',
+            controller: 'RegisterController',
             templateUrl: viewBase + 'register.html',
             css: cssPath + 'register.css'
             /*controllerAs: 'vm'*/

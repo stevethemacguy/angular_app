@@ -23,7 +23,7 @@
                     <a href="/home"><span class="glyphicon glyphicon-home"></span></a>
                 </li>
             </ul>
-            <div class="login-container" ng-show="currentUser" ng-controller="AccountController">
+            <div class="login-container" ng-show="currentUser">
                 <!--<span>Logged in as:</span>-->
                 <span class="currentUser">{{currentUser.email}}</span>
                 <ul class="login-list">
@@ -74,6 +74,8 @@
     <script src="app/services/formService.js"></script>
     <script src="app/services/shoppingCartService.js"></script>
     <script src="app/controllers/IndexController.js"></script>
+    <script src="app/controllers/LoginController.js"></script>
+    <script src="app/controllers/RegisterController.js"></script>
     <script src="app/controllers/ProductController.js"></script>
     <script src="app/controllers/CartController.js"></script>
     <script src="app/controllers/ShippingController.js"></script>
@@ -81,6 +83,5 @@
     <script src="app/controllers/ConfirmationController.js"></script>
     <script src="app/controllers/ManageProductsController.js"></script>
     <script src="app/controllers/ManageUsersController.js"></script>
-    <script src="app/controllers/AccountController.js"></script>
 </body>
 </html>

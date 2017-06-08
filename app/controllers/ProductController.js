@@ -7,15 +7,7 @@ appModule.controller("ProductController", function($scope, $timeout, dataService
     //Check to see if a user is logged in
     accountService.getCurrentUser()
         .then(function fulfilled(response) {
-            if (typeof response === 'undefined') {
-                $rootScope.currentUser = null;
-            }
-            else {
-                $rootScope.currentUser = response.data;
-                $rootScope.cartId = $rootScope.currentUser.id;
-                //Make sure the shopping cart is up-to-date
-                shoppingCartService.initializeCart();
-            }
+            shoppingCartService.initializeCart();
         })
         .catch(function(error) {
             if (error.status === 401) {
@@ -100,6 +92,11 @@ appModule.controller("ProductController", function($scope, $timeout, dataService
     $scope.alreadyInCart = function(productId) {
         //Check to see if the item is already in the cart
         return shoppingCartService.isProductInCart(productId);
+    };
+
+    //Error handler for the ajax request
+    function responseError(response) {
+        toastr.error("Ajax Request failed. " + response.status + ": " + response.statusText);
     }
 
 });
