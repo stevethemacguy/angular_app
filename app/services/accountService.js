@@ -99,6 +99,14 @@ appModule.factory('accountService', function($rootScope, $http, toastr, $locatio
             });
     };
 
+    theService.deleteUser= function(email) {
+        var apiUrl = config.apiEndPoints.account.removeUser.replace('{email}', email);
+        return $http.get(apiUrl)
+            .then(function(response) {
+                return response;
+            });
+    };
+
     theService.getUserRoles = function() {
         var apiUrl = config.apiEndPoints.account.getUserRoles;
         return $http.get(apiUrl)

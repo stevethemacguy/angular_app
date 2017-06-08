@@ -6,10 +6,10 @@
             <span>{{user.email}} </span>
             <span class="user-role">({{user.roleType}})</span>
             <div class="action-buttons">
-                <div ng-class="{'disabled': isCurrentUser(user)}" class="user-manage-button make-admin sd-primary-btn" ng-click="removeUser()">
+                <div ng-class="{'disabled': isCurrentUser(user)}" class="user-manage-button make-admin sd-primary-btn" ng-click="makeAdmin()">
                     <span>Make Admin</span>
                 </div>
-                <div ng-class="{'disabled': isCurrentUser(user)}" class="user-manage-button remove-user sd-primary-btn" ng-click="makeAdmin()">
+                <div ng-class="{'disabled': isCurrentUser(user)}" class="user-manage-button remove-user sd-primary-btn" ng-click="removeUser(user)">
                     <span>Remove User</span>
                 </div>
             </div>

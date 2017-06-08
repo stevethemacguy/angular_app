@@ -26,7 +26,7 @@
             <div class="login-container" ng-show="currentUser">
                 <!--<span>Logged in as:</span>-->
                 <span class="currentUser">{{currentUser.email}}</span>
-                <ul class="login-list">
+                <ul class="login-list" ng-controller="LoginController">
                     <li class="login-option" ng-click="logout()">Logout?</li>
                 </ul>
             </div>

@@ -3,7 +3,20 @@
 appModule.controller('ManageUsersController', ['$scope', 'accountService', 'shoppingCartService','toastr', '$rootScope', function($scope, accountService, shoppingCartService, toastr, $rootScope) {
 
     //Update the cart
-    shoppingCartService.initializeCart();
+    if (typeof $rootScope.cartId !== 'undefined' && $rootScope.cartId !== null) {
+        shoppingCartService.initializeCart();
+    }
+    else {
+        //If the user navigates directly to the cart page (i.e. without clicking on the cart icon), then
+        //$rootScope will not yet contain the logged in user. In this case, get the current user before loading the cart.
+        accountService.getCurrentUser()
+            .then(function fulfilled(response) {
+                shoppingCartService.initializeCart();
+            })
+            .catch(function(error) {
+                responseError(error)//Error handler if the $http request fails.
+            });
+    }
 
     $scope.isLoading = true;
     $scope.usersList = [];
@@ -33,23 +46,42 @@ appModule.controller('ManageUsersController', ['$scope', 'accountService', 'shop
     };
 
     //Add a product to the database and refresh the product list on screen
-    $scope.addUser = function() {
+    $scope.makeAdmin = function() {
         $scope.productToAdd.price = parseInt($scope.productToAdd.price);
         dataService.addProduct($scope.productToAdd)
             .then(function(response) {
-                getUpdatedProductList();
+               toastr.success("User successfully removed.");
+            })
+            .catch(function(error) {
+                responseError(error)//Error handler if the $http request fails.
             });
     };
 
-    $scope.removeUsers = function(productToRemove) {
-        //Remove the product and refresh the product list on screen
-        dataService.removeProduct(productToRemove)
+    $scope.removeUser = function(user) {
+        accountService.deleteUser(user.email)
             .then(function(response) {
-                getUpdatedProductList();
-                shoppingCartService.updateCartCount();
-            }
-        );
+                toastr.success("User successfully removed.");
+                getUpdatedUsersList();
+            })
+            .catch(function(error) {
+                responseError(error)//Error handler if the $http request fails.
+            });
     };
+
+    function getUpdatedUsersList() {
+        $scope.isLoading = true;
+        //On Page load, get the list of Users from the DB
+        accountService.getAllUsers()
+            .then(function(response) {
+                $scope.usersList = response.data;
+            })
+            .catch(function(error) {
+                responseError(error)
+            })
+            .finally(function() {
+                $scope.isLoading = false;
+            });
+    }
 
     //Make user admin
 
