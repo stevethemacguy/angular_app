@@ -71,9 +71,7 @@ header {
   right: 134px;*/ }
 
 .login-container {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  /*  @include ellipsis;*/
   display: inline-block;
   top: 16px;
   left: 48px;

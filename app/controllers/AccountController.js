@@ -29,6 +29,7 @@ appModule.controller('AccountController', ['$rootScope', '$scope', 'accountServi
             }
             if (error.status === 401) {
                 toastr.error("You must be logged in to view this page. Please login to continue");
+                $location.path("/login");
             }
             else {
                 responseError(error)

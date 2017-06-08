@@ -85,7 +85,7 @@ header {
 }
 
 .login-container {
-   @include ellipsis;
+ /*  @include ellipsis;*/
    display: inline-block;
    top: 16px;
    left: 48px;

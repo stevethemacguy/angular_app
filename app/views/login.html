@@ -9,7 +9,7 @@
 </div>
 <div class="input-container">
     <label for="confirmPassword">Confirm Password: </label>
-    <input id="confirmPassword" class="login-input" ng-model="user.confirmPassword" name="confirmPassword" type="password" placeholder="confirmPassword" title="confirmPassword" required/>
+    <input id="confirmPassword" ng-keyup="$event.keyCode == 13 && login()" class="login-input" ng-model="user.confirmPassword" name="confirmPassword" type="password" placeholder="confirmPassword" title="confirmPassword" required/>
 </div>
 <div class="login-submit-btn login sd-primary-btn" ng-click="login()">
     <span>Login</span>
