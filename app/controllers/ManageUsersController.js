@@ -46,11 +46,11 @@ appModule.controller('ManageUsersController', ['$scope', 'accountService', 'shop
     };
 
     //Add a product to the database and refresh the product list on screen
-    $scope.makeAdmin = function() {
-        $scope.productToAdd.price = parseInt($scope.productToAdd.price);
-        dataService.addProduct($scope.productToAdd)
+    $scope.makeAdmin = function(user) {
+        accountService.makeAdmin(user.email)
             .then(function(response) {
-               toastr.success("User successfully removed.");
+                toastr.success("The user was successfully promoted to an admin.");
+                getUpdatedUsersList();
             })
             .catch(function(error) {
                 responseError(error)//Error handler if the $http request fails.

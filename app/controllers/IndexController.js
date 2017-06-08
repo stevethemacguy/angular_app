@@ -1,23 +1,18 @@
 //Normally, you don't want any controllers in the index page, but I'm not sure how else to update the
 //cart badge icon. The cart icon is outside of all other views, so needs a controller of it's own.
 appModule.controller("IndexController", function($scope, $rootScope, $timeout, shoppingCartService, accountService, $location, toastr) {
-    $scope.getUserRoles = function() {
-        accountService.getUserRoles()
-            .then(function fulfilled(response) {
+    var allowedToProceed = false;
 
+    $scope.getUserRoles = function() {
+        return accountService.getUserRoles()
+            .then(function fulfilled(response) {
                 if (response.data !== "unauthorized") {
                     //Loop through the roles array, if the user has an admin role then let them pass
-                    var allowedToProceed = false;
+                    allowedToProceed = false;
                     for (var i = 0; i < response.data.length; i++) {
                         if (response.data[i] === "admin") {
                             allowedToProceed = true;
                         }
-                    }
-                    if (allowedToProceed) {
-                        $location.path("/manage-products");
-                    }
-                    else {
-                        toastr.warning("You do not have access to this feature. Please login as an admin user");
                     }
                 }
                 else {
@@ -28,6 +23,23 @@ appModule.controller("IndexController", function($scope, $rootScope, $timeout, s
                 toastr.error(response);
             });
     };
+
+    $scope.navigateToAdminPage = function(pageUrl) {
+        $scope.getUserRoles()
+            .then(function fulfilled(response) {
+                if (allowedToProceed) {
+                    $location.path(pageUrl);
+                }
+                else {
+                    toastr.warning("You do not have access to this feature. Please login as an admin user");
+                }
+            })
+            .catch(function rejected(response) {
+                toastr.error(response);
+            });
+    };
+
+
 
     //Sort of hacky way to make angular watch for changes to the item count
     //The first function should return the value which is being watched.

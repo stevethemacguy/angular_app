@@ -24,7 +24,6 @@ appModule.controller('LoginController', ['$rootScope', '$scope', 'accountService
         }
 
         $scope.showError = false;
-
         var redirectUrl = "home";
 
         return accountService.login($scope.user, redirectUrl)

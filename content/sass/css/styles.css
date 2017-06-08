@@ -123,9 +123,8 @@ header {
   top: 6px; }
 
 .user-actions {
-  float: right;
-  left: -20px;
-  position: relative;
+  right: 11px;
+  position: absolute;
   display: inline-block; }
   .user-actions a {
     cursor: pointer; }
@@ -138,6 +137,9 @@ header {
   position: relative;
   top: 5px;
   font-size: 25px; }
+
+.user-icon {
+  left: -7px; }
 
 .counter {
   position: relative;

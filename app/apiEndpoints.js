@@ -37,7 +37,9 @@
         logout: accountUrl + "/logout",
         getUserRoles: accountUrl + "/getuserroles",
         getCurrentUser: accountUrl + "/getcurrentuser",
-        getAllUsers: accountUrl + "/getusers"
+        getAllUsers: accountUrl + "/getusers",
+        removeUser: accountUrl + "/removeUser?email={email}",
+        makeAdmin: accountUrl + "/makeAdmin?email={email}"
     };
 
     //Register end points
