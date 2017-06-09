@@ -1,7 +1,5 @@
 //Register controller (now using correct Inline Bracket Syntax)
 appModule.controller('RegisterController', ['$rootScope', '$scope', 'accountService', 'toastr', function($rootScope, $scope, accountService, toastr) {
-    $scope.isLoading = true;
-
     $scope.user = {
         email: "",
         password: "",
@@ -22,8 +20,13 @@ appModule.controller('RegisterController', ['$rootScope', '$scope', 'accountServ
         return !($scope.user.password === $scope.user.confirmPassword);
     };
 
-    //Used to show/hide the make admin checkbox
-    var userIsAdmin = false;
+    /*
+    //This code can be used to hide the admin checkbox (unless you're logged in as an admin).
+    //However, hiding the checkbox makes it impossible to register yourself as an admin
+    //if your registering yourself as the first user. The only other way to create an admin would to
+    //create a user in SQL.
+
+    //var userIsAdmin = false;
 
     //Check if the logged in user is an admin
     accountService.getUserRoles()
@@ -41,27 +44,6 @@ appModule.controller('RegisterController', ['$rootScope', '$scope', 'accountServ
 
     $scope.isUserAdmin = function() {
         return userIsAdmin;
-    };
-    /*$scope.isUserAdmin = function() {
-        return accountService.getUserRoles()
-            .then(function fulfilled(response) {
-                var allowedToProceed = false;
-                if (response.data !== "unauthorized") {
-                    //Loop through the roles array, if the user has an admin role then let them pass
-                    for (var i = 0; i < response.data.length; i++) {
-                        if (response.data[i] === "admin") {
-                            allowedToProceed = true;
-                        }
-                    }
-                    return allowedToProceed;
-                }
-                else {
-                    return false;
-                }
-            })
-            .catch(function rejected(response) {
-                toastr.error(response);
-            });
     };*/
 
     $scope.register = function() {
@@ -80,11 +62,18 @@ appModule.controller('RegisterController', ['$rootScope', '$scope', 'accountServ
             $scope.user.role = "admin";
             $scope.user.roleType = "admin";
         }
+
+        $scope.isLoading = true;
+
         return accountService.register($scope.user)
             .then(function(response) {
                 //do nothing
-            }).catch(function(error) {
-                responseError(error)//Error handler if the $http request fails.
+            })
+            .catch(function(error) {
+                responseError(error)
+            })
+            .finally(function() {
+                $scope.isLoading = false;
             });
     };
 
