@@ -73,19 +73,8 @@ appModule.factory('shoppingCartService', function(dataService, toastr) {
                 theCart.itemCount = response.data.length;
                 updateTotalCost();
 
-                var index = -1;
-                //If the cart has any items
-                if (theCart.cartItems !== null && theCart.itemCount !== 0)
-                {
-                    //Check to see if the new item being added already exists in the list
-                    //If the item already exists than the index will be something other than -1.
-                    index = theCart.cartItems.map(function(el) {
-                        return el.id;
-                    }).indexOf(productId);
-                }
-
                 //Don't add duplicates
-                if (index === -1) {
+                if (!theService.isProductInCart(productId)) {
                     dataService.addProductToCart(productId);
                     theCart.itemCount++;
                     toastr.success('Successfully added 1 item to your cart');
@@ -114,15 +103,8 @@ appModule.factory('shoppingCartService', function(dataService, toastr) {
                 theCart.itemCount = response.data.length;
                 updateTotalCost();
 
-                var index = theCart.cartItems.map(function(el) {
-                    return el.id;
-                }).indexOf(productId);
-
                 //Don't add duplicates
-                if (index === -1) {
-                    toastr.warning("Cannot remove the product because it is not in the cart")
-                }
-                else {
+                if (!theService.isProductInCart(productId)) {
                     dataService.removeProductFromCart(productId)
                         .then(function(response) {
                             dataService.getProductsFromCart()
@@ -136,36 +118,26 @@ appModule.factory('shoppingCartService', function(dataService, toastr) {
 
                             toastr.success('Successfully removed 1 item from your cart');
                         });
+
+                }
+                else {
+                    toastr.warning("Cannot remove the product because it is not in the cart")
                 }
             });
     };
 
-    //Old Method
-    //Adds a selected product to the customer's cart
-    /*theService.removeFromCart = function(productID) {
-        //Go through every item in the cart
-        for (var i = 0; i < theCart.length; i++) {
-            var currentItem = theCart[i];
-            //if there's an item with the same id as the one we want to remove
-            if (currentItem.id === productID) {
-                var index = theCart.indexOf(currentItem);
-
-                //if it is, then remove it
-                if (index > -1) {
-                    theCart.splice(index, 1);
-                    itemCount--;
-                }
-            }
-        }
-    };*/
-
     //Returns true if the item passed is currently in the shopping cart array
     theService.isProductInCart = function(productId) {
-        //See if the item is in the cart
+        var index = -1;
 
-        var index = theCart.cartItems.map(function(el) {
-            return el.id;
-        }).indexOf(productId);
+        //If the cart has any items
+        if (theCart.cartItems !== null && theCart.itemCount !== 0) {
+            //Check to see if the new item being added already exists in the list
+            //If the item already exists than the index will be something other than -1.
+            index = theCart.cartItems.map(function(el) {
+                return el.id;
+            }).indexOf(productId);
+        }
 
         return index > -1;
     };
