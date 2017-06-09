@@ -1,5 +1,6 @@
 //Register controller (now using correct Inline Bracket Syntax)
 appModule.controller('RegisterController', ['$rootScope', '$scope', 'accountService', 'toastr', function($rootScope, $scope, accountService, toastr) {
+    $scope.isLoading = true;
 
     $scope.user = {
         email: "",
@@ -20,6 +21,48 @@ appModule.controller('RegisterController', ['$rootScope', '$scope', 'accountServ
     $scope.noMatch = function() {
         return !($scope.user.password === $scope.user.confirmPassword);
     };
+
+    //Used to show/hide the make admin checkbox
+    var userIsAdmin = false;
+
+    //Check if the logged in user is an admin
+    accountService.getUserRoles()
+        .then(function fulfilled(response) {
+            if (response.data !== "unauthorized") {
+                //Loop through the roles array, if the user has an admin role then let them pass
+                for (var i = 0; i < response.data.length; i++) {
+                    if (response.data[i] === "admin") {
+                        userIsAdmin = true;
+                    }
+                }
+            }
+            $scope.isLoading = false;
+        });
+
+    $scope.isUserAdmin = function() {
+        return userIsAdmin;
+    };
+    /*$scope.isUserAdmin = function() {
+        return accountService.getUserRoles()
+            .then(function fulfilled(response) {
+                var allowedToProceed = false;
+                if (response.data !== "unauthorized") {
+                    //Loop through the roles array, if the user has an admin role then let them pass
+                    for (var i = 0; i < response.data.length; i++) {
+                        if (response.data[i] === "admin") {
+                            allowedToProceed = true;
+                        }
+                    }
+                    return allowedToProceed;
+                }
+                else {
+                    return false;
+                }
+            })
+            .catch(function rejected(response) {
+                toastr.error(response);
+            });
+    };*/
 
     $scope.register = function() {
         if ($scope.user.email === "") {
