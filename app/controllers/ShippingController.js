@@ -8,6 +8,7 @@ appModule.controller("ShippingController", function($scope, formService, $localS
     $scope.formData = formService.shippingData;
 
     $scope.sameAsShipping = true;
+
     $scope.shippingAddress = {
         firstName: "",
         middleInitial: "",
@@ -32,9 +33,21 @@ appModule.controller("ShippingController", function($scope, formService, $localS
         zipCode: ""
     };
 
-    //Get the values from localStorage, if available
+    //If sameAsShipping is checked, copy over the billing address using the shippingAddress values any time there's a change
+    $scope.updateBillingAddress = function(shippingAddress) {
+        if($scope.sameAsShipping){
+            $scope.billingAddress = angular.copy($scope.shippingAddress);
+            $localStorage.billingAddress = $scope.billingAddress;
+        }
+    };
+
+    //Get the address from localStorage, if available
     if ($localStorage.shippingAddress) {
         $scope.shippingAddress = $localStorage.shippingAddress;
+    }
+
+    //Get the address from localStorage, if available
+    if ($localStorage.billingAddress) {
         $scope.billingAddress = $localStorage.billingAddress;
     }
 
@@ -42,6 +55,7 @@ appModule.controller("ShippingController", function($scope, formService, $localS
     $scope.continueToPayment = function() {
         $localStorage.shippingAddress = $scope.shippingAddress;
         $localStorage.billingAddress = $scope.billingAddress;
+
         $location.path("/payment");
     }
 

@@ -3,8 +3,8 @@
 
 <ol class="breadcrumb">
     <li class="active">Shipping</li>
-    <li><a href="/payment">Payment</a></li>
-    <li><a href="/confirmation">Confirmation</a></li>
+    <li>Payment</li>
+    <li>Confirmation</li>
 </ol>
 <!--novalidate just tells the browser not to use normal form validation-->
 <!--NOTE: All forms are an instance of FormController. The "name" attr here allows us to use the scope of FormController, so it's important-->
@@ -13,53 +13,53 @@
     <div class="addressContainer">
         <div class="input-container first-input">
             <label for="firstName">First Name:</label>
-            <input id="firstName" ng-model="shippingAddress.firstName" class="login-input" name="firstName" type="text" placeholder="" title="First Name" required/>
+            <input id="firstName" ng-change="updateBillingAddress()" ng-model="shippingAddress.firstName" class="login-input" name="firstName" type="text" placeholder="" title="First Name" required/>
             <div ng-show="shippingForm.$submitted || shippingForm.firstName.$touched" class="error-message">
                 <span ng-show="shippingForm.firstName.$error.required">First name is required</span>
             </div>
         </div>
         <div class="input-container">
             <label for="lastName">Last Name:</label>
-            <input id="lastName" ng-model="shippingAddress.lastName" name="lastName" type="text" placeholder="" title="Last Name" required/>
+            <input id="lastName" ng-change="updateBillingAddress()" ng-model="shippingAddress.lastName" name="lastName" type="text" placeholder="" title="Last Name" required/>
             <div ng-show="shippingForm.$submitted || shippingForm.lastName.$touched" class="error-message">
                 <span ng-show="shippingForm.lastName.$error.required">Last name is required</span>
             </div>
         </div>
         <div class="input-container">
             <label for="middleName">Middle Initial:</label>
-            <input id="middleName" ng-model="shippingAddress.middleInitial" name="middleName" type="text" placeholder="" title="Middle Initial"/>
+            <input id="middleName" ng-change="updateBillingAddress()" ng-model="shippingAddress.middleInitial" name="middleName" type="text" placeholder="" title="Middle Initial"/>
         </div>
         <div class="input-container">
             <label for="phone">Phone Number:</label>
-            <input id="phone" ng-model="shippingAddress.phone" name="phone" type="text" placeholder="" title="Phone Number" required/>
+            <input id="phone" ng-change="updateBillingAddress()" ng-model="shippingAddress.phone" name="phone" type="text" placeholder="" title="Phone Number" required/>
             <div ng-show="shippingForm.$submitted || shippingForm.phone.$touched" class="error-message">
                 <span ng-show="shippingForm.phone.$error.required">Phone is required</span>
             </div>
         </div>
         <div class="input-container">
             <label for="address">Address:</label>
-            <input id="address" ng-model="shippingAddress.addressLine1" name="address" type="text" placeholder="" title="Address" required/>
+            <input id="address" ng-change="updateBillingAddress()" ng-model="shippingAddress.addressLine1" name="address" type="text" placeholder="" title="Address" required/>
             <div ng-show="shippingForm.$submitted || shippingForm.address.$touched" class="error-message">
                 <span ng-show="shippingForm.address.$error.required">Address is required</span>
             </div>
         </div>
         <div class="input-container">
             <label for="state">State:</label>
-            <input id="state" ng-model="shippingAddress.state" name="state" type="text" placeholder="" title="State" required/>
+            <input id="state" ng-change="updateBillingAddress()" ng-model="shippingAddress.state" name="state" type="text" placeholder="" title="State" required/>
             <div ng-show="shippingForm.$submitted || shippingForm.state.$touched" class="error-message">
                 <span ng-show="shippingForm.state.$error.required">State is required</span>
             </div>
         </div>
         <div class="input-container">
             <label for="country">country:</label>
-            <input id="country" ng-model="shippingAddress.country" name="country" type="text" placeholder="" title="Country" required/>
+            <input id="country" ng-change="updateBillingAddress()" ng-model="shippingAddress.country" name="country" type="text" placeholder="" title="Country" required/>
             <div ng-show="shippingForm.$submitted || shippingForm.country.$touched" class="error-message">
                 <span ng-show="shippingForm.country.$error.required">Country is required</span>
             </div>
         </div>
         <div class="input-container">
             <label for="zipCode">zipCode:</label>
-            <input id="zipCode" ng-model="shippingAddress.zipCode" name="zipCode" type="text" placeholder="" title="Zip Code" required
+            <input id="zipCode" ng-change="updateBillingAddress()" ng-model="shippingAddress.zipCode" name="zipCode" type="text" placeholder="" title="Zip Code" required
                    onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="5"/>
             <div ng-show="shippingForm.$submitted || shippingForm.zipCode.$touched" class="error-message">
                 <span ng-show="shippingForm.zipCode.$error.required">Zip code is required</span>
@@ -125,11 +125,11 @@
     </div>
 
     <div class="input-container sameAs">
-        <input type="checkbox" id="same" ng-model="sameAsShipping"/>
+        <input type="checkbox" ng-change="updateBillingAddress()" id="same" ng-model="sameAsShipping"/>
         <label for="same">Billing address same as shipping</label>
     </div>
 
-    <div class="sd-primary-btn continue-to-payment" ng-click="continueToPayment()">
+    <div class="sd-primary-btn continue-to-payment" ng-class="{disabled: shippingForm.$invalid}" ng-click="continueToPayment()">
         <span>Continue to Payment</span>
     </div>
     <!--<input type="button" ng-click="reset()" value="Reset" />-->

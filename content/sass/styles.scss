@@ -206,6 +206,15 @@ header {
    position: absolute;
    right: 0;
    top: 53px;
+
+   > li {
+      color: #777777;
+   }
+
+   > .active {
+      color: #415693;
+      font-weight: bold;
+   }
 }
 
 ul {
@@ -312,7 +321,7 @@ form {
 
 //Base button styling
 .sd-primary-btn {
-   border-radius: 2px;
+   border-radius: 3px;
    background-color: #415693;
    height: 36px;
    display: flex;

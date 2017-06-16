@@ -33,5 +33,11 @@
 .continue-to-payment {
   width: 175px;
   margin-top: 30px; }
+  .continue-to-payment.disabled {
+    color: black;
+    pointer-events: none;
+    cursor: not-allowed;
+    opacity: .55;
+    background-color: dimgrey; }
 
 /*# sourceMappingURL=shipping.css.map */

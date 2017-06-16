@@ -45,4 +45,12 @@
 .continue-to-payment {
     width: 175px;
     margin-top: 30px;
+
+    &.disabled {
+        color: black;
+        pointer-events: none;
+        cursor: not-allowed;
+        opacity: .55;
+        background-color: dimgrey;
+    }
 }
