@@ -55,7 +55,6 @@ appModule.controller("ShippingController", function($scope, formService, $localS
     $scope.continueToPayment = function() {
         $localStorage.shippingAddress = $scope.shippingAddress;
         $localStorage.billingAddress = $scope.billingAddress;
-
         $location.path("/payment");
     }
 

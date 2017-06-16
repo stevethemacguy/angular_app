@@ -15,9 +15,12 @@ appModule.controller("PaymentController", ['$scope', "formService", "$localStora
         $scope.billingAddress = $localStorage.billingAddress;
     }
 
-    if (!$localStorage.billingAddress || $localStorage.shippingAddress) {
+    //Basic check to ensure that user's can't go directly to the payment page unless they have a valid billing address.
+    //We're only checking the zipCode because this is an edge case that shouldn't occure often. If the user filled-out the zipCode,
+    //then they likely made it to the end of the form.
+    if (!$localStorage.billingAddress.zipCode || !$localStorage.shippingAddress.zipCode) {
         $location.path("/shipping");
-        toastr.error("No billing address was found. Please enter your billing address to continue.");
+        toastr.error("Incomplete billing address. Please enter your billing address to continue.");
     }
 
     $scope.submitPayment = function() {
