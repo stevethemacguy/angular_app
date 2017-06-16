@@ -31,7 +31,8 @@
         </div>
         <div class="input-container">
             <label for="phone">Phone Number:</label>
-            <input id="phone" ng-change="updateBillingAddress()" ng-model="shippingAddress.phone" name="phone" type="text" placeholder="" title="Phone Number" required/>
+            <input id="phone" ng-change="updateBillingAddress()" ng-model="shippingAddress.phone" name="phone" type="text" placeholder=""
+                   title="Phone Number" required onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="10" minlength="7"/>
             <div ng-show="shippingForm.$submitted || shippingForm.phone.$touched" class="error-message">
                 <span ng-show="shippingForm.phone.$error.required">Phone is required</span>
             </div>
@@ -45,22 +46,23 @@
         </div>
         <div class="input-container">
             <label for="state">State:</label>
-            <input id="state" ng-change="updateBillingAddress()" ng-model="shippingAddress.state" name="state" type="text" placeholder="" title="State" required/>
+            <input id="state" ng-change="updateBillingAddress()" ng-model="shippingAddress.state" name="state" type="text" placeholder=""
+                   title="State" required maxlength="2" minlength="2"/>
             <div ng-show="shippingForm.$submitted || shippingForm.state.$touched" class="error-message">
                 <span ng-show="shippingForm.state.$error.required">State is required</span>
             </div>
         </div>
         <div class="input-container">
-            <label for="country">country:</label>
+            <label for="country">Country:</label>
             <input id="country" ng-change="updateBillingAddress()" ng-model="shippingAddress.country" name="country" type="text" placeholder="" title="Country" required/>
             <div ng-show="shippingForm.$submitted || shippingForm.country.$touched" class="error-message">
                 <span ng-show="shippingForm.country.$error.required">Country is required</span>
             </div>
         </div>
         <div class="input-container">
-            <label for="zipCode">zipCode:</label>
+            <label for="zipCode">Zip Code:</label>
             <input id="zipCode" ng-change="updateBillingAddress()" ng-model="shippingAddress.zipCode" name="zipCode" type="text" placeholder="" title="Zip Code" required
-                   onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="5"/>
+                   onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="5" minlength="5"/>
             <div ng-show="shippingForm.$submitted || shippingForm.zipCode.$touched" class="error-message">
                 <span ng-show="shippingForm.zipCode.$error.required">Zip code is required</span>
             </div>
@@ -88,7 +90,8 @@
         </div>
         <div class="input-container">
             <label for="billingPhone">Phone Number:</label>
-            <input id="billingPhone" ng-model="billingAddress.phone" name="billingPhone" type="text" placeholder="" title="Phone Number" required/>
+            <input id="billingPhone" ng-model="billingAddress.phone" name="billingPhone" type="text" placeholder="" title="Phone Number" required
+                   onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="10" minlength="7"/>
             <div ng-show="shippingForm.$submitted || shippingForm.billingPhone.$touched" class="error-message">
                 <span ng-show="shippingForm.billingPhone.$error.required">Phone is required</span>
             </div>
@@ -102,22 +105,23 @@
         </div>
         <div class="input-container">
             <label for="billingState">State:</label>
-            <input id="billingState" ng-model="billingAddress.state" name="billingState" type="text" placeholder="" title="State" required/>
+            <input id="billingState" ng-model="billingAddress.state" name="billingState" type="text" placeholder="" title="State" required
+                   maxlength="2" minlength="2"/>
             <div ng-show="shippingForm.$submitted || shippingForm.billingState.$touched" class="error-message">
                 <span ng-show="shippingForm.billingState.$error.required">State is required</span>
             </div>
         </div>
         <div class="input-container">
-            <label for="billingCountry">country:</label>
+            <label for="billingCountry">Country:</label>
             <input id="billingCountry" ng-model="billingAddress.country" name="billingCountry" type="text" placeholder="" title="Country" required/>
             <div ng-show="shippingForm.$submitted || shippingForm.billingCountry.$touched" class="error-message">
                 <span ng-show="shippingForm.billingCountry.$error.required">Country is required</span>
             </div>
         </div>
         <div class="input-container">
-            <label for="billingZipCode">billingZipCode:</label>
+            <label for="billingZipCode">Zip Code:</label>
             <input id="billingZipCode" ng-model="billingAddress.zipCode" name="billingZipCode" type="text" placeholder="" title="Zip Code" required
-                   onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="5"/>
+                   onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="5" minlength="5"/>
             <div ng-show="shippingForm.$submitted || shippingForm.billingZipCode.$touched" class="error-message">
                 <span ng-show="shippingForm.billingZipCode.$error.required">Zip code is required</span>
             </div>

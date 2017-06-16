@@ -114,7 +114,6 @@ appModule.factory('dataService', function($http, $rootScope, toastr, $location) 
     };
 
     theService.removeProductFromCart = function(productIdToRemove) {
-        //Cart id is currently hardcoded because the api currently only supports a single cart
         var apiUrl = config.apiEndPoints.cart.removeProductFromCart.replace('{cartId}', $rootScope.cartId).replace('{productId}', productIdToRemove);
         return $http.delete(apiUrl)
             .then(function(response) {

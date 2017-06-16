@@ -352,6 +352,44 @@ form {
       opacity: .55;
       background-color: dimgrey;
    }
+
+   //Remove styling from anchors
+   a {
+      color: #ffffff;
+      text-decoration: none;
+      outline: none;
+   }
+
+   a:link {
+      color: #ffffff;
+      text-decoration: none;
+      outline: none;
+   }
+
+   a:visited {
+      color: #ffffff;
+      text-decoration: none;
+      outline: none;
+   }
+
+   a:focus {
+      color: #ffffff;
+      text-decoration: none;
+      outline: none;
+   }
+
+   a:hover {
+      color: #ffffff;
+      text-decoration: none;
+      outline: none;
+      cursor: pointer;
+   }
+
+   a:active {
+      color: #ffffff;
+      text-decoration: none;
+      outline: none;
+   }
 }
 
 .loading-spinner {

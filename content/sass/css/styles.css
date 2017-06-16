@@ -254,6 +254,31 @@ form {
     cursor: not-allowed;
     opacity: .55;
     background-color: dimgrey; }
+  .sd-primary-btn a {
+    color: #ffffff;
+    text-decoration: none;
+    outline: none; }
+  .sd-primary-btn a:link {
+    color: #ffffff;
+    text-decoration: none;
+    outline: none; }
+  .sd-primary-btn a:visited {
+    color: #ffffff;
+    text-decoration: none;
+    outline: none; }
+  .sd-primary-btn a:focus {
+    color: #ffffff;
+    text-decoration: none;
+    outline: none; }
+  .sd-primary-btn a:hover {
+    color: #ffffff;
+    text-decoration: none;
+    outline: none;
+    cursor: pointer; }
+  .sd-primary-btn a:active {
+    color: #ffffff;
+    text-decoration: none;
+    outline: none; }
 
 .loading-spinner {
   height: 300px;

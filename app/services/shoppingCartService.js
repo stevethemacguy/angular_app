@@ -97,32 +97,20 @@ appModule.factory('shoppingCartService', function(dataService, toastr) {
 
     theService.removeFromCart = function(productId) {
         //make sure we have the most recent version of the cart before attempting to remove anything
-        return dataService.getProductsFromCart()
+        return dataService.removeProductFromCart(productId)
             .then(function(response) {
-                theCart.cartItems = response.data;
-                theCart.itemCount = response.data.length;
-                updateTotalCost();
-
-                //Don't add duplicates
-                if (!theService.isProductInCart(productId)) {
-                    dataService.removeProductFromCart(productId)
-                        .then(function(response) {
-                            dataService.getProductsFromCart()
-                                .then(function(response) {
-                                    theCart.cartItems = response.data;
-                                    theCart.itemCount = response.data.length;
-                                    theCart.totalPrice = 0;
-                                    updateTotalCost();
-                                    //console.log(theCart);
-                                });
-
-                            toastr.success('Successfully removed 1 item from your cart');
-                        });
-
-                }
-                else {
-                    toastr.warning("Cannot remove the product because it is not in the cart")
-                }
+                toastr.success('Successfully removed 1 item from your cart');
+                dataService.getProductsFromCart()
+                    .then(function(response) {
+                        theCart.cartItems = response.data;
+                        theCart.itemCount = response.data.length;
+                        theCart.totalPrice = 0;
+                        updateTotalCost();
+                        //console.log(theCart);
+                    })
+                    .catch(function(error) {
+                        responseError(error)//Error handler if the $http request fails.
+                    });
             });
     };
 
@@ -151,4 +139,9 @@ appModule.factory('shoppingCartService', function(dataService, toastr) {
     };
 
     return theService;
+
+    //Error handler for the ajax request
+    function responseError(response) {
+        toastr.error("Ajax Request failed. "+ response.status + ": "+ response.statusText);
+    }
 });

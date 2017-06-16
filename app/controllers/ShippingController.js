@@ -17,7 +17,7 @@ appModule.controller("ShippingController", function($scope, formService, $localS
         addressLine1: "",
         addressLine2: "",
         state: "",
-        country: "",
+        country: "United States",
         zipCode: ""
     };
 
@@ -28,10 +28,11 @@ appModule.controller("ShippingController", function($scope, formService, $localS
         phone: "",
         addressLine1: "",
         addressLine2: "",
-        state: "",
+        state: "United States",
         country: "",
         zipCode: ""
     };
+
 
     //If sameAsShipping is checked, copy over the billing address using the shippingAddress values any time there's a change
     $scope.updateBillingAddress = function(shippingAddress) {
