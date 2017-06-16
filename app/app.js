@@ -6,6 +6,7 @@ var appModule = angular.module("appModule", [
     'door3.css',
     'ngAnimate',
     'ui.bootstrap',
+    'ngStorage',
     'toastr']
     )
     .config(['$httpProvider', function($httpProvider) {
