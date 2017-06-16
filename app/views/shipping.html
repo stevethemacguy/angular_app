@@ -1,52 +1,140 @@
-<span class="productText">Please enter your shipping information</span>
+<span class="product-text">Please enter your shipping information</span>
+<span class="billing-text" ng-show="!sameAsShipping">Please enter your billing information</span>
+
 <ol class="breadcrumb">
     <li class="active">Shipping</li>
-    <li><a href="/payment">Payment</a></li>
-    <li><a href="/confirmation">Confirmation</a></li>
+    <li>Payment</li>
+    <li>Confirmation</li>
 </ol>
 <!--novalidate just tells the browser not to use normal form validation-->
 <!--NOTE: All forms are an instance of FormController. The "name" attr here allows us to use the scope of FormController, so it's important-->
 <!--Similiarlym inputs with that use ng-model become properties of the FormController instance, and you access them using their "name" attribute-->
-<form novalidate class="simple-form" name="shippingForm">
-    <div class="input-container">
-        <span>Name: </span><input type="text" ng-model="formData.name" name="uName" required/><br />
-        <!--For testing! {{formData.name}}-->
-        <!--For example, this error message will be shown:
-                IF the form is submitted (even though the user hasn't touched the input)
-                    OR
-                If the input is touched (i.e. loses focus) but it is empty ($error.required checks for this. See https://docs.angularjs.org/api/ng/type/form.FormController)-->
-        <div ng-show="shippingForm.$submitted || shippingForm.uName.$touched" class="error-message">
-            <span ng-show="shippingForm.uName.$error.required">The name field is required</span>
+<form novalidate class="sd-form" name="shippingForm">
+    <div class="addressContainer">
+        <div class="input-container first-input">
+            <label for="firstName">First Name:</label>
+            <input id="firstName" ng-change="updateBillingAddress()" ng-model="shippingAddress.firstName" class="login-input" name="firstName" type="text" placeholder="" title="First Name" required/>
+            <div ng-show="shippingForm.$submitted || shippingForm.firstName.$touched" class="error-message">
+                <span ng-show="shippingForm.firstName.$error.required">First name is required</span>
+            </div>
         </div>
-    </div>
-    <!--Two possible messages for invalid emails-->
-    <!--Notice that $error.email is shown if the email is not a valid email-->
-    <div class="input-container">
-        <span>Email: </span><input type="email" ng-model="formData.email" name="uEmail" required /><br />
-        <div ng-show="shippingForm.$submitted || shippingForm.uEmail.$touched" class="error-message">
-            <span ng-show="shippingForm.uEmail.$error.required">The Email field is required</span>
-            <span ng-show="shippingForm.uEmail.$error.email">Invalid Email format</span>
+        <div class="input-container">
+            <label for="lastName">Last Name:</label>
+            <input id="lastName" ng-change="updateBillingAddress()" ng-model="shippingAddress.lastName" name="lastName" type="text" placeholder="" title="Last Name" required/>
+            <div ng-show="shippingForm.$submitted || shippingForm.lastName.$touched" class="error-message">
+                <span ng-show="shippingForm.lastName.$error.required">Last name is required</span>
+            </div>
         </div>
-    </div>
-    <div class="input-container">
-        <span>Phone: </span><input type="tel" ng-model="formData.phone" name="uPhone" ng-minlength="7" maxlength="10"/><br />
-        <div ng-show="shippingForm.$submitted || shippingForm.uPhone.$touched" class="error-message">
-            <span ng-show="shippingForm.uPhone.$error.minlength">Please enter at least 7 numbers</span>
+        <div class="input-container">
+            <label for="middleName">Middle Initial:</label>
+            <input id="middleName" ng-change="updateBillingAddress()" ng-model="shippingAddress.middleInitial" name="middleName" type="text" placeholder="" title="Middle Initial"/>
+        </div>
+        <div class="input-container">
+            <label for="phone">Phone Number:</label>
+            <input id="phone" ng-change="updateBillingAddress()" ng-model="shippingAddress.phone" name="phone" type="text" placeholder=""
+                   title="Phone Number" required onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="10" minlength="7"/>
+            <div ng-show="shippingForm.$submitted || shippingForm.phone.$touched" class="error-message">
+                <span ng-show="shippingForm.phone.$error.required">Phone is required</span>
+            </div>
+        </div>
+        <div class="input-container">
+            <label for="address">Address:</label>
+            <input id="address" ng-change="updateBillingAddress()" ng-model="shippingAddress.addressLine1" name="address" type="text" placeholder="" title="Address" required/>
+            <div ng-show="shippingForm.$submitted || shippingForm.address.$touched" class="error-message">
+                <span ng-show="shippingForm.address.$error.required">Address is required</span>
+            </div>
+        </div>
+        <div class="input-container">
+            <label for="state">State:</label>
+            <input id="state" ng-change="updateBillingAddress()" ng-model="shippingAddress.state" name="state" type="text" placeholder=""
+                   title="State" required maxlength="2" minlength="2"/>
+            <div ng-show="shippingForm.$submitted || shippingForm.state.$touched" class="error-message">
+                <span ng-show="shippingForm.state.$error.required">State is required</span>
+            </div>
+        </div>
+        <div class="input-container">
+            <label for="country">Country:</label>
+            <input id="country" ng-change="updateBillingAddress()" ng-model="shippingAddress.country" name="country" type="text" placeholder="" title="Country" required/>
+            <div ng-show="shippingForm.$submitted || shippingForm.country.$touched" class="error-message">
+                <span ng-show="shippingForm.country.$error.required">Country is required</span>
+            </div>
+        </div>
+        <div class="input-container">
+            <label for="zipCode">Zip Code:</label>
+            <input id="zipCode" ng-change="updateBillingAddress()" ng-model="shippingAddress.zipCode" name="zipCode" type="text" placeholder="" title="Zip Code" required
+                   onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="5" minlength="5"/>
+            <div ng-show="shippingForm.$submitted || shippingForm.zipCode.$touched" class="error-message">
+                <span ng-show="shippingForm.zipCode.$error.required">Zip code is required</span>
+            </div>
         </div>
     </div>
 
-    <hr/>
+    <div class="addressContainer billing" ng-show="!sameAsShipping">
+        <div class="input-container first-input">
+            <label for="billingFirstName">First Name:</label>
+            <input id="billingFirstName" ng-model="billingAddress.firstName" class="login-input" name="billingFirstName" type="text" placeholder="" title="First Name" required/>
+            <div ng-show="shippingForm.$submitted || shippingForm.billingFirstName.$touched" class="error-message">
+                <span ng-show="shippingForm.billingFirstName.$error.required">First name is required</span>
+            </div>
+        </div>
+        <div class="input-container">
+            <label for="billingLastName">Last Name:</label>
+            <input id="billingLastName" ng-model="billingAddress.lastName" name="billingLastName" type="text" placeholder="" title="Last Name" required/>
+            <div ng-show="shippingForm.$submitted || shippingForm.billingLastName.$touched" class="error-message">
+                <span ng-show="shippingForm.billingLastName.$error.required">Last name is required</span>
+            </div>
+        </div>
+        <div class="input-container">
+            <label for="billingMiddleInitial">Middle Initial:</label>
+            <input id="billingMiddleInitial" ng-model="billingAddress.middleInitial" name="billingMiddleInitial" type="text" placeholder="" title="Middle Initial"/>
+        </div>
+        <div class="input-container">
+            <label for="billingPhone">Phone Number:</label>
+            <input id="billingPhone" ng-model="billingAddress.phone" name="billingPhone" type="text" placeholder="" title="Phone Number" required
+                   onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="10" minlength="7"/>
+            <div ng-show="shippingForm.$submitted || shippingForm.billingPhone.$touched" class="error-message">
+                <span ng-show="shippingForm.billingPhone.$error.required">Phone is required</span>
+            </div>
+        </div>
+        <div class="input-container">
+            <label for="billingAddress">Address:</label>
+            <input id="billingAddress" ng-model="billingAddress.addressLine1" name="billingAddress" type="text" placeholder="" title="Address" required/>
+            <div ng-show="shippingForm.$submitted || shippingForm.billingAddress.$touched" class="error-message">
+                <span ng-show="shippingForm.billingAddress.$error.required">Address is required</span>
+            </div>
+        </div>
+        <div class="input-container">
+            <label for="billingState">State:</label>
+            <input id="billingState" ng-model="billingAddress.state" name="billingState" type="text" placeholder="" title="State" required
+                   maxlength="2" minlength="2"/>
+            <div ng-show="shippingForm.$submitted || shippingForm.billingState.$touched" class="error-message">
+                <span ng-show="shippingForm.billingState.$error.required">State is required</span>
+            </div>
+        </div>
+        <div class="input-container">
+            <label for="billingCountry">Country:</label>
+            <input id="billingCountry" ng-model="billingAddress.country" name="billingCountry" type="text" placeholder="" title="Country" required/>
+            <div ng-show="shippingForm.$submitted || shippingForm.billingCountry.$touched" class="error-message">
+                <span ng-show="shippingForm.billingCountry.$error.required">Country is required</span>
+            </div>
+        </div>
+        <div class="input-container">
+            <label for="billingZipCode">Zip Code:</label>
+            <input id="billingZipCode" ng-model="billingAddress.zipCode" name="billingZipCode" type="text" placeholder="" title="Zip Code" required
+                   onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="5" minlength="5"/>
+            <div ng-show="shippingForm.$submitted || shippingForm.billingZipCode.$touched" class="error-message">
+                <span ng-show="shippingForm.billingZipCode.$error.required">Zip code is required</span>
+            </div>
+        </div>
+    </div>
 
-    <span class="productText">Please enter your billing information</span>
     <div class="input-container sameAs">
-        <input type="checkbox" id="same" ng-model="sameAsShipping"/>
-        <label for="same">Use shipping information for billing</label>
+        <input type="checkbox" ng-change="updateBillingAddress()" id="same" ng-model="sameAsShipping"/>
+        <label for="same">Billing address same as shipping</label>
     </div>
-    <div class="input-container">
-        <span>Phone: </span><input type="tel" ng-model="formData.billingPhone" name="billingPhone" ng-minlength="7" maxlength="10"/><br />
-        <div ng-show="shippingForm.$submitted || shippingForm.billingPhone.$touched" class="error-message">
-            <span ng-show="shippingForm.billingPhone.$error.minlength">Please enter at least 7 numbers</span>
-        </div>
+
+    <div class="sd-primary-btn continue-to-payment" ng-class="{disabled: shippingForm.$invalid}" ng-click="continueToPayment()">
+        <span>Continue to Payment</span>
     </div>
     <!--<input type="button" ng-click="reset()" value="Reset" />-->
     <!--<input type="submit" ng-click="update(user)" value="Save" />-->

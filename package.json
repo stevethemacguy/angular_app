@@ -22,6 +22,7 @@
     "grunt-browser-sync": "^2.0.0",
     "grunt-contrib-sass": "^1.0.0",
     "grunt-contrib-watch": "^1.0.0",
+    "ngstorage": "^0.3.11",
     "opn": "^4.0.2"
   }
 }

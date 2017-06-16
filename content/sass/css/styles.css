@@ -165,6 +165,11 @@ header {
   position: absolute;
   right: 0;
   top: 53px; }
+  .breadcrumb > li {
+    color: #777777; }
+  .breadcrumb > .active {
+    color: #415693;
+    font-weight: bold; }
 
 ul {
   margin: 0;
@@ -186,6 +191,23 @@ ul {
   margin-bottom: 25px; }
   .input-container.first {
     margin-top: 25px; }
+
+.sd-form .error {
+  color: red; }
+.sd-form .errorMessage {
+  margin-top: 6px; }
+.sd-form .input-container {
+  margin-bottom: 10px;
+  width: 356px; }
+.sd-form .first-input {
+  margin-top: 20px; }
+.sd-form label {
+  font-weight: normal; }
+.sd-form input[type='text'], .sd-form input[type='email'], .sd-form input[type='password'] {
+  float: right;
+  width: 190px;
+  position: relative;
+  top: -2px; }
 
 ::placeholder {
   opacity: .5; }
@@ -210,7 +232,7 @@ form {
     top: -7px; }
 
 .sd-primary-btn {
-  border-radius: 2px;
+  border-radius: 3px;
   background-color: #415693;
   height: 36px;
   display: flex;
@@ -232,6 +254,31 @@ form {
     cursor: not-allowed;
     opacity: .55;
     background-color: dimgrey; }
+  .sd-primary-btn a {
+    color: #ffffff;
+    text-decoration: none;
+    outline: none; }
+  .sd-primary-btn a:link {
+    color: #ffffff;
+    text-decoration: none;
+    outline: none; }
+  .sd-primary-btn a:visited {
+    color: #ffffff;
+    text-decoration: none;
+    outline: none; }
+  .sd-primary-btn a:focus {
+    color: #ffffff;
+    text-decoration: none;
+    outline: none; }
+  .sd-primary-btn a:hover {
+    color: #ffffff;
+    text-decoration: none;
+    outline: none;
+    cursor: pointer; }
+  .sd-primary-btn a:active {
+    color: #ffffff;
+    text-decoration: none;
+    outline: none; }
 
 .loading-spinner {
   height: 300px;

@@ -10,11 +10,13 @@
     var productUrl = config.apiUrl + "products";
     var cartUrl = config.apiUrl + "cart";
     var accountUrl = config.apiUrl + "account";
+    var checkoutUrl  = config.apiUrl + "checkout";
 
     //To use with localhost and CORS
     /*var productUrl = config.localHostApiUrl + "products";
     var cartUrl = config.localHostApiUrl + "cart";
-    var accountUrl = config.localHostApiUrl + "account";*/
+    var accountUrl = config.localHostApiUrl + "account";
+    var checkoutUrl = config.localHostApiUrl + "checkout";*/
 
     //apiUrlBase
     var products= {
@@ -42,9 +44,14 @@
         makeAdmin: accountUrl + "/makeAdmin?email={email}"
     };
 
+    var checkout = {
+        createOrder: checkoutUrl + "/createOrder"
+    };
+
     //Register end points
     config.apiEndPoints.products = products;
     config.apiEndPoints.cart = cart;
     config.apiEndPoints.account = account;
+    config.apiEndPoints.checkout = checkout;
 
 })();
