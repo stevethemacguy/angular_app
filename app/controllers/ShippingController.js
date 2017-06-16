@@ -1,11 +1,50 @@
 //Services are singletons. formService has a shippingData object that lives in the formService and
 //can be shared across multiple controllers.
-appModule.controller("ShippingController", function($scope, formService) {
+appModule.controller("ShippingController", function($scope, formService, $localStorage, $location) {
 
     //$scope.formData is the glue between the view and the controller (i.e. formData is the "model")
     //formData directly references (i.e. updates) the shippingData in the service so that
     //the state is preserved when switching views.
     $scope.formData = formService.shippingData;
+
+    $scope.sameAsShipping = true;
+    $scope.shippingAddress = {
+        firstName: "",
+        middleInitial: "",
+        lastName: "",
+        phone: "",
+        addressLine1: "",
+        addressLine2: "",
+        state: "",
+        country: "",
+        zipCode: ""
+    };
+
+    $scope.billingAddress = {
+        firstName: "",
+        middleInitial: "",
+        lastName: "",
+        phone: "",
+        addressLine1: "",
+        addressLine2: "",
+        state: "",
+        country: "",
+        zipCode: ""
+    };
+
+    //Get the values from localStorage, if available
+    if ($localStorage.shippingAddress) {
+        $scope.shippingAddress = $localStorage.shippingAddress;
+        $scope.billingAddress = $localStorage.billingAddress;
+    }
+
+    //Store the addresses temporarily while checking out, so the user doesn't lose their data on page refreshes
+    $scope.continueToPayment = function() {
+        $localStorage.shippingAddress = $scope.shippingAddress;
+        $localStorage.billingAddress = $scope.billingAddress;
+        $location.path("/payment");
+    }
+
 
     //Note: you can NOT do $scope.formData.name = "" here if you want the data to persist between views,
     //This is because you get a new instance of the controller with each view. You could, however, do this in the service.

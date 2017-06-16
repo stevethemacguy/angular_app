@@ -244,6 +244,36 @@ ul {
    }
 }
 
+.sd-form {
+   .error {
+      color: red;
+   }
+
+   .errorMessage {
+      margin-top: 6px;
+   }
+
+   .input-container {
+      margin-bottom: 10px;
+      width: 356px;
+   }
+
+   .first-input {
+      margin-top: 20px;
+   }
+
+   label {
+      font-weight: normal;
+   }
+
+   input[type='text'], input[type='email'], input[type='password'] {
+      float: right;
+      width: 190px;
+      position: relative;
+      top: -2px;
+   }
+}
+
 //All input placeholders
 ::placeholder {
    opacity: .5;

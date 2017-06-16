@@ -1,9 +1,48 @@
 .sameAs {
-   margin-top: 8px;
-   margin-bottom: 15px;
+    margin-top: 7px;
 
-   > label {
-      font-size: 12px;
-      font-weight: normal;
-   }
+    > label {
+        font-size: 12px;
+        font-weight: normal;
+    }
+}
+
+.billing-text, .product-text {
+    font-size: 16px;
+    font-weight: bold;
+    display: inline-block;
+    margin: 6px 0;
+}
+
+.billing-text {
+    margin-left: 171px;
+}
+
+.sd-form {
+    margin-top: 0;
+
+    .input-container {
+        width: 312px;
+    }
+}
+
+.addressContainer {
+    display: inline-block;
+    margin-top: 5px;
+    vertical-align: top;
+
+    &.billing {
+        margin-left: 154px;
+    }
+}
+
+.error-message {
+    top: 3px;
+    left: 319px;
+    width: 200px;
+}
+
+.continue-to-payment {
+    width: 175px;
+    margin-top: 30px;
 }

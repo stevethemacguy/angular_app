@@ -187,6 +187,23 @@ ul {
   .input-container.first {
     margin-top: 25px; }
 
+.sd-form .error {
+  color: red; }
+.sd-form .errorMessage {
+  margin-top: 6px; }
+.sd-form .input-container {
+  margin-bottom: 10px;
+  width: 356px; }
+.sd-form .first-input {
+  margin-top: 20px; }
+.sd-form label {
+  font-weight: normal; }
+.sd-form input[type='text'], .sd-form input[type='email'], .sd-form input[type='password'] {
+  float: right;
+  width: 190px;
+  position: relative;
+  top: -2px; }
+
 ::placeholder {
   opacity: .5; }
 
