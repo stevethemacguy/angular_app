@@ -4,7 +4,40 @@
     <li class="active">Payment</a></li>
     <li>Confirmation</li>
 </ol>
-
-<div class="sd-primary-btn purchase-button" ng-click="submitPayment()">
-    <span>Complete Purchase</span>
-</div>
+<form novalidate class="sd-form" name="paymentForm">
+    <div class="input-container first-input">
+        <label for="cardType">Credit Card Type:</label>
+        <input id="cardType" ng-model="paymentMethod.cardType" class="login-input" name="cardType" type="text" placeholder="Visa" title="Credit Card Type" required/>
+        <div ng-show="paymentForm.$submitted || paymentForm.cardType.$touched" class="error-message">
+            <span ng-show="paymentForm.cardType.$error.required">Card Type is required</span>
+        </div>
+    </div>
+    <div class="input-container">
+        <label for="cardNumber">Card Number:</label>
+        <input id="cardNumber" ng-model="paymentMethod.cardNumber" name="cardNumber" type="text" placeholder="" title="Card Number" required maxlength="16"/>
+        <div ng-show="paymentForm.$submitted || paymentForm.cardNumber.$touched" class="error-message">
+            <span ng-show="paymentForm.cardNumber.$error.required">Card Number is required</span>
+        </div>
+    </div>
+    <div class="input-container">
+        <label for="securityCode">3-Digit Security Code (CVV):</label>
+        <input id="securityCode" ng-model="paymentMethod.securityCode" name="securityCode" type="text" placeholder="123" title="Security Code" required/>
+        <div ng-show="paymentForm.$submitted || paymentForm.securityCode.$touched" class="error-message">
+            <span ng-show="paymentForm.securityCode.$error.required">Security Code is required</span>
+        </div>
+    </div>
+    <div class="input-container">
+        <label for="expirationDate">Expiration Date</label>
+        <input id="expirationDate" ng-model="paymentMethod.expirationDate" name="expirationDate" type="text" placeholder="12/10/2020" title="expirationDate" required/>
+        <div ng-show="paymentForm.$submitted || paymentForm.expirationDate.$touched" class="error-message">
+            <span ng-show="paymentForm.expirationDate.$error.required">Expiration Date is required</span>
+        </div>
+    </div>
+    <div class="input-container">
+        <label for="customCardName">Save the card for later by giving it a name (optional):</label>
+        <input id="customCardName" class="customCardName" ng-model="paymentMethod.customCardName" name="customCardName" type="text" placeholder="My Credit Card" title="customCardName"/>
+    </div>
+    <div class="sd-primary-btn purchase-button" ng-class="{disabled: paymentForm.$invalid}" ng-click="createPayment()">
+        <span>Complete Purchase</span>
+    </div>
+</form>

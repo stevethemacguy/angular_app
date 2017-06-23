@@ -203,6 +203,8 @@ ul {
   margin-top: 20px; }
 .sd-form label {
   font-weight: normal; }
+.sd-form input {
+  padding-left: 2px; }
 .sd-form input[type='text'], .sd-form input[type='email'], .sd-form input[type='password'] {
   float: right;
   width: 190px;
