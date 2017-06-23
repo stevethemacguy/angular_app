@@ -11,12 +11,14 @@
     var cartUrl = config.apiUrl + "cart";
     var accountUrl = config.apiUrl + "account";
     var checkoutUrl  = config.apiUrl + "checkout";
+    var paymentUrl = config.apiUrl + "payment";
 
     //To use with localhost and CORS
     /*var productUrl = config.localHostApiUrl + "products";
     var cartUrl = config.localHostApiUrl + "cart";
     var accountUrl = config.localHostApiUrl + "account";
-    var checkoutUrl = config.localHostApiUrl + "checkout";*/
+    var checkoutUrl = config.localHostApiUrl + "checkout";
+    var paymentUrl = config.localHostApiUrl  + "payment";*/
 
     //apiUrlBase
     var products= {
@@ -48,10 +50,15 @@
         createOrder: checkoutUrl + "/createOrder"
     };
 
+    var payment = {
+        createPaymentMethod: paymentUrl + "/createPaymentMethod"
+    };
+
     //Register end points
     config.apiEndPoints.products = products;
     config.apiEndPoints.cart = cart;
     config.apiEndPoints.account = account;
     config.apiEndPoints.checkout = checkout;
+    config.apiEndPoints.payment = payment;
 
 })();

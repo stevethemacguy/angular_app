@@ -19,6 +19,21 @@ appModule.factory('paymentService', function($rootScope, $http, toastr, $locatio
             });
     };
 
+    theService.createPaymentMethod = function(paymentMethod) {
+        var apiUrl = config.apiEndPoints.payment.createPaymentMethod;
+        return $http.post(apiUrl, paymentMethod, {
+            withCredentials: true,
+            headers: {
+                'Content-Type': 'application/json; charset=utf-8'
+            }
+        })
+        .then(function(response) {
+            return response;
+        }).catch(function(error) {
+            responseError(error)//Error handler if the $http request fails.
+        });
+    };
+
     //Error handler for the ajax request
     function responseError(response) {
         if (typeof response !== "undefined" && typeof response.data !== "undefined") {

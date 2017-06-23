@@ -275,6 +275,10 @@ ul {
       font-weight: normal;
    }
 
+   input{
+      padding-left: 2px;
+   }
+
    input[type='text'], input[type='email'], input[type='password'] {
       float: right;
       width: 190px;
