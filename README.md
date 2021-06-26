@@ -1,0 +1,2 @@
+# angular_app
+Basic AngularJS SPA using Node and Express. The app is deployed at https://angular-app-with-dot-net-core.herokuapp.com and connects to a .Net API that I created (see https://github.com/stevethemacguy/asp.net-product-api). Unfortunately, the API was deployed on Azure and is no longer available, so the app won't work unless you deploy the API somewhere else. This app was meant to be a basic proof of concept (i.e. not a real app) and is no longer being maintained.
