@@ -1,0 +1,86 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# Compiled output
+/dist
+/tmp
+/out-tsc
+
+# Dependencies
+/node_modules
+/bower_components
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Typings
+/src/typings/tsd/
+/typings/
+/tsd_typings
+typings
+
+# misc
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
+npm-debug.log
+testem.log
+/typings
+
+# e2e
+/e2e/*.js
+/e2e/*.map
+
+# Mac OS Files
+.DS_Store
+.DS_Store?
+Thumbs.db
+ehthumbs.db
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+._*
+*~
+
+#Logs and databases
+*.log
+*.sql
+*.sqlite
+
+#Misc
+*bin
+*.name
+*.iml
+*.xml !sitemap.xml #Don't ignore the sitemap.xml file. It needs to be included
+*.xml !src/sitemap.xml #Don't ignore the sitemap.xml file. It needs to be included
+.idea
+*.userprefs
+*.suo
+*.pidb
+*.user
+*.userosscache
+
+#Use if you don’t want to check-in a project-specific .gitignore
+#.gitignore
+
+# Grunt intermediate storage (http://gruntjs.com/creating-plugins#storing-task-files)
+.grunt
+
+# Provisioning and deployments
+/capistrano/log
+/provision/vars/*
+
+
